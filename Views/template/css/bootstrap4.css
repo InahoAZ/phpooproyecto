@@ -19,6 +19,7 @@ html {
 }
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 article,
 aside,
@@ -2445,8 +2446,13 @@ table th[class*="col-"] {
   background-color: #e43725;
 }
 .table-responsive {
-  overflow-x: auto;
-  min-height: 0.01%;
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #ddd;
+    -webkit-overflow-scrolling: touch;
 }
 @media screen and (max-width: 767px) {
   .table-responsive {
@@ -3068,6 +3074,12 @@ fieldset[disabled] a.btn {
   background-color: #464545;
   border-color: #464545;
 }
+.btn-defaultt {
+  color: #ffffff;
+  background-color: #eeeeee;
+  border-color: #424242;
+}
+
 .btn-default:focus,
 .btn-default.focus {
   color: #ffffff;

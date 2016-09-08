@@ -37,7 +37,7 @@
 							<td><?php echo $row['abreviatura_unidad'];?></td>
 							<td><?php echo $row['stock'] ."&nbsp;";?></td>							
 							<td><?php echo $row['razon_social'];?></td>
-							<td><form class="form-horizontal" action="<?php echo URL; ?>materiales/reabastecerAdd/<?php echo $row['cod_material']?>" method="POST" enctype="multipart/form-data">
+							<td><form class="form-horizontal" action="<?php echo URL; ?>materiales/reabastecerAdd/<?php echo $row['cod_material']?>" method="GET" enctype="multipart/form-data">
 								<input class="form-control" name="stock" type="text" required></td>
 
 								<td><button type="submit" class="btn btn-warning" href=" ">Actualizar Stock</button></td>

@@ -23,8 +23,6 @@
 								</select>
 								<label for="inputEmail" class="control-label">Precio Unitario</label>
 								<input class="form-control" name="precio_unitario" type="text" value="<?php echo $datos['precio_unitario'];?>" required>  
-								<label for="inputEmail" class="control-label">Stock Inicial</label>
-								<input class="form-control" name="stock" type="text" value="<?php echo $datos['stock'];?>" required>    
 								<label for="inputEmail" class="control-label">Proveedor</label>
 								<select class="form-control" id="select" name="cod_proveedor">
 									<?php while($row = mysqli_fetch_array($comb)) {?>

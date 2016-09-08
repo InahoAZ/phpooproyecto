@@ -15,7 +15,7 @@
 			</form>
 		</div>
 		<div class="panel-body">
-			<table class="table table-striped table-hover ">
+			<table class="table table-responsive table-hover ">
 				<thead>
 					<tr>
 						<th>Codigo</th>
@@ -24,7 +24,7 @@
 						<th>Unidad</th>
 						<th>Disponible</th>
 						<th>Proveedor</th>			     
-						<th colspan="2">Accion</th>
+						<th colspan="3">Accion</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,9 +36,10 @@
 							<td><?php echo $row['abreviatura_unidad'];?></td>
 							<td><?php echo $row['stock'] ."&nbsp;"?></td>							
 							<td><?php echo $row['razon_social'];?></td>
-							
-							<td><a class="btn btn-warning" href=" <?php echo URL; ?>materiales/editar/<?php echo $row['cod_material']?>">Editar</a></td>
-							<td><a class="btn btn-danger" href=" <?php echo URL; ?>materiales/eliminar/<?php echo $row['cod_material']?>">Eliminar</a></td>
+
+							<td><a class="btn btn-primary" title="Historial de Compras" href=" <?php echo URL; ?>materiales/historial/<?php echo $row['cod_material']?>"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/history.png"></a></td>
+							<td><a class="btn btn-warning" href=" <?php echo URL; ?>materiales/editar/<?php echo $row['cod_material']?>"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/edit.png"></a></td>
+							<td><a class="btn btn-danger" href=" <?php echo URL; ?>materiales/eliminar/<?php echo $row['cod_material']?>"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/delete.png"></a></td>
 						</tr>
 						<?php } ?>
 					</div>

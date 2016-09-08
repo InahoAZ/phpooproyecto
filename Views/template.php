@@ -31,13 +31,13 @@ class Template{
 						<ul class="nav navbar-nav">
 							<li><a href="<?php echo URL; ?>">Inicio</a></li>
 
-							<li class="dropdown">
+							<!--<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>clientes">Vender</a></li>
-									<li><a href="<?php echo URL; ?>clientes/agregar">Ventas Realizadas</a></li>
+									<li><a href="clientes">Vender</a></li>
+									<li><a href="clientes/agregar">Ventas Realizadas</a></li>
 								</ul>
-							</li>
+							</li>-->
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -58,15 +58,18 @@ class Template{
 									<li><a href="<?php echo URL; ?>materiales">Listado</a></li>
 									<li><a href="<?php echo URL; ?>materiales/agregar">Agregar Material</a></li>
 									<li><a href="<?php echo URL; ?>materiales/reabastecer">Reabastecer Materiales</a></li>
+									<li><a href="<?php echo URL; ?>materiales/historial">Historial de Reabastecimientos</a></li>
+
+									
 								</ul>
 							</li>							
-							<!-- <li class="dropdown">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Costos<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo URL; ?>costos">Calcular Costos</a></li>									
 									<li><a href="<?php echo URL; ?>costos/vercfijos">Ver Costos Fijos</a></li>
 								</ul>
-							</li> -->
+							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -75,15 +78,6 @@ class Template{
 									<li><a href="<?php echo URL; ?>productos/stock">Actualizar Stock</a></li>
 								</ul>
 							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estadisticas<span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>estadisticas">Menu de Estadísticas</a></li>
-									<li><a href="<?php echo URL; ?>estadisticasInv">Estadistícas de Inventario</a></li>
-									<li><a href="<?php echo URL; ?>estadisticasVen">Estadistícas de Ventas</a></li>
-									<li><a href="<?php echo URL; ?>">Gráficos</a></li>
-								</ul>
-							</li>	
 							
 							
 						</ul>
@@ -95,7 +89,6 @@ class Template{
 					</div>
 				</div>
 			</nav>
-
 
 
 			<?php

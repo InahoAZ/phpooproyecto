@@ -18,7 +18,7 @@
 								<input class="form-control" name="precio_sugerido" id="srch-term" type="text" value="<?php echo $datos['precio_sugerido'] ?>" readonly required>
 
 								<div class="input-group-btn">								
-									<button class="btn btn-default" type="button" onclick="submitForm('../costos/act1')">Calcular</button>		        
+									<button class="btn btn-default" type="button" onclick="submitForm('../costos')">Calcular</button>		        
 								</div>
 							</div>
 
