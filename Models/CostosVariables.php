@@ -30,8 +30,8 @@
 		public function add(){
 			$sql = "INSERT INTO t_costosvariables(cod_costosvariables, cod_producto, mano_obra, total, fecha)	VALUES (null, '{$this->cod_producto}', '{$this->mano_obra}', '{$this->total}', '{$this->fecha}')";
 			//print $sql;
-			$lastId = $this->con->consultaSimple($sql);
-			return $lastId;
+			$this->con->consultaSimple($sql);
+
 		}
 		
 		

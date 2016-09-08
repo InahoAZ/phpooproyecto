@@ -8,6 +8,8 @@
  		private $stock = "null";
  		private $fecha_stock;
  		private $cod_proveedor;
+ 		private $desde;
+ 		private $hasta;
  		private $con;
 
  		public function __construct(){
@@ -57,7 +59,7 @@
 			//echo $sql;
 		}
 		public function edit(){
-			$sql = "UPDATE m_materiales SET descripcion = '{$this->descripcion}', cod_unidad = '{$this->cod_unidad}',  precio_unitario = '{$this->precio_unitario}',  stock = '{$this->stock}', fecha_stock = '{$this->fecha_stock}',cod_proveedor = '{$this->cod_proveedor}' WHERE cod_material = '{$this->cod_material}' ";
+			$sql = "UPDATE m_materiales SET descripcion = '{$this->descripcion}', cod_unidad = '{$this->cod_unidad}',  precio_unitario = '{$this->precio_unitario}',cod_proveedor = '{$this->cod_proveedor}' WHERE cod_material = '{$this->cod_material}' ";
 			$this->con->consultaSimple($sql);
 			//echo $sql;		
 		}
@@ -74,6 +76,7 @@
 		}
 		public function view2(){
 			$sql = "SELECT m.*, pr.* FROM m_materiales m, m_proveedores pr WHERE m.cod_material = '{$this->cod_material}' AND m.cod_proveedor = pr.cod_proveedor";
+			//print $sql;
 			$datos = $this->con->consultaRetorno($sql);
 			$row = mysqli_fetch_assoc($datos);			
 			return $row;
@@ -92,6 +95,10 @@
 			return $datos;
 
 		}
+
+		
+
+
 
 
  	}

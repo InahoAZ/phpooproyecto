@@ -20,13 +20,6 @@ class Costos{
 	public function get($atributo){
 		return $this->atributo;
 	}
-	
-	public function add(){
-			$sql = "INSERT INTO m_costosgeneral(cod_costos, cod_producto, cod_costosfijos, cod_costosvariables, total)	VALUES (null, '{$this->cod_producto}', '{$this->cod_costosfijos}', '{$this->cod_costosvariables}', '{$this->total}')";
-			//print $sql;
-			$lastId = $this->con->consultaSimple($sql);
-			return $lastId;
-		}
 
 	public function listar(){			
 		$sql = "SELECT cg.* FROM m_costos cg ";

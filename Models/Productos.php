@@ -27,10 +27,9 @@
 			return $datos;
 		}
 		public function add(){
-			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}','{$this->precio_sugerido}' ,'{$this->precio_unitario}', '{$this->stock}', NOW())";
+			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}','{$this->precio_sugerido}' ,null, null, null)";
 			//print $sql;
-			$lastId = $this->con->consultaSimple($sql);
-			return $lastId;
+			$this->con->consultaSimple($sql);
 		}
 		public function delete(){
 			$sql = "DELETE FROM m_productos WHERE cod_producto = '{$this->cod_producto}'";
@@ -39,11 +38,6 @@
 		}
 		public function edit(){
 			$sql = "UPDATE m_productos SET descripcion = '{$this->descripcion}', precio_unitario = '{$this->precio_unitario}', stock = '{$this->stock}', fecha_alta = '{$this->fecha_alta}' WHERE cod_producto = '{$this->cod_producto}' ";
-			$this->con->consultaSimple($sql);
-			echo $sql;		
-		}
-		public function edit1(){
-			$sql = "UPDATE m_productos SET precio_sugerido = '{$this->precio_sugerido}' WHERE cod_producto = '{$this->cod_producto}' ";
 			$this->con->consultaSimple($sql);
 			echo $sql;		
 		}
