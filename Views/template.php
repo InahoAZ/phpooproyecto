@@ -4,6 +4,7 @@ $template = new Template();
 class Template{
 
 	public function __construct(){
+		session_start();
 ?>
 <!DOCTYPE html>
 		<html lang="es">
@@ -31,20 +32,20 @@ class Template{
 						<ul class="nav navbar-nav">
 							<li><a href="<?php echo URL; ?>">Inicio</a></li>
 
-							<!--<li class="dropdown">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="clientes">Vender</a></li>
 									<li><a href="clientes/agregar">Ventas Realizadas</a></li>
 								</ul>
-							</li>-->
-							<!--<li class="dropdown">
+							</li>
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="clientes">Listado</a></li>
 									<li><a href="clientes/agregar">Agregar Cliente</a></li>
 								</ul>
-							</li>-->
+							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
