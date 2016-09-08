@@ -9,7 +9,8 @@ class materialesController{
 	private $material;
 	private $costostemp;
 	private $unidadesmedida;
-	private $opeaciones;
+	private $operaciones;
+	private $lastId;
 
 	public function __construct(){
 		$this->material = new Material();
@@ -56,47 +57,90 @@ class materialesController{
 			$this->operaciones->set("q" , $_POST['stock']);
 			$this->operaciones->set("cod_tipo_operacion", 1);
 			$this->material->set("stock", $_POST['stock']);
-			$this->operaciones->add();
+			$this->lastId = $this->operaciones->add();
+
 
 			
-			}		
+		}		
 
 			//header("Location: " . URL . "materiales");
-		}
+	}
 	public function reabastecerAdd($id=""){
 		$this->material->set("cod_material", $id);	
 		$datos = $this->material->listar3();
 		$datos2 = $this->material->view2();		
-		$row = mysqli_fetch_assoc($datos);
-		$stock = $row['stock']; //Stock antes de agregar
+		//$row = mysqli_fetch_assoc($datos2);
+		$stock = $datos2['stock']; //Stock antes de agregar
+		echo $stock;
 		if ($_POST) {
 			$this->operaciones->set("cod_material", $id);
-			$this->operaciones->set("q" , $_POST['stock']);
+			$this->operaciones->set("q" , $_GET['stock']);
 			$this->operaciones->set("cod_tipo_operacion", 1);
 			$this->material->set("cod_material", $id);
-			$this->material->set("stock", $stock + $_POST['stock']); //Se le suma el stock agregado
-			$this->operaciones->add();
+			$this->material->set("stock", $stock + $_GET['stock']); //Se le suma el stock actual + el stock nuevo recibido por el formulario (POST)
+			$this->lastId = $this->operaciones->add();
 			$this->material->updateStock();
-			//header("Location: " . URL . "materiales");
-			
-			}
-
-			return $datos2;
+			header("Location: " . URL . "materiales/reabastecerComprobante/" . $this->lastId);
 			
 		}
 
-	public function reabastecerReport(){
-		$datos = $this->material->listar3();
-		$datos2 = $this->proveedor->view();
-		return array('material' => $datos, 'proveedor' => $datos2);
+		return $datos2;
+
+	}
+
+	public function reabastecerComprobante($id=""){ //Aca la wea que se imprime
+
+		if ($id =="")
+			$this->operaciones->set("cod_operacion", $this->lastId);
+		$this->operaciones->set("cod_operacion", $id);
+
+		$datos = $this->operaciones->view2();
+		return $datos;
 		
+		
+	}
+
+	public function historial($id=""){
+		if($id != ""){
+			$this->operaciones->set("cod_material", $id);
+			$datos = $this->operaciones->buscar();
+			//$datos = mysqli_fetch_assoc($datos);
+			if($_POST){
+				$this->operaciones->set("desde", $_POST['fecha1']);
+				$this->operaciones->set("hasta", $_POST['fecha2']);			
+				$datos = $this->operaciones->buscarFecha();
+				return $datos;
+			}
+			return $datos;
+		} else{
+			$datos = $this->operaciones->listar2();
+			if($_POST){
+				$this->operaciones->set("desde", $_POST['fecha1']);
+				$this->operaciones->set("hasta", $_POST['fecha2']);			
+				$datos = $this->operaciones->buscarFecha();
+				return $datos;
+			}
+			return $datos;
+		}		
+	}
+
+	public function materialesFrecuentes(){
+		$datos = $this->operaciones->materialesFrecuentes();
+		return $datos;
+
+	}
+
+	public function materialesGastos(){
+		$datos = $this->operaciones->materialesGastos();
+		return $datos;
+
 	}
 
 	public function eliminar($id){
 		$this->material->set("cod_material", $id);
 		$this->material->delete();
 		$this->operaciones->set("cod_material", $id);
-		$this->operaciones->deleteWhereMat();
+		$this->operaciones->deleteWhereMat(); //Al eliminar un material tambien todo su historial de operaciones. (Eliminar != Dejar Inactivo)
 		header("Location: " . URL . "materiales");
 	}
 
@@ -111,8 +155,7 @@ class materialesController{
 			$this->material->set("cod_unidad", $_POST['cod_unidad']);				
 			$this->material->set("precio_unitario", $_POST['precio_unitario']);			
 			$this->material->set("cod_proveedor", $_POST['cod_proveedor']);				
-			$this->material->edit();
-			print URL;
+			$this->material->edit();			
 			header("Location: " . URL . "materiales");
 		}
 	}

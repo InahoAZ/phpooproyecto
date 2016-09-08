@@ -13,7 +13,6 @@
 		private $productos;
 		private $costosvariables;
 		private $costosfijos;
-		private $lastId;
 
 		public function __construct(){			
 			$this->costos = new Costos();
@@ -56,24 +55,17 @@
 
 				}
 		}
-		public function act1(){
-			$this->productos->set("cod_producto", $_POST['cod_producto']);
-			$this->productos->set("descripcion", $_POST['descripcion']);
-			$this->lastId = $this->productos->add();
-			header("Location: " . URL . "costos");
-		}
 		
 		public function agregar(){
 			if($_POST){
-				print $this->lastId;
-				//codigo del producto creado primeramente en el modulo producto.
-				$this->productos->set("cod_producto",$this->lastId);
+				//Crea un nuevo Producto
+				$this->productos->set("cod_producto", $_POST['cod_producto']);
 				//Agrega los valores del formulario costos a la tabla t_costosvariables
-				$this->costosvariables->set("cod_producto", $this->lastId);
+				$this->costosvariables->set("cod_producto", $_POST['cod_producto']);
 				$this->costosvariables->set("mano_obra", $_POST['mano_obra']);
 				$this->costosvariables->set("total", $_POST['total']);
 				$this->costosvariables->set("fecha", date("Y-m-d"));
-				$lastIdCV = $this->costosvariables->add();
+				$this->costosvariables->add();
 
 
 				//Calcula el precio sugerido en base al total obtenido de los costos variables y le suma un porcentaje del total de los costos fijos				
@@ -83,7 +75,7 @@
 				$preciosugerido = $totalCV + $porcentaje;
 
 				$this->productos->set("precio_sugerido", $preciosugerido);
-				$this->productos->edit1();
+				$this->productos->add();
 
 				//Obtener el Codigo de los Costos fijos
 				$cod_costosfijos = $this->costosfijos->listarActual();
@@ -92,12 +84,10 @@
 
 
 				//Cargar todo en la Tabla Costos Generales
-				$this->costos->set("cod_producto", $this->lastId);
+				$this->costos->set("cod_producto", $_POST['cod_producto']);
 				$this->costos->set("cod_costosfijos", $cod_costosfijos);
-				$this->costos->set("cod_costosvariables", $lastIdCV );
-				$this->costos->set("total", $preciosugerido);
-				
-				//header("Location: " . URL . "productos/agregar");				
+				//$this->costos->set("cod_costosvariables", );
+				header("Location: " . URL . "productos/agregar");				
 
 
 			}
@@ -109,8 +99,6 @@
 			$this->costostemp->delete();
 			header("Location: " . URL . "costos");
 		}
-		
-		
 
 		public function editar($id){
 			if(!$_POST){
