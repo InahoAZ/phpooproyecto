@@ -4,8 +4,8 @@ $template = new Template();
 class Template{
 
 	public function __construct(){
-		?>
-		<!DOCTYPE html>
+?>
+<!DOCTYPE html>
 		<html lang="es">
 		<head>
 			<meta charset="UTF-8">
@@ -38,13 +38,13 @@ class Template{
 									<li><a href="clientes/agregar">Ventas Realizadas</a></li>
 								</ul>
 							</li>-->
-							<li class="dropdown">
+							<!--<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>clientes">Listado</a></li>
-									<li><a href="<?php echo URL; ?>clientes/agregar">Agregar Cliente</a></li>
+									<li><a href="clientes">Listado</a></li>
+									<li><a href="clientes/agregar">Agregar Cliente</a></li>
 								</ul>
-							</li>
+							</li>-->
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -91,11 +91,11 @@ class Template{
 			</nav>
 
 
-			<?php
+<?php
 		}
 
 		public function __destruct(){
-			?>
+?>
 			<footer class="panel-footer panel-primary navbar-fixed-bottom">
 				<center>Simulacion de Sistema de Facturacion <br>
 					Grupo~6to "E" | <b>Paw Paw &copy </b></center>
@@ -106,8 +106,8 @@ class Template{
 			</body>
 			</html>	
 
-			<?php
+<?php
 		}
 	}
 
-	?>
+?>
