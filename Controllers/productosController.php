@@ -40,7 +40,7 @@ class productosController{
 		else{
 			$coso = $this->costostemp->listar();
 			$coso = mysqli_fetch_assoc($coso);
-			print_r($coso);
+			//print_r($coso);
 			if(!empty($coso)){
 			$datos = $this->productos->listar();
 			$row = mysqli_fetch_assoc($datos);
