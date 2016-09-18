@@ -85,7 +85,14 @@ class Template{
 
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="http://codigofacilito.com">Codigo Facilito</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrador<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="<?php echo URL; ?>productos">Opciones</a></li>									
+									<li><a href="<?php echo URL; ?>productos/agregar">Cerrar Sesión</a></li>
+									
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
