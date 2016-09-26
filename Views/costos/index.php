@@ -23,7 +23,9 @@
                         <div class="col-md-10">
                           <form class="form-horizontal" action="costos/agregar" name="costosvariables" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
-                            	<input type="hidden" name="cod_producto" value="<?php echo($datos['contar']); ?>">                         
+                            	<input type="hidden" name="cod_producto" value="<?php echo($datos['contar']); ?>"> 
+                              <label for="inputEmail" class="control-label">Descripcion</label>
+                              <input class="form-control" name="descripcion" value="<?php $desc = $datos['descripcion']; echo $desc['descripcion'];?>" type="text" required readonly>                       
                               <label for="inputEmail" class="control-label">Materiales Utilizados</label>
                               <!--Inicio Grid de Materiales-->
                               <table class="table table-striped table-hover ">

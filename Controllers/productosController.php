@@ -27,25 +27,18 @@ class productosController{
 		return array('productos'=>$datos, 'costostemp'=>$datos2);		
 	}
 
-	public function agregar(){		
-		if($_POST){
-			$this->productos->set("cod_producto", $_POST['cod_producto']);
+	public function agregar(){
+		
+	//Si se presiona Calcular äct = 1, si se presiona Registrar act = 2 
+		if(isset($_POST['act']) && $_POST['act'] == 1){
+			//Paso 1: se crea un nuevo producto con su nombre y se pasa a la vista de costos para calcularlo.
 			$this->productos->set("descripcion", $_POST['descripcion']);
-			$this->productos->set("stock", $_POST['stock']);
-			$this->productos->set("precio_unitario", $_POST['precio_unitario']);
-			$this->productos->set("fecha_alta", date("Y-m-d"));
-			$this->productos->edit();
-			print_r($_POST['cod_producto']);			
+			$_SESSION['lastIdProducto'] = $this->productos->add();
+			header("Location: " . URL . "costos");
+			
 		}
-		else{
-			$coso = $this->costostemp->listar();
-			$coso = mysqli_fetch_assoc($coso);
-			//print_r($coso);
-			if(!empty($coso)){
-			$datos = $this->productos->listar();
-			$row = mysqli_fetch_assoc($datos);
-			return $row;
-			}
+		if(isset($_POST['act']) && $_POST['act'] == 2){
+			
 		}
 		
 

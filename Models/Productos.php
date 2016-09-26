@@ -29,7 +29,8 @@
 		public function add(){
 			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}','{$this->precio_sugerido}' ,null, null, null)";
 			//print $sql;
-			$this->con->consultaSimple($sql);
+			$lastId = $this->con->consultaSimple($sql);
+			return $lastId;
 		}
 		public function delete(){
 			$sql = "DELETE FROM m_productos WHERE cod_producto = '{$this->cod_producto}'";
@@ -42,11 +43,15 @@
 			echo $sql;		
 		}
 		public function view(){
-			$sql = "SELECT m.* FROM m_materiales m WHERE m.cod_producto = '{$this->cod_producto}'";
+			$sql = "SELECT m.* FROM m_productos m WHERE m.cod_producto = '{$this->cod_producto}'";
 			$datos = $this->con->consultaRetorno($sql);
+			//echo $sql;
 			$row = mysqli_fetch_assoc($datos);			
 			return $row;
 		}
+
+		
+
 		public function buscar(){
 			$sql = "SELECT m.* FROM m_materiales m WHERE descripcion LIKE '%$this->descripcion%' AND cod_producto LIKE '%$this->cod_producto%'";
 			$datos = $this->con->consultaRetorno($sql);

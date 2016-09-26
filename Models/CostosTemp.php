@@ -5,6 +5,7 @@
 		private $cod_producto;
 		private $cod_material;	
 		private $cantidad;
+		private $fecha;
 
 		
 		public function __construct(){
@@ -26,7 +27,7 @@
 		
 		
 		public function add(){
-			$sql = "INSERT INTO t_costostemp(cod_producto, cod_material, cantidad) VALUES ('{$this->cod_producto}', '{$this->cod_material}', '{$this->cantidad}')";			
+			$sql = "INSERT INTO t_costostemp(cod_producto, cod_material, cantidad, fecha) VALUES ('{$this->cod_producto}', '{$this->cod_material}', '{$this->cantidad}', NOW())";			
 			$this->con->consultaSimple($sql);
 			//echo $sql;
 						

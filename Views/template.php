@@ -80,6 +80,14 @@ class Template{
 									<li><a href="<?php echo URL; ?>productos/stock">Actualizar Stock</a></li>
 								</ul>
 							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contabilidad<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="<?php echo URL; ?>productos">Libro Diario</a></li>									
+									<li><a href="<?php echo URL; ?>productos/agregar">Ingresos y Gastos</a></li>
+									<li><a href="<?php echo URL; ?>productos/stock">Datos Fiscales (?</a></li>
+								</ul>
+							</li>
 							
 							
 						</ul>
