@@ -29,7 +29,7 @@ class productosController{
 
 	public function agregar(){
 		
-	//Si se presiona Calcular äct = 1, si se presiona Registrar act = 2 
+	//Si se presiona Calcular act = 1, si se presiona Registrar act = 2 
 		if(isset($_POST['act']) && $_POST['act'] == 1){
 			//Paso 1: se crea un nuevo producto con su nombre y se pasa a la vista de costos para calcularlo.
 			$this->productos->set("descripcion", $_POST['descripcion']);
@@ -38,6 +38,26 @@ class productosController{
 			
 		}
 		if(isset($_POST['act']) && $_POST['act'] == 2){
+			$this->productos->set("cod_producto", $_SESSION['lastIdProducto']);			
+			$this->productos->set("precio_unitario", $_POST['precio_unitario']);
+			$this->productos->set("stock", $_POST['stock']);
+			$this->productos->edit2();
+			unset($_SESSION['lastIdProducto']);
+
+		}
+	
+		
+	//Si no se recibe nada por post, hay dos posibilidades. 1. Que se este agregando un nuevo producto, entonces el form debe esta vacio, o 2. Que se este en el Paso 5, que es donde recibe el precio sugerido del form de costos.
+
+	//Al finalizar el proceso de agregar un producto completamente, la variable $_SESSION['lastIdProducto'], queda destruida. Si no es asi, es porque no finalizo el proceso de agregado, y se debe terminar.
+		if(!isset($_SESSION['lastIdProducto'])){
+			echo "Hola crayola";
+
+		}else{ //Paso 5: Una vez aca, se obtiene el precio sugerido.
+			
+			$this->productos->set("cod_producto", $_SESSION['lastIdProducto']);
+			$datos = $this->productos->view();
+			return $datos;
 			
 		}
 		

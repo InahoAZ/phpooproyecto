@@ -38,10 +38,21 @@
 			//echo $sql;
 		}
 		public function edit(){
-			$sql = "UPDATE m_productos SET descripcion = '{$this->descripcion}', precio_unitario = '{$this->precio_unitario}', stock = '{$this->stock}', fecha_alta = '{$this->fecha_alta}' WHERE cod_producto = '{$this->cod_producto}' ";
+			$sql = "UPDATE m_productos SET descripcion = '{$this->descripcion}', precio_unitario = '{$this->precio_unitario}', stock = '{$this->stock}', fecha_alta = NOW() WHERE cod_producto = '{$this->cod_producto}' ";
 			$this->con->consultaSimple($sql);
 			echo $sql;		
 		}
+		public function edit2(){
+			$sql = "UPDATE m_productos SET precio_unitario = '{$this->precio_unitario}', stock = '{$this->stock}', fecha_alta = NOW() WHERE cod_producto = '{$this->cod_producto}' ";
+			$this->con->consultaSimple($sql);
+			echo $sql;		
+		}
+		public function addPrecioSugerido(){
+			$sql = "UPDATE m_productos SET precio_sugerido = '{$this->precio_sugerido}' WHERE cod_producto = '{$this->cod_producto}' ";
+			$this->con->consultaSimple($sql);
+			//echo $sql;		
+		}
+
 		public function view(){
 			$sql = "SELECT m.* FROM m_productos m WHERE m.cod_producto = '{$this->cod_producto}'";
 			$datos = $this->con->consultaRetorno($sql);

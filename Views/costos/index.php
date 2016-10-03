@@ -67,7 +67,7 @@
                             </div>
                             <div class="form-group">
                              <button type="submit" class="btn btn-success">Cargar</button>
-                             <button type="reset" class="btn btn-warning">Borrar</button>
+                             <a type="button" class="btn btn-warning" href="<?php echo URL; ?>/productos">Cancelar</a>
 
                            </div>
                          </form>

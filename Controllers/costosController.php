@@ -26,11 +26,13 @@ class costosController{
 
 	public function index(){
 		$datos = $this->materiales->listar3();
-		$datos2 = $this->costostemp->listar();
+		
 		$contar = $this->productos->contar();
 		if(isset($_SESSION['lastIdProducto'])){
 			$this->productos->set("cod_producto", $_SESSION['lastIdProducto']);
 			$datos3 = $this->productos->view();	
+			$this->costostemp->set("cod_producto", $_SESSION['lastIdProducto']);
+			$datos2 = $this->costostemp->listar();
 		}else
 		$datos3 = 0;
 
@@ -77,26 +79,18 @@ class costosController{
 				$this->costosvariables->add();
 
 
-				//Calcula el precio sugerido en base al total obtenido de los costos variables y le suma un porcentaje del total de los costos fijos				
+				//Paso 3: Calcula el precio sugerido en base al total obtenido de los costos variables y le suma un porcentaje del total de los costos fijos. Dicho porcentaje se puede manipular en la vista de Costos Fijos.				
 				$totalCF = $this->costosfijos->totalCostosFijos();
 				$porcentaje = ($totalCF['resultado'] * $totalCF['porcentaje']) /100;
 				$totalCV = $_POST['total'];				
 				$preciosugerido = $totalCV + $porcentaje;
 
+				//Paso 4: Añade ese precio sugerido al producto con el que estamos trabajando. (lastIdProducto)
 				$this->productos->set("precio_sugerido", $preciosugerido);
-				$this->productos->add();
+				$this->productos->addPrecioSugerido();				
+				
 
-				//Obtener el Codigo de los Costos fijos
-				$cod_costosfijos = $this->costosfijos->listarActual();
-				$cod_costosfijos = mysqli_fetch_assoc($cod_costosfijos);
-				//print_r($cod_costosfijos['cod_costosfijos']);
-
-
-				//Cargar todo en la Tabla Costos Generales
-				$this->costos->set("cod_producto", $_POST['cod_producto']);
-				$this->costos->set("cod_costosfijos", $cod_costosfijos);
-				//$this->costos->set("cod_costosvariables", );
-				header("Location: " . URL . "productos/agregar");				
+				header("Location: " . URL . "productos/agregar"); //Volvemos a la Vista de Agregar Producto.				
 
 				
 			}
@@ -138,10 +132,10 @@ class costosController{
 		}
 		
 		public function addMaterial($id){
-			$producto = $this->productos->contar();
-			if($producto == 0)
-				$producto = 1;
-			$this->costostemp->set("cod_producto", $producto);
+			$lastIdProducto = $_SESSION['lastIdProducto'];
+			if($lastIdProducto == 0)
+				$LastIdProducto = 1;
+			$this->costostemp->set("cod_producto", $lastIdProducto);
 			$this->costostemp->set("cod_material", $id);
 			$this->costostemp->set("cantidad", $_POST['cantidad']);
 				//echo $producto;
