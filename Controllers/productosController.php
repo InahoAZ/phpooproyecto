@@ -43,6 +43,7 @@ class productosController{
 			$this->productos->set("stock", $_POST['stock']);
 			$this->productos->edit2();
 			unset($_SESSION['lastIdProducto']);
+			header("Location: " . URL . "productos");
 
 		}
 	

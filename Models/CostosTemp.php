@@ -30,12 +30,18 @@
 		public function add(){
 			$sql = "INSERT INTO t_costostemp(cod_producto, cod_material, cantidad, fecha) VALUES ('{$this->cod_producto}', '{$this->cod_material}', '{$this->cantidad}', NOW())";			
 			$this->con->consultaSimple($sql);
-			//echo $sql;
+			echo $sql;
 						
 		}
 		
 		public function delete(){
 			$sql = "DELETE FROM t_costostemp WHERE cod_material = '{$this->cod_material}'";
+			$this->con->consultaSimple($sql);
+			//echo $sql;
+		}
+		
+		public function deleteCancelar(){
+			$sql = "DELETE FROM t_costostemp WHERE cod_producto = '{$this->cod_producto}'";
 			$this->con->consultaSimple($sql);
 			//echo $sql;
 		}

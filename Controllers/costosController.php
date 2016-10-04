@@ -33,9 +33,11 @@ class costosController{
 			$datos3 = $this->productos->view();	
 			$this->costostemp->set("cod_producto", $_SESSION['lastIdProducto']);
 			$datos2 = $this->costostemp->listar();
-		}else
+		}else{
+		$_SESSION['lastIdProducto'] = null;
 		$datos3 = 0;
-
+		$datos2 = 0;
+		}
 				
 		return array('materiales'=>$datos, 'costostemp'=>$datos2, 'contar'=>$contar, 'descripcion'=>$datos3);
 
@@ -134,14 +136,33 @@ class costosController{
 		public function addMaterial($id){
 			$lastIdProducto = $_SESSION['lastIdProducto'];
 			if($lastIdProducto == 0)
-				$LastIdProducto = 1;
+				$LastIdProducto = 0;			
+			//Comprobar si hay existencias del material seleccionado
+			$this->materiales->set("cod_material", $id);			
+			$datos = $this->materiales->view();
+			$stock = $datos['stock'];									
+			if($stock != 0) {			
 			$this->costostemp->set("cod_producto", $lastIdProducto);
 			$this->costostemp->set("cod_material", $id);
 			$this->costostemp->set("cantidad", $_POST['cantidad']);
 				//echo $producto;
 			$this->costostemp->add();
-			header("Location: " . URL . "costos");				
-			
+			$stock -= $_POST['cantidad'];
+			$this->materiales->set("cod_material", $id);
+			$this->materiales->set("stock", $stock);
+			$this->materiales->updateStock();
+			header("Location: " . URL . "costos");			
+		}
+	}
+		
+		public function cancelar(){
+			$this->productos->set("cod_producto", $_SESSION['lastIdProducto']);
+			$this->costostemp->set("cod_producto", $_SESSION['lastIdProducto']);
+			$this->productos->delete();
+			$this->costostemp->deleteCancelar();
+			unset($_SESSION['lastIdProducto']);
+			header("Location: " . URL . "costos");		
+		
 		}
 		
 

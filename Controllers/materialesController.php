@@ -27,6 +27,13 @@ class materialesController{
 		return array('materiales'=>$datos, 'unidadesmedida'=>$datos2);
 
 	}
+	
+	public function indexcostos(){
+		$datos = $this->material->listar2();		
+		return array('materiales'=> $datos );
+
+}	
+
 	public function agregar(){
 		if ($_POST) {
 			$this->material->set("descripcion", $_POST['descripcion']);
@@ -180,11 +187,11 @@ class materialesController{
 
 	public function addMaterial($id){
 		if($_POST){			
-			$this->costostemp->set("cod_producto", 2);
+			$this->costostemp->set("cod_producto", $_SESSION['lastIdProducto']);
 			$this->costostemp->set("cod_material", $id);
 			$this->costostemp->set("cantidad", $_POST['cantidad']);
 			$this->costostemp->add();
-			header("Location: " . URL . "materiales");	
+			//header("Location: " . URL . "materiales");	
 		}		
 		
 	}
