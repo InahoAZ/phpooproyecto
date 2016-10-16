@@ -1,7 +1,8 @@
 <?php namespace Models;
 	class DetalleFactura{
 		private $cod_detalle;
-		private $numero_factura;
+		private $cod_factura;
+		private $num_factura;
 		private $cod_producto;
 		private $cantidad;
 		private $precio_venta;
@@ -23,7 +24,7 @@
 		}
 
 		public function add(){
-			$sql = "INSERT INTO m_facturas (cod_detalle, numero_factura, cod_producto, cantidad, precio_venta) VALUES (NULL, '{$this->numero_factura}, '{$this->cod_producto}, '{$this->cantidad}, '{$this->precio_venta}'";
+			$sql = "INSERT INTO m_facturas (cod_detalle, cod_factura, num_factura, cod_producto, cantidad, precio_venta) VALUES (NULL, '{$this->cod_factura}, '{$this->num_factura}, '{$this->cod_producto}, '{$this->cantidad}, '{$this->precio_venta}'";
 			$this->con->consultaSimple($sql);
 		}
 		public function delete(){
@@ -31,7 +32,7 @@
 			$this->con->consultaSimple($sql);			
 		}
 		public function edit(){
-			$sql = "UPDATE FROM m_facturas SET numero_factura = '{$this->numero_factura}' WHERE cod_detalle = '{$this->cod_detalle}'";
+			$sql = "";
 			$this->con->consultaSimple($sql);
 		}
 		public function view(){

@@ -40,3 +40,4 @@ function print() {
 function goBack() {
     window.history.back();
 }
+

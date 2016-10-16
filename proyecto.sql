@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2016 a las 00:31:25
+-- Tiempo de generación: 06-10-2016 a las 01:25:56
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -72,6 +72,7 @@ CREATE TABLE `m_clientes` (
 INSERT INTO `m_clientes` (`cod_clientes`, `apyn`, `documento`, `fnac`, `direccion`, `cuit`, `telefono`, `iva`) VALUES
 (6, 'Villar Santiago', 41616494, '2016-05-04', '151515', '151515', '15151', 'Consumidor Final'),
 (7, 'Roberto Musso', 37885987, '2016-05-09', 'av asdasd 4141', '2188498421', '44598785', 'Consumidor Final'),
+(16, 'aaaaaa', 123, '1999-02-02', 'av', '444', '4444', 'Consumidor Final'),
 (11, 'Villar Luis', 17181818, '2016-05-06', 'av stacruz', '211787982', '44588965', 'Monotributista'),
 (14, 'Muse', 478985, '2016-07-07', 'av.la wea', '789456', '494165', 'Responsable Inscripto');
 
@@ -128,10 +129,23 @@ CREATE TABLE `m_costosgeneral` (
 
 CREATE TABLE `m_detalle_factura` (
   `cod_detalle` int(11) NOT NULL,
-  `cod_factura` int(11) NOT NULL,
+  `numero_factura` int(11) NOT NULL,
   `cod_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio_venta` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `m_factura`
+--
+
+CREATE TABLE `m_factura` (
+  `cod_factura` int(11) NOT NULL,
+  `cod_tipo_factura` int(11) NOT NULL,
+  `cod_cliente` int(11) NOT NULL,
+  `fecha` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -142,10 +156,10 @@ CREATE TABLE `m_detalle_factura` (
 
 CREATE TABLE `m_facturas` (
   `cod_factura` int(11) NOT NULL,
-  `tipo_factura` varchar(2) NOT NULL,
-  `num_factura` int(11) NOT NULL,
+  `cod_tipofactura` int(11) NOT NULL,
   `fecha_factura` datetime NOT NULL,
-  `cod_cliente` int(11) DEFAULT NULL
+  `cod_cliente` int(11) NOT NULL,
+  `total_venta` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -169,9 +183,7 @@ CREATE TABLE `m_materiales` (
 --
 
 INSERT INTO `m_materiales` (`cod_material`, `descripcion`, `cod_unidad`, `precio_unitario`, `stock`, `fecha_stock`, `cod_proveedor`) VALUES
-(1, 'Pintura', 2, 250, 116, '2016-10-15 13:56:05', 7),
-(2, 'Alfombra Punzonada', 4, 120, 29, '2016-10-14 22:16:53', 7),
-(3, 'Barras de Silicona', 1, 2.5, 15, '2016-10-15 13:55:50', 5);
+(1, 'Pintura', 2, 250, 130, '2016-08-29 03:06:35', 7);
 
 -- --------------------------------------------------------
 
@@ -217,27 +229,7 @@ CREATE TABLE `m_operaciones` (
 INSERT INTO `m_operaciones` (`cod_operacion`, `cod_producto`, `cod_material`, `q`, `cod_tipo_operacion`, `cod_venta`, `fecha_operacion`) VALUES
 (1, NULL, 1, 10, 1, NULL, '2016-08-29 02:58:23'),
 (2, NULL, 1, 50, 1, NULL, '2016-08-29 02:58:36'),
-(3, NULL, 1, 70, 1, NULL, '2016-08-29 03:06:35'),
-(4, NULL, 2, 10, 1, NULL, '2016-10-14 20:59:10'),
-(5, NULL, 3, 20, 1, NULL, '2016-10-14 20:59:44'),
-(6, 3, NULL, 10, 1, NULL, '2016-10-14 21:49:24'),
-(7, NULL, 2, 50, 1, NULL, '2016-10-14 22:16:53'),
-(8, 1, NULL, 10, 1, NULL, '2016-10-14 22:22:48'),
-(9, 1, NULL, 10, 1, NULL, '2016-10-14 22:22:52'),
-(10, 1, NULL, 10, 1, NULL, '2016-10-14 22:24:13'),
-(11, 1, NULL, 10, 1, NULL, '2016-10-14 22:24:29'),
-(12, 1, NULL, 10, 1, NULL, '2016-10-14 22:25:52'),
-(13, 1, NULL, 10, 1, NULL, '2016-10-14 22:26:22'),
-(14, 1, NULL, 10, 1, NULL, '2016-10-14 22:26:55'),
-(15, 1, NULL, 10, 1, NULL, '2016-10-14 22:27:04'),
-(16, 1, NULL, 10, 1, NULL, '2016-10-14 22:27:23'),
-(17, 1, NULL, 15, 1, NULL, '2016-10-14 22:27:37'),
-(18, 1, NULL, 10, 1, NULL, '2016-10-14 22:28:16'),
-(19, 1, NULL, 10, 1, NULL, '2016-10-14 22:29:31'),
-(20, 1, NULL, 15, 1, NULL, '2016-10-14 22:30:11'),
-(21, 2, NULL, 12, 1, NULL, '2016-10-14 22:30:31'),
-(22, 1, NULL, 30, 1, NULL, '2016-10-15 01:04:55'),
-(23, 4, NULL, 5, 1, NULL, '2016-10-15 13:56:29');
+(3, NULL, 1, 70, 1, NULL, '2016-08-29 03:06:35');
 
 -- --------------------------------------------------------
 
@@ -249,20 +241,10 @@ CREATE TABLE `m_productos` (
   `cod_producto` int(11) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
   `stock` int(11) DEFAULT NULL,
-  `precio_sugerido` float DEFAULT NULL,
+  `precio_sugerido` float NOT NULL,
   `precio_unitario` float DEFAULT '0',
-  `fecha_alta` date DEFAULT NULL,
-  `fecha_stock` datetime DEFAULT NULL
+  `fecha_alta` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `m_productos`
---
-
-INSERT INTO `m_productos` (`cod_producto`, `descripcion`, `stock`, `precio_sugerido`, `precio_unitario`, `fecha_alta`, `fecha_stock`) VALUES
-(1, 'Tower Cat V.1', 55, NULL, 1822, NULL, '2016-10-15 01:04:55'),
-(3, 'Tower Cat V.5', 10, 2826.9, 2920, '2016-10-14', NULL),
-(4, 'Arenero Paw Paw xd', 5, 1067.8, 1100, '2016-10-15', NULL);
 
 -- --------------------------------------------------------
 
@@ -366,19 +348,15 @@ INSERT INTO `secciones` (`id`, `nombre`) VALUES
 CREATE TABLE `t_costostemp` (
   `cod_producto` int(11) NOT NULL,
   `cod_material` int(11) NOT NULL,
-  `cantidad` int(11) NOT NULL,
-  `fecha` date NOT NULL
+  `cantidad` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `t_costostemp`
 --
 
-INSERT INTO `t_costostemp` (`cod_producto`, `cod_material`, `cantidad`, `fecha`) VALUES
-(3, 1, 5, '2016-10-14'),
-(3, 2, 8, '2016-10-14'),
-(4, 3, 5, '2016-10-15'),
-(4, 1, 3, '2016-10-15');
+INSERT INTO `t_costostemp` (`cod_producto`, `cod_material`, `cantidad`) VALUES
+(1, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -392,27 +370,6 @@ CREATE TABLE `t_costosvariables` (
   `mano_obra` float NOT NULL,
   `total` float NOT NULL,
   `fecha` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `t_costosvariables`
---
-
-INSERT INTO `t_costosvariables` (`cod_costosvariables`, `cod_producto`, `mano_obra`, `total`, `fecha`) VALUES
-(1, 3, 21, 2674.1, '2016-10-15'),
-(2, 4, 20, 915, '2016-10-15');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `t_facturatemp`
---
-
-CREATE TABLE `t_facturatemp` (
-  `cod_tmp` int(11) NOT NULL,
-  `cod_producto` int(11) NOT NULL,
-  `cantidad_tmp` int(11) NOT NULL,
-  `precio_tmp` double DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -464,6 +421,12 @@ ALTER TABLE `m_costosfijos`
 --
 ALTER TABLE `m_costosgeneral`
   ADD PRIMARY KEY (`cod_costos`);
+
+--
+-- Indices de la tabla `m_factura`
+--
+ALTER TABLE `m_factura`
+  ADD PRIMARY KEY (`cod_factura`);
 
 --
 -- Indices de la tabla `m_facturas`
@@ -527,12 +490,6 @@ ALTER TABLE `t_costosvariables`
   ADD PRIMARY KEY (`cod_costosvariables`);
 
 --
--- Indices de la tabla `t_facturatemp`
---
-ALTER TABLE `t_facturatemp`
-  ADD PRIMARY KEY (`cod_tmp`);
-
---
 -- Indices de la tabla `t_tipofactura`
 --
 ALTER TABLE `t_tipofactura`
@@ -563,6 +520,11 @@ ALTER TABLE `m_costosfijos`
 ALTER TABLE `m_costosgeneral`
   MODIFY `cod_costos` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `m_factura`
+--
+ALTER TABLE `m_factura`
+  MODIFY `cod_factura` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `m_facturas`
 --
 ALTER TABLE `m_facturas`
@@ -571,7 +533,7 @@ ALTER TABLE `m_facturas`
 -- AUTO_INCREMENT de la tabla `m_materiales`
 --
 ALTER TABLE `m_materiales`
-  MODIFY `cod_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_material` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `m_mercaderia`
 --
@@ -581,12 +543,12 @@ ALTER TABLE `m_mercaderia`
 -- AUTO_INCREMENT de la tabla `m_operaciones`
 --
 ALTER TABLE `m_operaciones`
-  MODIFY `cod_operacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `cod_operacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `m_productos`
 --
 ALTER TABLE `m_productos`
-  MODIFY `cod_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cod_producto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `m_proveedores`
 --
@@ -611,12 +573,7 @@ ALTER TABLE `secciones`
 -- AUTO_INCREMENT de la tabla `t_costosvariables`
 --
 ALTER TABLE `t_costosvariables`
-  MODIFY `cod_costosvariables` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT de la tabla `t_facturatemp`
---
-ALTER TABLE `t_facturatemp`
-  MODIFY `cod_tmp` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_costosvariables` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `t_tipofactura`
 --

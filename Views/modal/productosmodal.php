@@ -1,5 +1,5 @@
 	
-
+<?php print_r($datos['productos']); ?>
 <div class="panel panel-success">			
 	<div class="panel-body">
 		<h3 class="panel-title"><label for="inputEmail" class="control-label">Buscar Producto</label></h3>
@@ -23,7 +23,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php while ($row = mysqli_fetch_array($datos['productos']) ) { ?>				
+				<?php while ($row = mysqli_fetch_array($datos) ) { ?>				
 				<tr>			      
 					<td><?php echo $row['cod_producto'];?></td>
 					<td><?php echo $row['descripcion'];?></td>

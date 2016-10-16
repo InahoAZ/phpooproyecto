@@ -1,0 +1,1 @@
+<h2>Factura B</h2>
