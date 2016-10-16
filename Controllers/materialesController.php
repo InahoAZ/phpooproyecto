@@ -90,9 +90,7 @@ class materialesController{
 			header("Location: " . URL . "materiales/reabastecerComprobante/" . $this->lastId);
 			
 		}
-
 		return $datos2;
-
 	}
 
 	public function reabastecerComprobante($id=""){ //Aca la wea que se imprime

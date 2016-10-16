@@ -38,6 +38,7 @@ class costosController{
 		$datos3 = 0;
 		$datos2 = 0;
 		}
+		print $_SESSION['lastIdProducto'];
 				
 		return array('materiales'=>$datos, 'costostemp'=>$datos2, 'contar'=>$contar, 'descripcion'=>$datos3);
 

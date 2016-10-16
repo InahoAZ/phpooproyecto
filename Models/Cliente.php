@@ -49,9 +49,10 @@
 		public function view(){
 			$sql = "SELECT c.* FROM m_clientes c WHERE c.cod_clientes = '{$this->cod_clientes}'";
 			$datos = $this->con->consultaRetorno($sql);
-			$row = mysqli_fetch_assoc($datos);
-			
+			//echo $sql;
+			$row = mysqli_fetch_assoc($datos);			
 			return $row;
+
 		}
 		public function buscar(){
 			$sql = "SELECT c.* FROM m_clientes c WHERE apyn LIKE '%$this->apyn%' AND documento LIKE '%$this->documento%' ";
@@ -61,6 +62,8 @@
 			$row = mysqli_fetch_assoc($datos);
 
 		}
+
+
 
 	}
 

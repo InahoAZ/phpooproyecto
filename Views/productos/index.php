@@ -34,6 +34,7 @@
 							<td><?php echo $row['stock'];?></td>							
 							
 							<td><a class="btn btn-warning" href=" <?php echo URL; ?>productos/editar/<?php echo $row['cod_producto']?>">Editar</a></td>
+							<td><a class="btn btn-info" href=" <?php echo URL; ?>productos/reabastecerAdd/<?php echo $row['cod_producto']?>">Reabastecer</a></td>
 							<td><a class="btn btn-danger" href=" <?php echo URL; ?>productos/eliminar/<?php echo $row['cod_producto']?>">Eliminar</a></td>
 						</tr>
 						<?php } ?>

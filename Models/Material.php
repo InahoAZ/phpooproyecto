@@ -15,7 +15,10 @@
 
  		public function __construct(){
  	 		$this->con = new Conexion();
- 	 		$this->cod_producto = $_SESSION['lastIdProducto'];
+ 	 		if(isset($_SESSION['lastIdProducto'])) 
+ 	 			$this->cod_producto = $_SESSION['lastIdProducto'];
+ 	 		else 
+ 	 			$this->cod_producto = 0;
 
  	 	}
 

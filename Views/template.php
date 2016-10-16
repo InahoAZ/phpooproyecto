@@ -36,8 +36,8 @@ class Template{
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="clientes">Vender</a></li>
-									<li><a href="clientes/agregar">Ventas Realizadas</a></li>
+									<li><a href="ventas">Vender</a></li>
+									<li><a href="ventas/historialventas">Ventas Realizadas</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
@@ -76,16 +76,16 @@ class Template{
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo URL; ?>productos">Listado</a></li>									
-									<li><a href="<?php echo URL; ?>productos/agregar">Agregar Producto</a></li>
+									<li><a href="<?php echo URL; ?>productos/agregar">Agregar Producto</a></li>									
 									<li><a href="<?php echo URL; ?>productos/stock">Actualizar Stock</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contabilidad<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>productos">Libro Diario</a></li>									
-									<li><a href="<?php echo URL; ?>productos/agregar">Ingresos y Gastos</a></li>
-									<li><a href="<?php echo URL; ?>productos/stock">Datos Fiscales (?</a></li>
+									<li><a href="<?php echo URL; ?>contabilidad/librodiario">Libro Diario</a></li>									
+									<li><a href="<?php echo URL; ?>contabilidad/iyg">Ingresos y Gastos</a></li>
+									<li><a href="<?php echo URL; ?>productos/datosfiscales">Datos Fiscales (?</a></li>
 								</ul>
 							</li>
 							

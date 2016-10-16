@@ -22,7 +22,7 @@
 		public function listar(){			
 			$sql = "SELECT ct.*, m.* FROM t_costostemp ct, m_materiales m WHERE ct.cod_material = m.cod_material AND ct.cod_producto = '{$this->cod_producto}'";
 			$datos = $this->con->consultaRetorno($sql);
-			echo $sql;
+			//echo $sql;
 			return $datos;
 		}
 		

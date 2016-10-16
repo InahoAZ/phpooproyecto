@@ -66,7 +66,7 @@
                               <input class="form-control" name="total" type="text" required readonly > 
                             </div>
                             <div class="form-group">
-                             <button type="submit" class="btn btn-success">Cargar</button>
+                             <button type="submit" class="btn btn-success">Calcular</button>
                              <a type="button" class="btn btn-warning" href="<?php echo URL; ?>costos/cancelar">Cancelar</a>
 
                            </div>
