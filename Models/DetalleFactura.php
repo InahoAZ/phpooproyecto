@@ -30,7 +30,7 @@
 
 		}
 		public function delete(){
-			$sql = "DELETE FROM m_detalle_factura WHERE cod_detalle = '{$this->cod_detalle}'";
+			$sql = "DELETE FROM m_detalle_factura WHERE cod_producto = '{$this->cod_producto}'";
 			$this->con->consultaSimple($sql);			
 		}
 		public function edit(){

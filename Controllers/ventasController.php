@@ -184,14 +184,33 @@ class ventasController{
 
 				case 'C':
 					header("Location: " . URL . "ventas/facturc");
+				break;				
+			}
+		}
+	}
+
+	public function delProductoFactura($id){
+		$this->detallefactura->set("cod_producto", $id);
+		$this->detallefactura->delete();
+		$this->factura->set("cod_factura", $_SESSION['lastIdFactura']);
+		$lastIdFactura = $this->factura->view();
+		$tipofactura = $lastIdFactura['tipo_factura'];
+		switch ($tipofactura) {
+				case 'A':
+					header("Location: " . URL . "ventas/factura");
 				break;
 
-				
-			}				
+				case 'B':
+					header("Location: " . URL . "ventas/facturb");
+				break;
 
-								
+				case 'C':
+					header("Location: " . URL . "ventas/facturc");
+				break;				
+			}
 
-		}
+
+
 	}
 
 	public function addClienteFactura($id){

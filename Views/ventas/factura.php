@@ -66,8 +66,8 @@
 							<table class="table table-stripped">
 								<thead>
 									<tr>
-										<td><strong>Item Name</strong></td>
-										<td class="text-center"><strong>Descripci&oacute;n</strong></td>
+										<td><strong>Descripci&oacute;n</strong></td>
+										<td class="text-center"><strong>Precio Unitario</strong></td>
 										<td class="text-center"><strong>Cantidad</strong></td>
 										<td class="text-right"><strong>Total</strong></td>
 									</tr>
@@ -76,7 +76,7 @@
 									<tbody>
 										<?php $totalF = 0;  while ($rowF = mysqli_fetch_assoc($datos['detallefactura'])) {?>
 										<tr>
-											<td><?php echo $rowF['descripcion'] ?></td>
+											<td><a class="btn btn-danger btn-xs" href="<?php echo URL; ?>ventas/delProductoFactura/<?php echo $rowF['cod_producto']; ?>">X</a><?php echo $rowF['descripcion'] ?></td>
 											<td class="text-center"><?php echo "$" . $rowF['precio_venta']; ?></td>
 											<td class="text-center"><?php echo $rowF['cantidad'] ?></td>
 											<td class="text-right"><?php $total = $rowF['precio_venta'] * $rowF['cantidad']; echo "$" . $total;  ?></td>
