@@ -1,5 +1,5 @@
 	
-<?php print_r($datos['productos']); ?>
+<?php ?>
 <div class="panel panel-success">			
 	<div class="panel-body">
 		<h3 class="panel-title"><label for="inputEmail" class="control-label">Buscar Producto</label></h3>
@@ -23,7 +23,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php while ($row = mysqli_fetch_array($datos) ) { ?>				
+				<?php while ($row = mysqli_fetch_array($datos['productos']) ) { ?>				
 				<tr>			      
 					<td><?php echo $row['cod_producto'];?></td>
 					<td><?php echo $row['descripcion'];?></td>
@@ -32,7 +32,8 @@
 
 					<td><form action="<?php echo URL; ?>ventas/addProductoFactura" method="POST">
 							<input type="hidden" name="cod_producto" value="<?php echo $row['cod_producto']?>">
-							<input type="text" class="form-control" required>						
+							<input type="hidden" name="precio_unitario" value="<?php echo $row['precio_unitario']?>">
+							<input type="text" name="cantidad" class="form-control" required>						
 					</td>
 					<td><button type="submit" class="btn btn-success">Agregar</button></form></td>							
 				</tr>

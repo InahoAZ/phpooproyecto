@@ -44,8 +44,7 @@
 		}
 		public function view2(){
 			$sql = "SELECT * FROM m_facturas f, m_clientes c WHERE f.cod_factura = '{$this->cod_factura}' AND f.cod_clientes = c.cod_clientes";
-			$datos = $this->con->consultaRetorno($sql);
-			$row = mysqli_fetch_assoc($datos);
+			$datos = $this->con->consultaRetorno($sql);			
 			return $datos;
 		}
 
@@ -57,10 +56,10 @@
 					$sql = "SELECT tipo_factura, MAX(num_factura) as ultimoNum FROM m_facturas WHERE tipo_factura = 'A'";
 					break;
 				case 'b':
-					$sql = "SELECT MAX(num_factura) as ultimoNum FROM m_facturas WHERE tipo_factura = 'B'";
+					$sql = "SELECT tipo_factura, MAX(num_factura) as ultimoNum FROM m_facturas WHERE tipo_factura = 'B'";
 					break;
 				case 'c':
-					$sql = "SELECT MAX(num_factura) as ultimoNum FROM m_facturas WHERE tipo_factura = 'C'";
+					$sql = "SELECT tipo_factura, MAX(num_factura) as ultimoNum FROM m_facturas WHERE tipo_factura = 'C'";
 					break;				
 				
 			}

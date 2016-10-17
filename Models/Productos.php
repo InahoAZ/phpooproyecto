@@ -23,9 +23,13 @@
 
 		public function listar(){			
 			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
-			$datos = $this->con->consultaRetorno($sql);
-			$row = mysqli_fetch_assoc($datos);
-			return $row;
+			$datos = $this->con->consultaRetorno($sql);			
+			return $datos;
+		}
+		public function listar2(){			
+			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
+			$datos = $this->con->consultaRetorno($sql);			
+			return $datos;
 		}
 		public function add(){
 			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}',null ,null, null, null)";
