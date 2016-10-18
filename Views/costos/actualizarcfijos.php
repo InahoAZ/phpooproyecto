@@ -4,7 +4,7 @@
     <div class="panel-heading">
       <h3 class="panel-title">Costos Fijos Actuales<b></b></h3>
     </div>
-    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+    <form id="costos_fijos" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
       <div class="panel-body">
         <div class="row">
           <div class="col-md-3">
@@ -17,23 +17,23 @@
           <div class="col-md-9">
             <ul class="list-group">            
               <li class="list-group-item">
-                <b>Alquiler: </b><input class="form-control" name="alquiler" type="text" value="<?php echo $datos['alquiler']; ?>" required>
+                <b>Alquiler: </b><input id="alquiler" class="form-control" name="alquiler" type="text" value="<?php echo $datos['alquiler']; ?>">
               </li>
               <li class="list-group-item">
-                <b>Luz: </b><input class="form-control" name="luz" type="text" value="<?php echo $datos['luz']; ?>" required>
+                <b>Luz: </b><input id="luz" class="form-control" name="luz" type="text" value="<?php echo $datos['luz']; ?>">
               </li>
               <li class="list-group-item">
-                <b>Agua: </b><input class="form-control" name="agua" type="text" value="<?php echo $datos['agua']; ?>" required>
+                <b>Agua: </b><input id="agua" class="form-control" name="agua" type="text" value="<?php echo $datos['agua']; ?>">
               </li>
               <li class="list-group-item">
-                <b>Herramientas: </b><input class="form-control" name="herramientas" type="text" value="<?php echo $datos['herramientas']; ?>" required>
+                <b>Herramientas: </b><input id="herramientas" class="form-control" name="herramientas" type="text" value="<?php echo $datos['herramientas']; ?>">
               </li>              
               <li class="list-group-item">
-                <b>Porcentaje a Agregar: </b><input class="form-control" name="porcentaje" type="text" value="<?php echo $datos['porcentaje']; ?>" required>
+                <b>Porcentaje a Agregar: </b><input id="porcentaje" class="form-control" name="porcentaje" type="text" value="<?php echo $datos['porcentaje']; ?>">
               </li>
               <li class="list-group-item">
                 <div class="btn-group">            
-                  <button class="btn btn-success" type="submit">Actualizar Costos Fijos</button>                         
+                  <button  class="btn btn-success" type="button" name="btnsubmit" onclick="vali_cfijos();">Actualizar Costos Fijos</button>                         
                   <a class="btn btn-danger" href="<?php echo URL;?>costos/vercfijos">Cancelar</a>
                 </div>
               </div>

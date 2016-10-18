@@ -12,9 +12,12 @@ class Template{
 			<meta charset="UTF-8">
 			<title>Paw Paw S.H.</title>
 			<link rel="shortcut icon" href="<?php echo URL; ?>Views/template/imagenes/ico/favicon.ico">
-			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap4.css">
+			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap5.css">
 
-			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/general.css">						
+			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/general.css">	
+
+			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/sweet/sweetalert.css">	
+								
 		</head>
 		<body>
 			<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -120,6 +123,9 @@ class Template{
 				<script src="<?php echo URL; ?>Views/template/js/jquery.js"></script>
 				<script src="<?php echo URL; ?>Views/template/js/bootstrap.js"></script>
 				<script src="<?php echo URL; ?>Views/template/js/general.js"></script>
+
+				<script src="<?php echo URL; ?>	Views/template/sweet/sweetalert.min.js"></script>
+				
 			</body>
 			</html>	
 

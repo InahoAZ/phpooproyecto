@@ -30,8 +30,11 @@
 							<td><?php echo $row['cuit'];?></td>
 							<td><?php echo $row['telefono'];?></td>
 							<td><?php echo $row['iva'];?></td>
-							<td><a class="btn btn-warning" href=" <?php echo URL; ?>clientes/editar/<?php echo $row['cod_clientes']?>">Editar</a></td>
-							<td><a class="btn btn-danger" href=" <?php echo URL; ?>clientes/eliminar/<?php echo $row['cod_clientes']?>">Eliminar</a></td>
+
+
+							<td><a class="btn btn-warning" onClick="javascript: return boxEditar('<?php echo URL; ?>','<?php echo $row['cod_clientes'];?>');">Editar</a></td>
+							
+								<td><a class="btn btn-danger" onClick="javascript: return boxEliminar('<?php echo URL; ?>','<?php echo $row['cod_clientes'];?>');">Eliminar</a></td>	
 						</tr>
 
 						<?php } ?>

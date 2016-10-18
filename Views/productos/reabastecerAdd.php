@@ -8,7 +8,7 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
-					<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+					<form id="reab_productos" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 						<div class="form-group">
 							<input name="cod_material" type="hidden" value="<?php echo $datos['cod_producto'];?>">				   	  
 							<label for="inputEmail" class="control-label">Descripcion</label>
@@ -17,12 +17,12 @@
 							<label for="inputEmail" class="control-label">En existencia</label>
 							<input class="form-control" name="existencia" type="text" value="<?php echo $datos['stock'];?>" readonly>
 							<label for="inputEmail" class="control-label">Stock Actual</label>
-							<input class="form-control" name="stock" type="text" value="" required>   
+							<input class="form-control" id="stock" name="stock" type="text" value="">   
 
 							<input type="hidden" name="fecha_stock" value="<?php echo date("Y-m-d") ?>">
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-info">Reabastecer</button>
+							<button type="button" name="btnsubmit" onclick="reaba_productos();" class="btn btn-info">Reabastecer</button>
 							<button type="reset" class="btn btn-warning">Borrar</button>
 						</div>
 					</form>

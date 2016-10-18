@@ -1,5 +1,5 @@
 	
-<?php ?>
+
 <div class="panel panel-success">			
 	<div class="panel-body">
 		<h3 class="panel-title"><label for="inputEmail" class="control-label">Buscar Producto</label></h3>
@@ -32,8 +32,7 @@
 
 					<td><form action="<?php echo URL; ?>ventas/addProductoFactura" method="POST">
 							<input type="hidden" name="cod_producto" value="<?php echo $row['cod_producto']?>">
-							<input type="hidden" name="precio_unitario" value="<?php echo $row['precio_unitario']?>">
-							<input type="text" name="cantidad" class="form-control" required>						
+							<input type="text" class="form-control" required>						
 					</td>
 					<td><button type="submit" class="btn btn-success">Agregar</button></form></td>							
 				</tr>

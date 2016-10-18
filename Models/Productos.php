@@ -23,12 +23,7 @@
 
 		public function listar(){			
 			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
-			$datos = $this->con->consultaRetorno($sql);			
-			return $datos;
-		}
-		public function listar2(){			
-			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
-			$datos = $this->con->consultaRetorno($sql);			
+			$datos = $this->con->consultaRetorno($sql);
 			return $datos;
 		}
 		public function add(){

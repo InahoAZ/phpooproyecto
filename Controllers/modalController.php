@@ -33,8 +33,7 @@ class modalController{
 	public function productosmodal(){
 		$datos = $this->productos->listar();
 		return $datos;
-
-		
+	
 
 	}
 }

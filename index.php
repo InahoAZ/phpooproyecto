@@ -1,7 +1,7 @@
 <?php
 	define('DS', DIRECTORY_SEPARATOR);
 	define('ROOT', realpath(dirname(__FILE__))   .DS);
-	define('URL', "http://localhost/phpooproyecto-1/");
+	define('URL', "http://localhost/phpooproyecto/");
 
 	require_once "Config/Autoload.php";
 	Config\Autoload::run();

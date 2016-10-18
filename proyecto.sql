@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2016 a las 15:46:11
+-- Tiempo de generación: 16-10-2016 a las 00:31:25
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -129,20 +129,10 @@ CREATE TABLE `m_costosgeneral` (
 CREATE TABLE `m_detalle_factura` (
   `cod_detalle` int(11) NOT NULL,
   `cod_factura` int(11) NOT NULL,
-  `num_factura` int(11) NOT NULL,
   `cod_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `precio_venta` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `m_detalle_factura`
---
-
-INSERT INTO `m_detalle_factura` (`cod_detalle`, `cod_factura`, `num_factura`, `cod_producto`, `cantidad`, `precio_venta`) VALUES
-(10, 39, 12, 6, 1, 800),
-(21, 42, 22, 6, 2, 800),
-(18, 40, 20, 6, 1, 800);
 
 -- --------------------------------------------------------
 
@@ -155,61 +145,8 @@ CREATE TABLE `m_facturas` (
   `tipo_factura` varchar(2) NOT NULL,
   `num_factura` int(11) NOT NULL,
   `fecha_factura` datetime NOT NULL,
-  `cod_clientes` int(11) DEFAULT NULL
+  `cod_cliente` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `m_facturas`
---
-
-INSERT INTO `m_facturas` (`cod_factura`, `tipo_factura`, `num_factura`, `fecha_factura`, `cod_clientes`) VALUES
-(1, 'A', 1, '2016-10-16 04:29:41', 14),
-(4, 'B', 1, '2016-10-16 04:35:12', 7),
-(3, 'A', 2, '2016-10-16 04:32:02', 14),
-(5, 'B', 2, '2016-10-16 04:35:31', 6),
-(6, 'A', 3, '2016-10-16 04:35:44', 14),
-(7, 'C', 1, '2016-10-16 04:38:36', NULL),
-(8, 'C', 2, '2016-10-16 04:38:39', NULL),
-(9, 'C', 3, '2016-10-16 04:38:52', NULL),
-(10, 'A', 4, '2016-10-16 04:39:05', 14),
-(11, 'B', 3, '2016-10-16 04:49:45', 6),
-(12, 'C', 4, '2016-10-16 04:51:42', NULL),
-(13, 'C', 5, '2016-10-16 05:01:44', NULL),
-(14, 'A', 5, '2016-10-16 05:01:48', 14),
-(15, 'C', 6, '2016-10-16 05:02:17', NULL),
-(16, 'A', 6, '2016-10-16 05:02:27', 14),
-(17, 'A', 7, '2016-10-16 05:03:09', 14),
-(18, 'A', 8, '2016-10-16 05:08:43', 14),
-(19, 'A', 9, '2016-10-16 05:13:13', 14),
-(20, 'A', 10, '2016-10-16 05:30:33', 14),
-(21, 'B', 4, '2016-10-16 17:42:55', 11),
-(22, 'B', 5, '2016-10-16 17:48:51', 6),
-(23, 'A', 11, '2016-10-16 17:48:55', 14),
-(24, 'A', 12, '2016-10-16 17:49:02', 14),
-(25, 'A', 13, '2016-10-16 17:53:06', 14),
-(26, 'A', 14, '2016-10-16 18:04:49', 14),
-(27, 'B', 6, '2016-10-16 18:27:18', 6),
-(28, 'A', 15, '2016-10-16 18:33:58', 14),
-(29, 'B', 7, '2016-10-16 18:35:49', 6),
-(30, 'A', 16, '2016-10-16 18:49:12', 14),
-(31, 'B', 8, '2016-10-16 18:52:20', 6),
-(32, 'B', 9, '2016-10-16 18:52:25', 6),
-(33, 'A', 17, '2016-10-16 19:00:25', 14),
-(34, 'C', 7, '2016-10-16 19:00:43', NULL),
-(35, 'A', 18, '2016-10-16 19:00:47', 14),
-(36, 'B', 10, '2016-10-16 19:02:07', 6),
-(37, 'A', 19, '2016-10-16 19:35:17', 14),
-(38, 'B', 11, '2016-10-16 21:01:29', 7),
-(39, 'B', 12, '2016-10-16 21:06:04', 11),
-(40, 'A', 20, '2016-10-16 21:30:34', 14),
-(41, 'A', 21, '2016-10-16 21:58:42', 14),
-(42, 'A', 22, '2016-10-16 22:03:08', 14),
-(43, 'B', 13, '2016-10-16 22:37:00', 6),
-(44, 'C', 8, '2016-10-17 01:46:12', NULL),
-(45, 'C', 9, '2016-10-17 01:47:27', NULL),
-(46, 'C', 10, '2016-10-17 01:52:12', NULL),
-(47, 'C', 11, '2016-10-17 01:56:00', NULL),
-(48, 'C', 12, '2016-10-17 02:00:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,9 +169,9 @@ CREATE TABLE `m_materiales` (
 --
 
 INSERT INTO `m_materiales` (`cod_material`, `descripcion`, `cod_unidad`, `precio_unitario`, `stock`, `fecha_stock`, `cod_proveedor`) VALUES
-(1, 'Pintura', 2, 250, 114, '2016-10-16 17:51:15', 7),
+(1, 'Pintura', 2, 250, 116, '2016-10-15 13:56:05', 7),
 (2, 'Alfombra Punzonada', 4, 120, 29, '2016-10-14 22:16:53', 7),
-(3, 'Barras de Silicona', 1, 2.5, 13, '2016-10-16 17:51:18', 5);
+(3, 'Barras de Silicona', 1, 2.5, 15, '2016-10-15 13:55:50', 5);
 
 -- --------------------------------------------------------
 
@@ -300,10 +237,7 @@ INSERT INTO `m_operaciones` (`cod_operacion`, `cod_producto`, `cod_material`, `q
 (20, 1, NULL, 15, 1, NULL, '2016-10-14 22:30:11'),
 (21, 2, NULL, 12, 1, NULL, '2016-10-14 22:30:31'),
 (22, 1, NULL, 30, 1, NULL, '2016-10-15 01:04:55'),
-(23, 4, NULL, 5, 1, NULL, '2016-10-15 13:56:29'),
-(24, 6, NULL, 2, 1, NULL, '2016-10-16 17:51:31'),
-(25, 1, NULL, 5, 1, NULL, '2016-10-16 17:52:08'),
-(26, 4, NULL, 5, 1, NULL, '2016-10-16 17:52:16');
+(23, 4, NULL, 5, 1, NULL, '2016-10-15 13:56:29');
 
 -- --------------------------------------------------------
 
@@ -326,10 +260,9 @@ CREATE TABLE `m_productos` (
 --
 
 INSERT INTO `m_productos` (`cod_producto`, `descripcion`, `stock`, `precio_sugerido`, `precio_unitario`, `fecha_alta`, `fecha_stock`) VALUES
-(1, 'Tower Cat V.1', 60, NULL, 1822, NULL, '2016-10-16 17:52:08'),
+(1, 'Tower Cat V.1', 55, NULL, 1822, NULL, '2016-10-15 01:04:55'),
 (3, 'Tower Cat V.5', 10, 2826.9, 2920, '2016-10-14', NULL),
-(4, 'Arenero Paw Paw xd', 10, 1067.8, 1200, '2016-10-15', '2016-10-16 17:52:17'),
-(6, 'Rascador de Gatos', 2, 733.55, 800, '2016-10-16', NULL);
+(4, 'Arenero Paw Paw xd', 5, 1067.8, 1100, '2016-10-15', NULL);
 
 -- --------------------------------------------------------
 
@@ -445,9 +378,7 @@ INSERT INTO `t_costostemp` (`cod_producto`, `cod_material`, `cantidad`, `fecha`)
 (3, 1, 5, '2016-10-14'),
 (3, 2, 8, '2016-10-14'),
 (4, 3, 5, '2016-10-15'),
-(4, 1, 3, '2016-10-15'),
-(6, 1, 2, '2016-10-16'),
-(6, 3, 2, '2016-10-16');
+(4, 1, 3, '2016-10-15');
 
 -- --------------------------------------------------------
 
@@ -469,8 +400,7 @@ CREATE TABLE `t_costosvariables` (
 
 INSERT INTO `t_costosvariables` (`cod_costosvariables`, `cod_producto`, `mano_obra`, `total`, `fecha`) VALUES
 (1, 3, 21, 2674.1, '2016-10-15'),
-(2, 4, 20, 915, '2016-10-15'),
-(3, 6, 15, 580.75, '2016-10-16');
+(2, 4, 20, 915, '2016-10-15');
 
 -- --------------------------------------------------------
 
@@ -534,12 +464,6 @@ ALTER TABLE `m_costosfijos`
 --
 ALTER TABLE `m_costosgeneral`
   ADD PRIMARY KEY (`cod_costos`);
-
---
--- Indices de la tabla `m_detalle_factura`
---
-ALTER TABLE `m_detalle_factura`
-  ADD PRIMARY KEY (`cod_detalle`);
 
 --
 -- Indices de la tabla `m_facturas`
@@ -639,15 +563,10 @@ ALTER TABLE `m_costosfijos`
 ALTER TABLE `m_costosgeneral`
   MODIFY `cod_costos` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `m_detalle_factura`
---
-ALTER TABLE `m_detalle_factura`
-  MODIFY `cod_detalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
---
 -- AUTO_INCREMENT de la tabla `m_facturas`
 --
 ALTER TABLE `m_facturas`
-  MODIFY `cod_factura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `cod_factura` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `m_materiales`
 --
@@ -662,12 +581,12 @@ ALTER TABLE `m_mercaderia`
 -- AUTO_INCREMENT de la tabla `m_operaciones`
 --
 ALTER TABLE `m_operaciones`
-  MODIFY `cod_operacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `cod_operacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT de la tabla `m_productos`
 --
 ALTER TABLE `m_productos`
-  MODIFY `cod_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cod_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `m_proveedores`
 --
@@ -692,7 +611,7 @@ ALTER TABLE `secciones`
 -- AUTO_INCREMENT de la tabla `t_costosvariables`
 --
 ALTER TABLE `t_costosvariables`
-  MODIFY `cod_costosvariables` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cod_costosvariables` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `t_facturatemp`
 --

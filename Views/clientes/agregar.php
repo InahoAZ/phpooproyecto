@@ -8,20 +8,20 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
-					<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+					<form id="form_agregar" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="inputEmail" class="control-label">Apellido y Nombre</label>
-							<input class="form-control" name="apyn" type="text" required>
+							<input class="form-control" name="apyn" id="nombre" type="text" >
 							<label for="inputEmail" class="control-label">Nº de Documento</label>
-							<input class="form-control" name="documento" type="text" required>
+							<input class="form-control" name="documento"  id="documento" type="text" >
 							<label for="inputEmail" class="control-label">Fecha de Nacimiento</label>
-							<input class="form-control" name="fnac" type="date" required>
+							<input class="form-control" name="fnac" id="fnac"  type="date" >
 							<label for="inputEmail" class="control-label">Direccion</label>
-							<input class="form-control" name="direccion" type="text" required>
+							<input class="form-control" name="direccion"  id="direccion" type="text" >
 							<label for="inputEmail" class="control-label">CUIT</label>
-							<input class="form-control" name="cuit" type="text" required>
+							<input class="form-control" name="cuit" id="cuit"  type="text" >
 							<label for="inputEmail" class="control-label">Telefono</label>
-							<input class="form-control" name="telefono" type="text" required>
+							<input class="form-control" name="telefono" id="telefono"  type="text" >
 							<label for="inputEmail" class="control-label">IVA</label>
 							<select class="form-control" id="select" name="iva">
 								<option value="Consumidor Final">Consumidor Final</option>
@@ -31,7 +31,7 @@
 
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-success">Registrar</button>
+							<button type="button" name="btnSubmit" class="btn btn-success" onclick="vali_agregar()">Registrar</button>
 							<button type="reset" class="btn btn-warning">Borrar</button>
 						</div>
 					</form>

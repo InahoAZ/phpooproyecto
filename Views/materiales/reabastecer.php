@@ -7,7 +7,7 @@
 		</div>
 		<div class="panel-body">
 			<h3 class="panel-title"><label for="inputEmail" class="control-label">Buscar Material</label></h3>
-			<form class="navbar-form navbar-left" action="<?php echo URL; ?>materiales/buscar" method="GET">
+			<form  class="navbar-form navbar-left" action="<?php echo URL; ?>materiales/buscar" method="GET">
 				<div class="form-group">
 					<input type="text" class="form-control" placeholder="Buscar" name="buscar" required>
 				</div>
@@ -37,10 +37,10 @@
 							<td><?php echo $row['abreviatura_unidad'];?></td>
 							<td><?php echo $row['stock'] ."&nbsp;";?></td>							
 							<td><?php echo $row['razon_social'];?></td>
-							<td><form class="form-horizontal" action="<?php echo URL; ?>materiales/reabastecerAdd/<?php echo $row['cod_material']?>" method="GET" enctype="multipart/form-data">
-								<input class="form-control" name="stock" type="text" required></td>
+							<td><form  id="form_resba" class="form-horizontal" action="<?php echo URL; ?>materiales/reabastecerAdd/<?php echo $row['cod_material']?>" method="GET" enctype="multipart/form-data">
+								<input id="stock" class="form-control" name="stock" type="text" ></td>
 
-								<td><button type="submit" class="btn btn-warning" href=" ">Actualizar Stock</button></td>
+								<td><button type="button" name="btnsubmit" onclick="vali_resba()" class="btn btn-warning" >Actualizar Stock</button></td>
 							</form>	
 						</tr>
 						<?php } ?>

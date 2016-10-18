@@ -30,8 +30,12 @@
 							<td><?php echo $row['stock'] ."&nbsp;". $row['abreviatura_unidad'];?></td>							
 							<td><?php echo $row['razon_social'];?></td>
 							
-							<td><a class="btn btn-warning" href=" <?php echo URL; ?>materiales/editar/<?php echo $row['cod_material']?>">Editar</a></td>
-							<td><a class="btn btn-danger" href=" <?php echo URL; ?>materiales/eliminar/<?php echo $row['cod_material']?>">Eliminar</a></td>
+							<td><a class="btn btn-primary" onClick="javascript: return mateHisto('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/history.png"></a></td>
+
+							<td><a class="btn btn-warning" onClick="javascript: return mateEditar('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/edit.png"></a></td>
+
+							<td><a class="btn btn-danger" onClick="javascript: return mateEliminar('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/delete.png"></a></td>
+
 						</tr>
 						<?php } ?>
 					</div>
