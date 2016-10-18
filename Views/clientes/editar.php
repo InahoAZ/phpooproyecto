@@ -8,21 +8,21 @@
 	  	<div class="row">
 	  		<div class="col-md-1"></div>
 	  		<div class="col-md-10">
-	  			<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+	  			<form id="form_editar" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 				    <div class="form-group">
 				   	  <input name="cod_clientes" type="hidden" value="<?php echo $datos['cod_clientes'];?>">
 				      <label for="inputEmail" class="control-label">Apellido y Nombre</label>
-				        <input class="form-control" name="apyn" type="text" value="<?php echo $datos['apyn'];?>" required>
+				        <input class="form-control" id="nombre" name="apyn" type="text" value="<?php echo $datos['apyn'];?>">
 				       <label for="inputEmail" class="control-label">Nº de Documento</label>
-				        <input class="form-control" name="documento" type="text" value="<?php echo $datos['documento'];?>" required>
+				        <input class="form-control" id="documento" name="documento" type="text" value="<?php echo $datos['documento'];?>">
 				       <label for="inputEmail" class="control-label">Fecha de Nacimiento</label>
-				        <input class="form-control" name="fnac" type="date" value="<?php echo $datos['fnac'];?>" required>
+				        <input class="form-control" id="fnac" name="fnac" type="date" value="<?php echo $datos['fnac'];?>">
 				       <label for="inputEmail" class="control-label">Direccion</label>
-				        <input class="form-control" name="direccion" type="text" value="<?php echo $datos['direccion'];?>" required>
+				        <input class="form-control" id="direccion" name="direccion" type="text" value="<?php echo $datos['direccion'];?>">
 				       <label for="inputEmail" class="control-label">CUIT</label>
-				        <input class="form-control" name="cuit" type="text" value="<?php echo $datos['cuit'];?>" required>
+				        <input class="form-control" id="cuit" name="cuit" type="text" value="<?php echo $datos['cuit'];?>">
 				       <label for="inputEmail" class="control-label">Telefono</label>
-				        <input class="form-control" name="telefono" type="text" value="<?php echo $datos['telefono'];?>" required>
+				        <input class="form-control" id="telefono" name="telefono" type="text" value="<?php echo $datos['telefono'];?>">
 				       <label for="inputEmail" class="control-label">IVA (<b>Actual: <?php echo $datos['iva']?></b>)</label>
 				       <select class="form-control" id="select" name="iva" >
 				          <option value="Consumidor Final">Consumidor Final</option>
@@ -32,7 +32,8 @@
 
 				    </div>
 				    <div class="form-group">
-				    	 <button type="submit" class="btn btn-success">Editar</button>
+				    	 <button type="button" name="btnSubmit" class="btn btn-success" onclick="vali_editar()">Editar</button>
+
 				        <button type="reset" class="btn btn-warning">Borrar</button>
 				    </div>
 				</form>

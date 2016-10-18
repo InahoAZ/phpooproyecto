@@ -64,7 +64,7 @@ class ventasController{
 		$this->factura->set("cod_factura", $lastIdFactura);
 		$datos2 = $this->factura->view2();
 		$this->productos->set("cod_factura", $lastIdFactura);
-		$datos = $this->productos->listar2();
+		$datos = $this->productos->listar3();
 		$this->detallefactura->set("cod_factura", $lastIdFactura);
 		$datos3 = $this->detallefactura->listarDetalleA();
 
@@ -78,7 +78,8 @@ class ventasController{
 			$lastIdFactura = $_SESSION['lastIdFactura'];			
 		$this->factura->set("cod_factura", $lastIdFactura);
 		$datos2 = $this->factura->view2();
-		$datos = $this->productos->listar2();
+		$this->productos->set("cod_factura", $lastIdFactura);
+		$datos = $this->productos->listar3();
 		$this->detallefactura->set("cod_factura", $lastIdFactura);
 		$datos3 = $this->detallefactura->listarDetalleB();
 
@@ -93,7 +94,8 @@ class ventasController{
 			$lastIdFactura = $_SESSION['lastIdFactura'];			
 		$this->factura->set("cod_factura", $lastIdFactura);
 		$datos2 = $this->factura->view();
-		$datos = $this->productos->listar2();
+		$this->productos->set("cod_factura", $lastIdFactura);
+		$datos = $this->productos->listar3();
 		$this->detallefactura->set("cod_factura", $lastIdFactura);
 		$datos3 = $this->detallefactura->listarDetalleC();
 

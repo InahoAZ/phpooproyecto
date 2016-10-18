@@ -19,10 +19,10 @@
                             <label for="inputEmail" class="control-label">Proveedor</label>  
                             <input class="form-control" name="proveedor" type="text" value="<?php echo $datos['razon_social'] ?>" readonly>                          
                             <label for="inputEmail" class="control-label">Efectivo</label>
-                            <input class="form-control" name="efectivo" type="text" required>  
+                            <input class="form-control" id="efec" name="efectivo" type="text" required>  
                         </div>
                         <div class="form-group">
-                            <button type="button" class="btn btn-success" onclick="validarEfectivo()">Reabastecer</button>
+                            <button type="button" name="btnsubmit" class="btn btn-success" onclick="validarEfectivo()">Reabastecer</button>
                             <button type="reset" class="btn btn-warning" >Cancelar</button>
                         </div>
                     </form>

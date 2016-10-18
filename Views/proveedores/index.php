@@ -35,9 +35,11 @@
 			      <td><?php echo $row['telefono'];?></td>
 			      <td><?php echo $row['direccion'];?></td>
 			      
-			      <td><a class="btn btn-warning" href=" <?php echo URL; ?>proveedores/editar/<?php echo $row['cod_proveedor']?>">Editar</a></td>
-			      <td><a class="btn btn-danger" href=" <?php echo URL; ?>proveedores/eliminar/<?php echo $row['cod_proveedor']?>">Eliminar</a></td>
-			    </tr>
+				  <td><a class="btn btn-warning" onClick="javascript: return proveeEditar('<?php echo URL; ?>','<?php echo $row['cod_proveedor'];?>');">Editar</a></td>
+
+				 <td><a class="btn btn-danger" onClick="javascript: return proveeEliminar('<?php echo URL; ?>','<?php echo $row['cod_proveedor'];?>');">Eliminar</a></td>
+
+			
 			    <?php } ?>
 		</div>
 	</div>

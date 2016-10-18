@@ -35,7 +35,7 @@ class modalController{
 		$this->productos->set("cod_factura", $_SESSION['lastIdFactura']);
 		$datos = $this->productos->listar3();
 		$wea = $this->productos->get("cod_factura");
-		print_r($wea);
+		//print_r($wea);
 		return $datos;
 
 		

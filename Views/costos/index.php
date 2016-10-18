@@ -21,11 +21,11 @@
                       <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                          <form class="form-horizontal" action="costos/agregar" name="costosvariables" method="POST" enctype="multipart/form-data">
+                          <form id="form_costos" class="form-horizontal" action="costos/agregar" name="costosvariables" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                             	<input type="hidden" name="cod_producto" value="<?php echo($datos['contar']); ?>"> 
                               <label for="inputEmail" class="control-label">Descripcion</label>
-                              <input class="form-control" name="descripcion" value="<?php $desc = $datos['descripcion']; echo $desc['descripcion'];?>" type="text" required readonly>                       
+                              <input class="form-control" name="descripcion" value="<?php $desc = $datos['descripcion']; echo $desc['descripcion'];?>" type="text" readonly>                       
                               <label for="inputEmail" class="control-label">Materiales Utilizados</label>
                               <!--Inicio Grid de Materiales-->
                               <table class="table table-striped table-hover ">
@@ -59,15 +59,15 @@
                               <!--Fin Grid de Materiales-->                                        
                               
                               <label for="inputEmail" class="control-label">SubTotal</label>
-                              <input class="form-control" name="subtotal" value="<?php echo $subt; ?>" type="text" required readonly>      
+                              <input class="form-control" id="subtotal" name="subtotal" value="<?php echo $subt; ?>" type="text" readonly>      
                               <label for="inputEmail" class="control-label">Mano de Obra (%)</label>
-                              <input class="form-control" name="mano_obra" type="text" id="demo1" onKeyUp="Suma()" required> 
+                              <input class="form-control" id="obra" name="mano_obra" type="text" id="demo1" onKeyUp="Suma()"> 
                               <label for="inputEmail" class="control-label">Total</label>
-                              <input class="form-control" name="total" type="text" required readonly > 
+                              <input class="form-control" id="total" name="total" type="text" readonly > 
                             </div>
                             <div class="form-group">
-                             <button type="submit" class="btn btn-success">Calcular</button>
-                             <a type="button" class="btn btn-warning" href="<?php echo URL; ?>costos/cancelar">Cancelar</a>
+                             <button type="button" name="btnsubmit" onclick="vali_costos();" class="btn btn-success">Guardar</button>
+                           
 
                            </div>
                          </form>
