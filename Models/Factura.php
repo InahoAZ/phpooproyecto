@@ -38,13 +38,13 @@
 		}
 		public function view(){
 			$sql = "SELECT * FROM m_facturas WHERE cod_factura = '{$this->cod_factura}'";
-			$datos = $this->con->consultaRetorno($sql);
-			$row = mysqli_fetch_assoc($datos);
-			return $row;
+			$datos = $this->con->consultaRetorno($sql);			
+			return $datos;
 		}
 		public function view2(){
 			$sql = "SELECT * FROM m_facturas f, m_clientes c WHERE f.cod_factura = '{$this->cod_factura}' AND f.cod_clientes = c.cod_clientes";
-			$datos = $this->con->consultaRetorno($sql);			
+			$datos = $this->con->consultaRetorno($sql);
+			//echo $sql;			
 			return $datos;
 		}
 

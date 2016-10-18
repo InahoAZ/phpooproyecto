@@ -1,7 +1,7 @@
 <?php namespace Models;
  	
  	class Material{
- 		private $cod_producto;
+ 		private $cod_producto; // uso especial xd
  		private $cod_material;
  		private $descripcion;
  		private $cod_unidad;
@@ -26,7 +26,7 @@
 			$this->$atributo = $contenido;
 		}
 		public function get($atributo){
-			return $this->atributo;
+			return $this->$atributo;
 		}
 
 		public function listar(){			

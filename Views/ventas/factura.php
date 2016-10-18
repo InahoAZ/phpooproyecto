@@ -4,30 +4,31 @@
 		<div class="panel-heading">
 			<h4><i class='glyphicon glyphicon-edit'></i> Nueva Factura Tipo <?php echo $row['tipo_factura']  . "<br>N°" . $row['num_factura'] ?></h4>
 		</div>
-		<div class="panel-body">		
-			<form class="form-horizontal" role="form" id="datos_factura">
+		<form class="form-horizontal" method="POST" action="<?php echo URL; ?>ventas/pagoefectivo" role="form" id="datos_factura">
+		<div class="panel-body">			
 				<div class="form-group row">
 					<label for="nombre_cliente" class="col-md-2 control-label">Apellido y Nombre</label>				
 					<div class="col-md-2">
-						<input type="text" class="col-md-1 form-control input-sm" id="nombre_cliente" placeholder="" value="<?php echo $row['apyn']; ?>" required>										
-						<input id="id_cliente" type='hidden'>	
+						<input type="text" class="col-md-1 form-control input-sm" name="apyn" placeholder="" value="<?php echo $row['apyn']; ?>" required>										
+						<input name="type" type='hidden' value="A">
+
 					</div>
 					
 
 					
 					<label for="tel1" class="col-md-1 control-label">Teléfono</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="tel1" placeholder="" value="<?php echo $row['telefono'] ?>" readonly>
+						<input type="text" class="form-control input-sm" name="telefono" placeholder="" value="<?php echo $row['telefono'] ?>" readonly>
 					</div>
 					<label for="mail" class="col-md-1 control-label">DNI</label>
 					<div class="col-md-3">
-						<input type="text" class="form-control input-sm" id="mail" placeholder="" value="<?php echo $row['documento']; ?>" readonly>
+						<input type="text" class="form-control input-sm" name="documento" placeholder="" value="<?php echo $row['documento']; ?>" readonly>
 					</div>
 				</div>
 				<div class="form-group row">							
 					<label for="tel2" class="col-md-2 control-label">Fecha</label>
 					<div class="col-md-2">
-						<input type="text" class="form-control input-sm" id="fecha" value="<?php echo date("d/m/Y");?>" readonly>
+						<input type="text" class="form-control input-sm" name="fecha" value="<?php echo date("d/m/Y");?>" readonly>
 					</div>
 					<label for="email" class="col-md-1 control-label">Pago</label>
 					<div class="col-md-3">
@@ -43,17 +44,17 @@
 				
 				<div class="col-md-12">
 					<div class="pull-right">						
-						<button type="button" class="btn btn-success no-print" data-toggle="modal" data-target="#productosModal">
+						<button type="button" class="btn btn-info no-print" data-toggle="modal" data-target="#productosModal">
 							<span class="glyphicon glyphicon-search"></span> Buscar Productos
 						</button>
-						<button type="submit" class="btn btn-default no-print">
-							<span class="glyphicon glyphicon-print"></span> Imprimir
+						<button type="submit" class="btn btn-success no-print">
+							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
 						</button>
 					</div>	
 				</div>
 			</div>
 
-		</form>	
+			
 
 		<div class="row">
 			<div class="col-md-12">
@@ -86,19 +87,19 @@
 											<td class="highrow"></td>
 											<td class="highrow"></td>
 											<td class="highrow text-center"><strong>Subtotal</strong></td>
-											<td class="highrow text-right"><?php echo "$" . $totalF;  ?></td>
+											<td class="highrow text-right"><input type="text" class="sm-input transparent" value="<?php echo "$" . $totalF;  ?>"  name="subtotal" readonly></td>
 										</tr>
 										<tr>
 											<td class="emptyrow"></td>
 											<td class="emptyrow"></td>
 											<td class="emptyrow text-center"><strong>IVA(21%)</strong></td>
-											<td class="emptyrow text-right"><?php $iva = ($totalF*21)/100; echo "$" . $iva;  ?></td>
+											<td class="emptyrow text-right"><input type="text" value="<?php $iva = ($totalF*21)/100; echo "$" . $iva;  ?>" class="sm-input transparent" name="iva" readonly></td>
 										</tr>
 										<tr>
 											<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
 											<td class="emptyrow"></td>
 											<td class="emptyrow text-center info"><strong>Total</strong></td>
-											<td class="emptyrow text-right info"><?php echo "$" . ($totalF + $iva); ?></td>
+											<td class="emptyrow text-right info"><input type="text" value="<?php echo "$" . ($totalF + $iva); ?>" class="sm-input transparent" name="total" readonly></td>
 										</tr>                             
 									</tbody>
 								</table>
@@ -107,7 +108,7 @@
 					</div>
 				</div>
 			</div>
-
+			</form>
 
 
 			<!-- Ventanas Modales -->

@@ -7,6 +7,7 @@
  		private $precio_unitario; 		
  		private $stock;
  		private $fecha_alta;
+ 		private $cod_factura; //Uso especial xd
  		private $con;
 
  		public function __construct(){
@@ -18,19 +19,28 @@
 			$this->$atributo = $contenido;
 		}
 		public function get($atributo){
-			return $this->atributo;
+			return $this->$atributo;
 		}
 
 		public function listar(){			
 			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
-			$datos = $this->con->consultaRetorno($sql);			
+			$datos = $this->con->consultaRetorno($sql);	
+			//echo $sql;		
 			return $datos;
 		}
 		public function listar2(){			
-			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
-			$datos = $this->con->consultaRetorno($sql);			
+			$sql = "SELECT p.* FROM m_productos p WHERE NOT EXISTS (SELECT 1 FROM m_detalle_factura t2 WHERE t2.cod_factura = '{$this->cod_factura}' AND p.cod_producto = t2.cod_producto ) ORDER BY cod_producto ASC";
+			$datos = $this->con->consultaRetorno($sql);	
+			//echo $sql;		
 			return $datos;
 		}
+		public function listar3(){			
+			$sql = "SELECT p.* FROM m_productos p WHERE NOT EXISTS (SELECT 1 FROM m_detalle_factura t2 WHERE t2.cod_factura = '{$this->cod_factura}' AND p.cod_producto = t2.cod_producto ) ORDER BY cod_producto ASC";
+			$datos = $this->con->consultaRetorno($sql);	
+			//echo $sql;		
+			return $datos;
+		}
+
 		public function add(){
 			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}',null ,null, null, null)";
 			print $sql;

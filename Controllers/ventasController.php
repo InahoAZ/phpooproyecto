@@ -63,6 +63,7 @@ class ventasController{
 
 		$this->factura->set("cod_factura", $lastIdFactura);
 		$datos2 = $this->factura->view2();
+		$this->productos->set("cod_factura", $lastIdFactura);
 		$datos = $this->productos->listar2();
 		$this->detallefactura->set("cod_factura", $lastIdFactura);
 		$datos3 = $this->detallefactura->listarDetalleA();
@@ -87,6 +88,16 @@ class ventasController{
 	}
 
 	public function facturc(){
+		$lastIdFactura = 0;
+		if (isset($_SESSION['lastIdFactura']))
+			$lastIdFactura = $_SESSION['lastIdFactura'];			
+		$this->factura->set("cod_factura", $lastIdFactura);
+		$datos2 = $this->factura->view();
+		$datos = $this->productos->listar2();
+		$this->detallefactura->set("cod_factura", $lastIdFactura);
+		$datos3 = $this->detallefactura->listarDetalleC();
+
+		return $datos = array('productos' => $datos , 'factura' => $datos2, 'detallefactura' => $datos3);
 
 	}
 
@@ -167,6 +178,7 @@ class ventasController{
 			$this->detallefactura->set("precio_venta", $_POST['precio_unitario'] );
 			$this->factura->set("cod_factura", $_SESSION['lastIdFactura']);
 			$lastIdFactura = $this->factura->view();
+			$lastIdFactura = mysqli_fetch_assoc($lastIdFactura);
 			$tipofactura = $lastIdFactura['tipo_factura'];
 			$lastIdFactura = $lastIdFactura['num_factura'];
 			//echo "lastIdFactura: " . $lastIdFactura;
@@ -194,6 +206,7 @@ class ventasController{
 		$this->detallefactura->delete();
 		$this->factura->set("cod_factura", $_SESSION['lastIdFactura']);
 		$lastIdFactura = $this->factura->view();
+		$lastIdFactura = mysqli_fetch_assoc($lastIdFactura);
 		$tipofactura = $lastIdFactura['tipo_factura'];
 		switch ($tipofactura) {
 				case 'A':
@@ -219,6 +232,10 @@ class ventasController{
 
 		header("Location: " . URL . "ventas");
 
+	}
+
+	public function pagoefectivo(){
+		
 	}
 }
 

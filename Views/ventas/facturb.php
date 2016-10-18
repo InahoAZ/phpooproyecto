@@ -43,11 +43,11 @@
 				
 				<div class="col-md-12">
 					<div class="pull-right">						
-						<button type="button" class="btn btn-success no-print" data-toggle="modal" data-target="#productosModalB">
+						<button type="button" class="btn btn-info no-print" data-toggle="modal" data-target="#productosModalB">
 							<span class="glyphicon glyphicon-search"></span> Buscar Productos
 						</button>
-						<button type="submit" class="btn btn-default no-print">
-							<span class="glyphicon glyphicon-print"></span> Imprimir
+						<button type="submit" class="btn btn-success no-print">
+							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
 						</button>
 					</div>	
 				</div>

@@ -55,10 +55,7 @@ if (isset($_SESSION['clienteFactura']))
 					<div class="pull-right">						
 						<button type="submit" class="btn btn-success no-print">
 							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
-						</button>
-						<button type="submit" class="btn btn-default no-print">
-							<span class="glyphicon glyphicon-print"></span> Imprimir
-						</button>
+						</button>						
 					</div>	
 				</div>
 			</form>	
