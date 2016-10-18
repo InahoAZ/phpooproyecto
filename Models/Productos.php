@@ -22,14 +22,20 @@
 		}
 
 		public function listar(){			
-			$sql = "SELECT p.* FROM m_productos p ";
-			$datos = $this->con->consultaRetorno($sql);
+			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
+			$datos = $this->con->consultaRetorno($sql);			
+			return $datos;
+		}
+		public function listar2(){			
+			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
+			$datos = $this->con->consultaRetorno($sql);			
 			return $datos;
 		}
 		public function add(){
-			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}','{$this->precio_sugerido}' ,null, null, null)";
-			//print $sql;
-			$this->con->consultaSimple($sql);
+			$sql = "INSERT INTO m_productos(cod_producto, descripcion, precio_sugerido, precio_unitario, stock, fecha_alta)	VALUES (null, '{$this->descripcion}',null ,null, null, null)";
+			print $sql;
+			$lastId = $this->con->consultaSimple($sql);
+			return $lastId;
 		}
 		public function delete(){
 			$sql = "DELETE FROM m_productos WHERE cod_producto = '{$this->cod_producto}'";
@@ -37,16 +43,31 @@
 			//echo $sql;
 		}
 		public function edit(){
-			$sql = "UPDATE m_productos SET descripcion = '{$this->descripcion}', precio_unitario = '{$this->precio_unitario}', stock = '{$this->stock}', fecha_alta = '{$this->fecha_alta}' WHERE cod_producto = '{$this->cod_producto}' ";
+			$sql = "UPDATE m_productos SET descripcion = '{$this->descripcion}', precio_unitario = '{$this->precio_unitario}' WHERE cod_producto = '{$this->cod_producto}' ";
 			$this->con->consultaSimple($sql);
-			echo $sql;		
+			//echo $sql;		
 		}
+		public function edit2(){
+			$sql = "UPDATE m_productos SET precio_unitario = '{$this->precio_unitario}', stock = '{$this->stock}', fecha_alta = NOW() WHERE cod_producto = '{$this->cod_producto}' ";
+			$this->con->consultaSimple($sql);
+			//echo $sql;		
+		}
+		public function addPrecioSugerido(){
+			$sql = "UPDATE m_productos SET precio_sugerido = '{$this->precio_sugerido}' WHERE cod_producto = '{$this->cod_producto}' ";
+			$this->con->consultaSimple($sql);
+			//echo $sql;		
+		}
+
 		public function view(){
-			$sql = "SELECT m.* FROM m_materiales m WHERE m.cod_producto = '{$this->cod_producto}'";
+			$sql = "SELECT m.* FROM m_productos m WHERE m.cod_producto = '{$this->cod_producto}'";
 			$datos = $this->con->consultaRetorno($sql);
+			//echo $sql;
 			$row = mysqli_fetch_assoc($datos);			
 			return $row;
 		}
+
+		
+
 		public function buscar(){
 			$sql = "SELECT m.* FROM m_materiales m WHERE descripcion LIKE '%$this->descripcion%' AND cod_producto LIKE '%$this->cod_producto%'";
 			$datos = $this->con->consultaRetorno($sql);
@@ -69,6 +90,12 @@
 		if($i == 0)
 			$i = 1;		
 		return $i;*/
+		}
+
+		public function updateStock(){
+			$sql = "UPDATE m_productos SET stock = '{$this->stock}', fecha_stock = NOW() WHERE cod_producto = '{$this->cod_producto}' ";
+			$this->con->consultaSimple($sql);
+			echo $sql;		
 		}
 
 

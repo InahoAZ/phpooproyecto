@@ -10,10 +10,10 @@
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
-					<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+					<form class="form-horizontal" action="" method="POST" onsubmit="return validacion()" enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="inputEmail" class="control-label">Descripcion</label>
-							<input class="form-control" name="descripcion" type="text" required>
+							<input class="form-control" name="descripcion" id="descripcion" type="text" >
 							<label for="inputEmail" class="control-label">Unidad de Medida <?php print_r($datos['materiales']); ?></label>
 							<select class="form-control" id="select" name="cod_unidad">
 								<?php while($row2 = mysqli_fetch_array($comb2['unidadesmedida'])) {?>
@@ -21,7 +21,7 @@
 									<?php } ?>			          			          
 								</select>
 								<label for="inputEmail" class="control-label">Precio Unitario</label>
-								<input class="form-control" name="precio_unitario" type="text" required>
+								<input class="form-control" name="precio_unitario" type="text" >
 								<label for="inputEmail" class="control-label">Stock Inicial</label>
 								<input class="form-control" name="stock" type="text" >				       
 								<label for="inputEmail" class="control-label">Proveedor</label>

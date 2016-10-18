@@ -23,7 +23,9 @@
                         <div class="col-md-10">
                           <form class="form-horizontal" action="costos/agregar" name="costosvariables" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
-                            	<input type="hidden" name="cod_producto" value="<?php echo($datos['contar']); ?>">                         
+                            	<input type="hidden" name="cod_producto" value="<?php echo($datos['contar']); ?>"> 
+                              <label for="inputEmail" class="control-label">Descripcion</label>
+                              <input class="form-control" name="descripcion" value="<?php $desc = $datos['descripcion']; echo $desc['descripcion'];?>" type="text" required readonly>                       
                               <label for="inputEmail" class="control-label">Materiales Utilizados</label>
                               <!--Inicio Grid de Materiales-->
                               <table class="table table-striped table-hover ">
@@ -64,8 +66,8 @@
                               <input class="form-control" name="total" type="text" required readonly > 
                             </div>
                             <div class="form-group">
-                             <button type="submit" class="btn btn-success">Cargar</button>
-                             <button type="reset" class="btn btn-warning">Borrar</button>
+                             <button type="submit" class="btn btn-success">Calcular</button>
+                             <a type="button" class="btn btn-warning" href="<?php echo URL; ?>costos/cancelar">Cancelar</a>
 
                            </div>
                          </form>

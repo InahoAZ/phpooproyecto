@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-08-2016 a las 01:29:01
--- Versión del servidor: 5.7.11
--- Versión de PHP: 5.6.19
+-- Tiempo de generación: 06-10-2016 a las 01:25:56
+-- Versión del servidor: 5.7.14
+-- Versión de PHP: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -124,6 +124,20 @@ CREATE TABLE `m_costosgeneral` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `m_detalle_factura`
+--
+
+CREATE TABLE `m_detalle_factura` (
+  `cod_detalle` int(11) NOT NULL,
+  `numero_factura` int(11) NOT NULL,
+  `cod_producto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio_venta` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `m_factura`
 --
 
@@ -142,8 +156,10 @@ CREATE TABLE `m_factura` (
 
 CREATE TABLE `m_facturas` (
   `cod_factura` int(11) NOT NULL,
-  `tipo` varchar(10) NOT NULL,
-  `total` float NOT NULL
+  `cod_tipofactura` int(11) NOT NULL,
+  `fecha_factura` datetime NOT NULL,
+  `cod_cliente` int(11) NOT NULL,
+  `total_venta` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -258,11 +274,7 @@ INSERT INTO `m_proveedores` (`cod_proveedor`, `razon_social`, `cuit`, `telefono`
 (12, 'Prueba', 789, '7788999', 'av prue'),
 (13, 'wea', 9988, '888', '88'),
 (14, 'Carrefour', 4879, '5555', 'av55'),
-(15, 'Hipermercado Mayorista Makro', 54684, '145645', 're lejos'),
-(16, 'wea1', 456, '456', '456'),
-(17, 'wea', 123, '123', '123'),
-(18, '234234', 34234, '234234', '234234'),
-(19, '234', 234, '234', '234');
+(15, 'Hipermercado Mayorista Makro', 54684, '145645', 're lejos');
 
 -- --------------------------------------------------------
 

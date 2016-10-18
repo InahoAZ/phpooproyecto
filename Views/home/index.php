@@ -7,9 +7,7 @@
 		<tr>
 		<td colspan="2"><p align="center" class="stroke">"Cuidarlo es un compromiso, pero hacerlo feliz un placer"</p></td>
 		</tr>	
-		<tr>
-		<td colspan="2"><p align="center" class="hstroke">Las dos estadisticas se encuentran en Materiales->Historial de Reabastecimientos</p></td>
-		</tr>
+		
 
 	</table>
 

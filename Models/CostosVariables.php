@@ -8,6 +8,7 @@
 		private $total;
 		private $fecha;		
 		private $con;
+		
 
 		
 		public function __construct(){

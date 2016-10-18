@@ -1,6 +1,7 @@
 <?php namespace Models;
  	
  	class Material{
+ 		private $cod_producto;
  		private $cod_material;
  		private $descripcion;
  		private $cod_unidad;
@@ -14,6 +15,10 @@
 
  		public function __construct(){
  	 		$this->con = new Conexion();
+ 	 		if(isset($_SESSION['lastIdProducto'])) 
+ 	 			$this->cod_producto = $_SESSION['lastIdProducto'];
+ 	 		else 
+ 	 			$this->cod_producto = 0;
 
  	 	}
 
@@ -32,10 +37,11 @@
 		public function listar2(){			
 			$sql = "SELECT m.*, pr.razon_social, u.* FROM m_materiales m, m_proveedores pr, m_unidadesmedida u WHERE m.cod_proveedor = pr.cod_proveedor AND u.cod_unidad = m.cod_unidad ";
 			$datos = $this->con->consultaRetorno($sql);
+
 			return $datos;
 		}
 		public function listar3(){			
-			$sql = "SELECT m.*, pr.razon_social, u.* FROM m_materiales m, m_proveedores pr, m_unidadesmedida u WHERE m.cod_proveedor = pr.cod_proveedor AND u.cod_unidad = m.cod_unidad AND NOT EXISTS (SELECT 1 FROM t_costostemp t2 WHERE t2.cod_material = m.cod_material)";
+			$sql = "SELECT m.*, pr.razon_social, u.* FROM m_materiales m, m_proveedores pr, m_unidadesmedida u WHERE m.cod_proveedor = pr.cod_proveedor AND u.cod_unidad = m.cod_unidad AND NOT EXISTS (SELECT 1 FROM t_costostemp t2 WHERE t2.cod_material = m.cod_material AND t2.cod_producto = '{$this->cod_producto}')";
 			$datos = $this->con->consultaRetorno($sql);
 			return $datos;
 		}

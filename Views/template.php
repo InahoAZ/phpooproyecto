@@ -4,12 +4,14 @@ $template = new Template();
 class Template{
 
 	public function __construct(){
+		session_start();
 ?>
 <!DOCTYPE html>
 		<html lang="es">
 		<head>
 			<meta charset="UTF-8">
-			<title>Administracion</title>
+			<title>Paw Paw S.H.</title>
+			<link rel="shortcut icon" href="<?php echo URL; ?>Views/template/imagenes/ico/favicon.ico">
 			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap4.css">
 
 			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/general.css">						
@@ -31,20 +33,20 @@ class Template{
 						<ul class="nav navbar-nav">
 							<li><a href="<?php echo URL; ?>">Inicio</a></li>
 
-							<!--<li class="dropdown">
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="clientes">Vender</a></li>
-									<li><a href="clientes/agregar">Ventas Realizadas</a></li>
+									<li><a href="ventas">Vender</a></li>
+									<li><a href="ventas/historialventas">Ventas Realizadas</a></li>
 								</ul>
-							</li>-->
-							<!--<li class="dropdown">
+							</li>
+							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="clientes">Listado</a></li>
 									<li><a href="clientes/agregar">Agregar Cliente</a></li>
 								</ul>
-							</li>-->
+							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
@@ -74,8 +76,16 @@ class Template{
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo URL; ?>productos">Listado</a></li>									
-									<li><a href="<?php echo URL; ?>productos/agregar">Agregar Producto</a></li>
+									<li><a href="<?php echo URL; ?>productos/agregar">Agregar Producto</a></li>									
 									<li><a href="<?php echo URL; ?>productos/stock">Actualizar Stock</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contabilidad<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="<?php echo URL; ?>contabilidad/librodiario">Libro Diario</a></li>									
+									<li><a href="<?php echo URL; ?>contabilidad/iyg">Ingresos y Gastos</a></li>
+									<li><a href="<?php echo URL; ?>productos/datosfiscales">Datos Fiscales (?</a></li>
 								</ul>
 							</li>
 							
@@ -84,7 +94,14 @@ class Template{
 
 
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="http://codigofacilito.com">Codigo Facilito</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrador<span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="<?php echo URL; ?>productos">Opciones</a></li>									
+									<li><a href="<?php echo URL; ?>productos/agregar">Cerrar Sesión</a></li>
+									
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>
