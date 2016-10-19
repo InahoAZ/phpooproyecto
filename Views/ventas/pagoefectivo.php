@@ -56,6 +56,7 @@ switch ($_POST['type']) {
 														<label class="control-label col-sm-2" for="email">Efectivo:</label>
 														<div class="col-sm-10">
 															<input type="text" class="form-control" id="email" placeholder="">
+															<input type="text">
 														</div>
 													</div>													
 													<div class="form-group">
