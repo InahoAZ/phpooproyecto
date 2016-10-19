@@ -26,7 +26,7 @@ switch ($_POST['type']) {
 							<b>Telefono: </b><?php echo $_POST['telefono']; ?>
 						</li>
 						<li class="list-group-item">
-							<b>DNI: </b><?php echo $datos['documento']; ?>
+							<b>DNI: </b><?php echo $_POST['documento']; ?>
 						</li>
 						<li class="list-group-item">
 							<div class="row">
@@ -106,7 +106,7 @@ switch ($_POST['type']) {
 							<b>Telefono: </b><?php echo $_POST['telefono']; ?>
 						</li>
 						<li class="list-group-item">
-							<b>DNI: </b><?php echo $datos['documento']; ?>
+							<b>DNI: </b><?php echo $_POST['documento']; ?>
 						</li>
 						<li class="list-group-item">
 							<div class="row">
@@ -178,7 +178,7 @@ switch ($_POST['type']) {
 							<b>Telefono: </b><?php echo $_POST['telefono']; ?>
 						</li>
 						<li class="list-group-item">
-							<b>DNI: </b><?php echo $datos['documento']; ?>
+							<b>DNI: </b><?php echo $_POST['documento']; ?>
 						</li>
 						<li class="list-group-item">
 							<div class="row">
