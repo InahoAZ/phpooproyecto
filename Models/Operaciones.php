@@ -7,7 +7,7 @@ class Operaciones{
 	private $cod_material = "null";
 	private $q;
 	private $cod_tipo_operacion;
-	private $cod_venta = "null";
+	private $cod_factura = "null";
 	private $fecha_operacion;
 	private $desde;
 	private $hasta;
@@ -31,8 +31,8 @@ class Operaciones{
 	}
 	public function add(){
 
-		$sql = "INSERT INTO m_operaciones(cod_operacion, cod_producto, cod_material, q, cod_tipo_operacion, cod_venta, fecha_operacion)	VALUES (null, {$this->cod_producto}, {$this->cod_material}, '{$this->q}', '{$this->cod_tipo_operacion}', {$this->cod_venta}, NOW())";
-			//print $sql;
+		$sql = "INSERT INTO m_operaciones(cod_operacion, cod_producto, cod_material, q, cod_tipo_operacion, cod_factura, fecha_operacion)	VALUES (null, {$this->cod_producto}, {$this->cod_material}, '{$this->q}', '{$this->cod_tipo_operacion}', {$this->cod_factura}, NOW())";
+			print $sql;
 		$lastId = $this->con->consultaSimple($sql);
 		return $lastId;
 	}
@@ -47,7 +47,7 @@ class Operaciones{
 			//echo $sql;
 	}
 	public function edit(){
-		$sql = "UPDATE m_operaciones SET cod_producto = '{$this->cod_producto}', q = '{$this->q}', cod_tipo_operacion = '{$this->cod_tipo_operacion}', cod_venta = '{$this->cod_venta}', fecha_operacion = '{$this->fecha_operacion}' WHERE cod_operacion = '{$this->cod_operacion}' ";
+		$sql = "UPDATE m_operaciones SET cod_producto = '{$this->cod_producto}', q = '{$this->q}', cod_tipo_operacion = '{$this->cod_tipo_operacion}', cod_factura = '{$this->cod_factura}', fecha_operacion = '{$this->fecha_operacion}' WHERE cod_operacion = '{$this->cod_operacion}' ";
 		$this->con->consultaSimple($sql);
 			//echo $sql;		
 	}

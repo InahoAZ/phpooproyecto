@@ -37,7 +37,7 @@
 		public function listar3(){			
 			$sql = "SELECT p.* FROM m_productos p WHERE NOT EXISTS (SELECT 1 FROM m_detalle_factura t2 WHERE t2.cod_factura = '{$this->cod_factura}' AND p.cod_producto = t2.cod_producto ) ORDER BY cod_producto ASC";
 			$datos = $this->con->consultaRetorno($sql);	
-			echo $sql;		
+			//echo $sql;		
 			return $datos;
 		}
 
@@ -105,7 +105,7 @@
 		public function updateStock(){
 			$sql = "UPDATE m_productos SET stock = '{$this->stock}', fecha_stock = NOW() WHERE cod_producto = '{$this->cod_producto}' ";
 			$this->con->consultaSimple($sql);
-			echo $sql;		
+			//echo $sql;		
 		}
 
 

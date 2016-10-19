@@ -53,6 +53,8 @@ class ventasController{
 	}
 
 	public function historialventas(){
+		$datos = $this->factura->listarFacturas();
+		return $datos;
 
 	}
 
@@ -236,7 +238,45 @@ class ventasController{
 
 	}
 
-	public function pagoefectivo(){
+	public function pagoefectivo(){		
+		
+	}
+	public function finalizarventa(){ // Esto se va a encargar de terminar la factura 100%ezreal, osea que en la tabla Factura, finalizado = 1
+		$lastIdFactura = 0;
+		if(isset($_SESSION['lastIdFactura']))
+			$lastIdFactura = $_SESSION['lastIdFactura']; //Toma el id de la factura con la que se esta trabajan2		
+		$this->factura->set("cod_factura", $lastIdFactura);
+		$datosFactura = $this->factura->view();
+		$this->detallefactura->set("cod_factura", $lastIdFactura);
+		$datosDetalleFactura = $this->detallefactura->view2();		
+
+		while ($producto = mysqli_fetch_assoc($datosDetalleFactura)) {			
+
+			$this->productos->set("cod_producto", $producto['cod_producto']);
+			$this->operaciones->set("cod_producto", $producto['cod_producto']);
+			$this->operaciones->set("cod_factura", $lastIdFactura);
+			$this->operaciones->set("q", $producto['cantidad']);
+			$this->operaciones->set("cod_tipo_operacion", 2);
+			$this->operaciones->add();
+			$datosActualProducto = $this->productos->view(); //Recibe la cantidad actual del producto, antes de vender.
+			//echo $datosActualProducto['stock'];
+			//echo $producto['cantidad'];
+			$stockDespues = $datosActualProducto['stock'] - $producto['cantidad'];//Le resta la cantidad vendida			
+			$this->productos->set("stock", $stockDespues);
+			$this->productos->updateStock();			
+			
+		}
+		
+		$this->factura->set("finalizado", 1);		
+		$this->factura->editFinalizado();
+		header("Location:" . URL . "ventas/verfactura/" . $lastIdFactura);
+
+	}
+	public function verfactura($id){ //Esto simplemente hace la consulta completa de la factura y la muestra. Segun su codigo.
+		$this->factura->set("cod_factura", $id);
+		$datos = $this->factura->verFacturaDatos();
+		$datos2 = $this->factura->verFacturaDetalle();		
+		return $datos = array('factura' => $datos, 'detalle' => $datos2);
 		
 	}
 }

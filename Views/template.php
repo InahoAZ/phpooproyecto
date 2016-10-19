@@ -12,7 +12,7 @@ class Template{
 			<meta charset="UTF-8">
 			<title>Paw Paw S.H.</title>
 			<link rel="shortcut icon" href="<?php echo URL; ?>Views/template/imagenes/ico/favicon.ico">
-			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap5.css">
+			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap4.css">
 
 			<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/general.css">	
 

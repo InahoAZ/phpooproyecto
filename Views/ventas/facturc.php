@@ -4,13 +4,13 @@
 		<div class="panel-heading">
 			<h4><i class='glyphicon glyphicon-edit'></i> Nueva Factura Tipo <?php echo $row['tipo_factura']  . "<br>N°" . $row['num_factura'] ?></h4>
 		</div>
+		<form class="form-horizontal" method="POST" action="<?php echo URL; ?>ventas/pagoefectivo" role="form" id="datos_factura">
 		<div class="panel-body">		
-			<form class="form-horizontal" role="form" id="datos_factura">
 				<div class="form-group row">
 					<label for="nombre_cliente" class="col-md-2 control-label">Apellido y Nombre</label>				
 					<div class="col-md-2">
-						<input type="text" class="col-md-1 form-control input-sm" name="apyn" id="apyn" placeholder=""  required>										
-						<input id="id_cliente" type='hidden'>	
+						<input type="text" class="col-md-1 form-control input-sm" name="apyn" id="apyn" placeholder="" >										
+						<input name="type" type='hidden' value="C">							
 					</div>
 					
 
@@ -32,10 +32,7 @@
 					<label for="email" class="col-md-1 control-label">Pago</label>
 					<div class="col-md-3">
 						<select class='form-control input-sm' id="condiciones">
-							<option value="1">Efectivo</option>
-							<option value="2">Cheque</option>
-							<option value="3">Transferencia bancaria</option>
-							<option value="4">Crédito</option>
+							<option value="1">Efectivo</option>							
 						</select>
 					</div>
 				</div>
@@ -53,7 +50,7 @@
 				</div>
 			</div>
 
-		</form>	
+			
 
 		<div class="row">
 			<div class="col-md-12">
@@ -88,11 +85,11 @@
 										<td class="highrow"></td>
 									</tr>									
 									<tr>
-										<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
-										<td class="emptyrow"></td>
-										<td class="emptyrow text-center"><strong>Total</strong></td>
-										<td class="emptyrow text-right"><?php echo "$" . $totalF; ?></td>
-									</tr>                             
+											<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
+											<td class="emptyrow"></td>
+											<td class="emptyrow text-center info"><strong>Total</strong></td>
+											<td class="emptyrow text-right info"><input type="text" value="<?php echo "$" . ($totalF); ?>" class="sm-input transparent" name="total" readonly></td>
+										</tr>                             
 								</tbody>
 							</table>
 						</div>
@@ -100,8 +97,8 @@
 				</div>
 			</div>
 		</div>
-
-
+		</form>
+	
 
 		<!-- Ventanas Modales -->
 		<!--Seleccionar Productos-->

@@ -24,9 +24,9 @@
 					</form>
 				</div>
 				<div class="col-xs-6 text-center">
-					<a class="btn btn-default" href="<?php echo URL; ?>ventas/productosmasVendidos">Ver Productos más vendidos</a>				
-					<a class="btn btn-default" href="<?php echo URL; ?>ventas/graficoventas">Ver Gráfico de Ventas</a>
-					<a class="btn btn-success" href="<?php echo URL; ?>ventas/historial">Ver Todas las Ventas</a>
+					<a class="btn btn-default" href="<?php //echo URL; ?>ventas/productosmasVendidos">Ver Productos más vendidos</a>				
+					<a class="btn btn-default" href="<?php //echo URL; ?>ventas/graficoventas">Ver Gráfico de Ventas</a>
+					<a class="btn btn-success" href="<?php //echo URL; ?>ventas/historial">Ver Todas las Ventas</a>
 				</div>
 			</div>
 			
@@ -39,29 +39,27 @@
 			<table class="table table-striped table-hover ">
 				<thead>
 					<tr><th></th>
-						<th>Codigo</th>
-						<th>Descripcion</th>
-						<th>Total</th>						
-						<th>Cantidad Añadida</th>
-						<th>Proveedor</th>
-						<th>Fecha de Carga</th>			     
+						<th>Numero de Factura</th>
+						<th>Tipo de Factura</th>
+						<th colspan="2">Cliente</th>						
+						
+						<th>Fecha de Factura</th>			     
 						
 					</tr>
 				</thead>
 				<tbody>
-					<?php  ?>				
+					<?php while ($row = mysqli_fetch_array($datos)) { //$total = $row['precio_unitario']* $row['q'] ?>				
 					<tr>
-						<td><a class="btn btn-defaultt" href=" <?php echo URL; ?>materiales/reabastecerComprobante/<?php echo $row['cod_operacion']?>"><img height="10" width="10" class="icon" src="<?php echo URL;?>Views/template/imagenes/ico/view.png"></a></td>		      
-						<td></td>
-						<td></td>
-						<td></td>						
-						<td></td>							
-						<td></td>
-						<td></td>
+						<td><a class="btn btn-defaultt" href=" <?php echo URL; ?>ventas/verfactura/<?php echo $row['cod_factura']?>"><img height="10" width="10" class="icon" src="<?php echo URL;?>Views/template/imagenes/ico/view.png"></a></td>		      
+						<td><?php echo "#" . $row['num_factura'];?></td>
+						<td><?php echo "Factura " . $row['tipo_factura'];?></td>							
+						<td><?php echo $row['apyn'] ."&nbsp;"?></td>							
+						<td><?php echo $row['iva'];?></td>
+						<td><?php echo $row['fecha_factura'];?></td>
 
 					</tr>
-					<?php  ?>
-				</div>
+					<?php } ?>
+				</tbody>
 			</div>
 
 		</div>

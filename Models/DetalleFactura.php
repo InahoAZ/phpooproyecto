@@ -43,6 +43,12 @@
 			$row = mysqli_fetch_assoc($datos);
 			return $row;
 		}
+		public function view2(){
+			$sql = "SELECT * FROM m_detalle_factura WHERE cod_factura = '{$this->cod_factura}'";
+			$datos = $this->con->consultaRetorno($sql);
+			//echo $sql;
+			return $datos;
+		}
 
 		public function listarDetalleA(){
 			$sql = "SELECT * FROM m_facturas f, m_detalle_factura df, m_productos p WHERE f.num_factura = df.num_factura AND df.cod_producto = p.cod_producto AND f.tipo_factura = 'A' AND df.cod_factura = '{$this->cod_factura}'";
