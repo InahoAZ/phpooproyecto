@@ -43,7 +43,7 @@
 						<button type="button" class="btn btn-info no-print" data-toggle="modal" data-target="#productosModalB">
 							<span class="glyphicon glyphicon-search"></span> Buscar Productos
 						</button>
-						<button type="submit" class="btn btn-success no-print">
+						<button type="button" name="btnsubmit" onclick="vali_facturac()" class="btn btn-success no-print">
 							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
 						</button>
 					</div>	
@@ -88,7 +88,8 @@
 											<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
 											<td class="emptyrow"></td>
 											<td class="emptyrow text-center info"><strong>Total</strong></td>
-											<td class="emptyrow text-right info"><input type="text" value="<?php echo "$" . ($totalF); ?>" class="sm-input transparent" name="total" readonly></td>
+											<td class="emptyrow text-right info">
+											<input id="total"  type="text" value="<?php echo ($totalF); ?>" class="sm-input transparent" name="total" readonly></td>
 										</tr>                             
 								</tbody>
 							</table>

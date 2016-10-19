@@ -4,7 +4,7 @@
 		<div class="panel-heading">
 			<h4><i class='glyphicon glyphicon-edit'></i> Nueva Factura Tipo <?php echo $row['tipo_factura']  . "<br>N°" . $row['num_factura'] ?></h4>
 		</div>
-		<form class="form-horizontal" method="POST" action="<?php echo URL; ?>ventas/pagoefectivo" role="form" id="datos_factura">
+		<form  class="form-horizontal" method="POST" action="<?php echo URL; ?>ventas/pagoefectivo" role="form" id="datos_factura">
 		<div class="panel-body">			
 				<div class="form-group row">
 					<label for="nombre_cliente" class="col-md-2 control-label">Apellido y Nombre</label>				
@@ -47,7 +47,7 @@
 						<button type="button" class="btn btn-info no-print" data-toggle="modal" data-target="#productosModal">
 							<span class="glyphicon glyphicon-search"></span> Buscar Productos
 						</button>
-						<button type="submit" class="btn btn-success no-print">
+						<button type="button" name="btnsubmit" onclick="vali_factua()" class="btn btn-success no-print">
 							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
 						</button>
 					</div>	
@@ -99,7 +99,8 @@
 											<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
 											<td class="emptyrow"></td>
 											<td class="emptyrow text-center info"><strong>Total</strong></td>
-											<td class="emptyrow text-right info"><input type="text" value="<?php echo "$" . ($totalF + $iva); ?>" class="sm-input transparent" name="total" readonly></td>
+											<td class="emptyrow text-right info">
+											<input type="text" value="<?php echo ($totalF + $iva); ?>" class="sm-input transparent" id="total" name="total" readonly></td>
 										</tr>                             
 									</tbody>
 								</table>

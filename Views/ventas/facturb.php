@@ -4,12 +4,12 @@
 		<div class="panel-heading">
 			<h4><i class='glyphicon glyphicon-edit'></i> Nueva Factura Tipo <?php echo $row['tipo_factura']  . "<br>N°" . $row['num_factura'] ?></h4>
 		</div>
-		<form class="form-horizontal" method="POST" action="<?php echo URL; ?>ventas/pagoefectivo" role="form" id="datos_factura">
+		<form id="facturab" class="form-horizontal" method="POST" action="<?php echo URL; ?>ventas/pagoefectivo" role="form" id="datos_factura">
 			<div class="panel-body">				
 				<div class="form-group row">
 					<label for="nombre_cliente" class="col-md-2 control-label">Apellido y Nombre</label>				
 					<div class="col-md-2">
-						<input type="text" class="col-md-1 form-control input-sm" name="apyn" placeholder="" value="<?php echo $row['apyn']; ?>" required>										
+						<input type="text" class="col-md-1 form-control input-sm" name="apyn" placeholder="" value="<?php echo $row['apyn']; ?>" readonly>										
 						<input name="type" type='hidden' value="B">	
 					</div>
 					
@@ -43,7 +43,7 @@
 						<button type="button" class="btn btn-info no-print" data-toggle="modal" data-target="#productosModalB">
 							<span class="glyphicon glyphicon-search"></span> Buscar Productos
 						</button>
-						<button type="submit" class="btn btn-success no-print">
+						<button type="button" name="btnsubmit" onclick="vali_facturab()" class="btn btn-success no-print">
 							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
 						</button>
 					</div>	
@@ -88,7 +88,8 @@
 											<td class="emptyrow"><i class="fa fa-barcode iconbig"></i></td>
 											<td class="emptyrow"></td>
 											<td class="emptyrow text-center info"><strong>Total</strong></td>
-											<td class="emptyrow text-right info"><input type="text" value="<?php echo "$" . ($totalF); ?>" class="sm-input transparent" name="total" readonly></td>
+											<td class="emptyrow text-right info">
+											<input id="total" type="text" value="<?php echo($totalF); ?>" class="sm-input transparent" name="total" readonly></td>
 										</tr>                            
 									</tbody>
 								</table>

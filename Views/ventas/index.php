@@ -10,11 +10,11 @@ if (isset($_SESSION['clienteFactura']))
 			<h4><i class='glyphicon glyphicon-edit'></i> Nueva Factura</h4>
 		</div>
 		<div class="panel-body">		
-			<form class="form-horizontal" action="<?php echo URL ?>ventas/comprobarTipoFactura" method="POST">
+			<form id="factura" class="form-horizontal" action="<?php echo URL ?>ventas/comprobarTipoFactura" method="POST">
 				<div class="form-group row">
 					<label for="nombre_cliente" class="col-md-1 control-label">Cliente</label>				
 					<div class="col-md-2">
-						<input type="text" class="col-md-1 form-control input-sm" name="apyn" placeholder="Selecciona un cliente" value="<?php echo $clientes['apyn'];  ?>" >
+						<input type="text" class="col-md-1 form-control input-sm" id="apyn" name="apyn" placeholder="Selecciona un cliente" value="<?php echo $clientes['apyn'];  ?>" >
 
 						<input name="cod_clientes" type='hidden' value="<?php echo $clientes['cod_clientes'];  ?>">	
 						<input name="iva" type='hidden' value="<?php echo $clientes['iva'];  ?>">	
@@ -53,7 +53,7 @@ if (isset($_SESSION['clienteFactura']))
 				
 				<div class="col-md-12">
 					<div class="pull-right">						
-						<button type="submit" class="btn btn-success no-print">
+						<button type="button" name="btnsubmit" onclick="factura()" class="btn btn-success no-print">
 							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
 						</button>						
 					</div>	
