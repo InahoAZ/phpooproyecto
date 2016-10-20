@@ -5,7 +5,7 @@
 				$ruta = str_replace("\\", "/", $class) . ".php";
 				if (is_readable($ruta)){
 					include_once $ruta;
-					//print $ruta;
+					//print $ruta; //Muestra los archivos incluidos en la vista actual.
 					
 				}
 			});

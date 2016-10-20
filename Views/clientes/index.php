@@ -1,3 +1,8 @@
+<?php
+//$row = mysqli_fetch_array($datos);
+
+?>
+
 <div class="box-principal">
 	<h3 class="titulo">Listado de Clientes<br></h3>	
 <div class="row">
@@ -49,7 +54,7 @@
 
 							</tr>
 							<?php } ?>
-						</tbody>
+						</tbody>//
 					</table>
 					</div>
 				</div>

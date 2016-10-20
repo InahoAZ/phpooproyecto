@@ -29,7 +29,7 @@
 			if(is_readable($ruta)){
 				require_once $ruta;
 			}else{
-				print "No se encontro la ruta";
+				print "No se encontro la ruta :v";
 			}
 		}
 

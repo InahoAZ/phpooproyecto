@@ -49,7 +49,7 @@
 		public function view(){
 			$sql = "SELECT c.* FROM m_clientes c WHERE c.cod_clientes = '{$this->cod_clientes}'";
 			$datos = $this->con->consultaRetorno($sql);
-			//echo $sql;
+			echo $sql;
 			$row = mysqli_fetch_assoc($datos);			
 			return $row;
 
