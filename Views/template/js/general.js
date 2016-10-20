@@ -1011,3 +1011,302 @@ if (vereficar) {
 }
 
 }
+
+function factura() {
+ 
+    var apyn= document.getElementById("apyn");
+
+    if (apyn.value == "") {
+    sweetAlert("Atencion", "La factura sera tio C!", "warning"); 
+    window.setInterval(function(){
+        document.getElementById("factura").submit();
+    },3000);
+}
+    else{
+    document.getElementById("factura").submit();
+}
+
+
+}
+
+
+
+
+function vali_facturab(){
+
+    var vereficar= true;
+
+    var total= document.getElementById("total");
+
+
+    if (total.value == 0 ) {
+    sweetAlert("Error", "Debe Buscar los Productos primero!", "error"); 
+    total.focus();
+    vereficar= false;
+        
+    }
+if (vereficar) {
+    sweetAlert("Bien!", "Guardando!", "success");
+    window.setInterval(function(){
+        document.getElementById("facturab").submit();
+    },3000);
+}
+
+}
+
+
+
+function vali_facb(){
+    var efec= document.getElementById('efectivo')
+  var efectivo = Number(document.form_efectivob.efectivo.value);
+  var total = Number(document.form_efectivob.total.value);
+  var vuelto = parseFloat(efectivo) - parseFloat(total);
+
+ if (isNaN(efec.value) ) {
+    sweetAlert("Oops...", "El campo Efectivo  solo acepta numeros", "error");
+    efec.focus();
+    vereficar= false;
+}
+
+ else if (efectivo == "") {
+ sweetAlert("Oops..","El campo efectivo esta vacio","warning");
+ return 0;
+
+
+}
+
+else if (efectivo < total) {
+ sweetAlert("Oops..","El efectivo es menor al total","warning");
+ return 0;
+}
+
+    
+   if (efectivo >= total){          
+    sweetAlert("Bien!","Su vuelto es: " + "$"+vuelto ,"success");
+    window.setInterval(function(){
+    document.form_efectivob.submit();
+   },3000);
+}
+}
+
+function vueltofact() {
+ var ingreso1 = document.form_efectivob.efectivo.value;
+ var ingreso2 = document.form_efectivob.total.value;
+ var vuelto = 0;
+ try{
+      //Calculamos el número escrito:
+      ingreso1 = (isNaN(parseFloat(ingreso1)))? 0 : parseFloat(ingreso1);
+      ingreso2 = (isNaN(parseFloat(ingreso2)))? 0 : parseFloat(ingreso2);
+      vuelto = (ingreso1-ingreso2);  
+      document.form_efectivob.vuelto.value =vuelto;
+  }
+   //Si se produce un error no hacemos nada
+   catch(e) {}
+
+}
+
+
+
+
+
+
+
+
+function vali_factua(){
+
+    var vereficar= true;
+
+    var total= document.getElementById("total");
+
+
+    if (total.value ==0) {
+    sweetAlert("Error", "Debe Buscar los Productos primero!", "error"); 
+    total.focus();
+    vereficar= false;  
+    }
+
+if (vereficar) {
+    sweetAlert("Bien!", "Guardando!", "success");
+    window.setInterval(function(){
+        document.getElementById("datos_factura").submit();
+    },3000);
+}
+
+}
+
+
+
+function vali_facturaa(){
+    var efec= document.getElementById('efec')
+  var efectivo = Number(document.facturaa.efectivo.value);
+  var total = Number(document.facturaa.total.value);
+  var vuelto = parseFloat(efectivo) - parseFloat(total);
+
+ if (isNaN(efec.value) ) {
+    sweetAlert("Oops...", "El campo Efectivo  solo acepta numeros", "error");
+    efec.focus();
+    vereficar= false;
+}
+
+ else if (efectivo == "") {
+ sweetAlert("Oops..","El campo efectivo esta vacio","warning");
+ return 0;
+
+
+}
+
+else if (efectivo < total) {
+ sweetAlert("Oops..","El efectivo es menor al total","warning");
+ return 0;
+}
+
+    
+   if (efectivo >= total){          
+    sweetAlert("Bien!","Su vuelto es: " + "$"+vuelto.toFixed(2) ,"success");
+    window.setInterval(function(){
+    document.facturaa.submit();
+   },3000);
+}
+}
+
+function vueltofacta() {
+ var ingreso1 = document.facturaa.efectivo.value;
+ var ingreso2 = document.facturaa.total.value;
+ var vuelto = 0;
+ try{
+      //Calculamos el número escrito:
+      ingreso1 = (isNaN(parseFloat(ingreso1)))? 0 : parseFloat(ingreso1);
+      ingreso2 = (isNaN(parseFloat(ingreso2)))? 0 : parseFloat(ingreso2);
+      vuelto = (ingreso1-ingreso2);
+      vuelto = vuelto.toFixed(2);
+
+      document.facturaa.vuelto.value =vuelto;
+  }
+   //Si se produce un error no hacemos nada
+   catch(e) {}
+
+}
+
+
+
+
+
+
+
+
+function vali_facturac(){
+
+    var vereficar= true;
+    var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
+
+
+    var apyn= document.getElementById("apyn");
+    var direccion= document.getElementById("direccion");
+    var telefono= document.getElementById("telefono");
+    var total =document.getElementById('total')
+
+
+    if (apyn.value == "" ) {
+        sweetAlert("Oops...", "El campo Apellido y Nombre  esta vacio!", "error");
+        apyn.focus();
+        vereficar= false;
+    }
+    else if (!expRegNombre.exec(apyn.value)) {
+     sweetAlert("Oops...", "El campo Apellido y Nombre solo acepta letras y espacios en blancos", "error");
+     apyn.focus();
+     vereficar= false;
+    }
+
+
+    else if (direccion.value == "" ) {
+    sweetAlert("Error", "El campo direccion  esta vacio!!", "error"); 
+    direccion.focus();
+    vereficar= false;
+        
+    }
+
+   else if (telefono.value == "" ) {
+    sweetAlert("Error", "El campo Telefono esta vacio!!", "error"); 
+    telefono.focus();
+    vereficar= false; 
+
+    }
+
+    else if (isNaN(telefono.value) ) {
+    sweetAlert("Oops...", "El campo Telefono solo acepta numeros", "error");
+    telefono.focus();
+    vereficar= false;
+    }
+
+    else if (total.value == 0 ) {
+    sweetAlert("Error", "Debe Buscar los productos primero!", "error"); 
+    direccion.focus();
+    vereficar= false;
+        
+    }
+    
+
+if (vereficar) {
+    sweetAlert("Bien!", "Guardando!", "success");
+    window.setInterval(function(){
+        document.getElementById("datos_factura").submit();
+
+    },3000);
+}
+
+}
+
+
+
+function vali_facc(){
+  var efec= document.getElementById('efectivo')
+  var efectivo = Number(document.facturac.efectivo.value);
+  var total = Number(document.facturac.total.value);
+  var vuelto = parseFloat(efectivo) - parseFloat(total);
+
+
+
+ if (isNaN(efec.value) ) {
+    sweetAlert("Oops...", "El campo Efectivo  solo acepta numeros", "error");
+    efec.focus();
+    vereficar= false;
+}
+
+ else if (efectivo == "") {
+ sweetAlert("Oops..","El campo efectivo esta vacio","warning");
+ return 0;
+
+
+}
+
+else if (efectivo < total) {
+ sweetAlert("Oops..","El efectivo es menor al total","warning");
+ return 0;
+}
+
+    
+   if (efectivo >= total){          
+    sweetAlert("Bien!","Su vuelto es: " + "$"+vuelto ,"success");
+    window.setInterval(function(){
+    document.facturac.submit();
+   },3000);
+}
+}
+
+function vueltofactc() {
+ var ingreso1 = document.facturac.efectivo.value;
+ var ingreso2 = document.facturac.total.value;
+ var vuelto = 0;
+ try{
+      //Calculamos el número escrito:
+      ingreso1 = (isNaN(parseFloat(ingreso1)))? 0 : parseFloat(ingreso1);
+      ingreso2 = (isNaN(parseFloat(ingreso2)))? 0 : parseFloat(ingreso2);
+      vuelto = (ingreso1-ingreso2);
+      vuelto = vuelto.toFixed(2);
+ 
+      document.facturac.vuelto.value =vuelto;
+  }
+   //Si se produce un error no hacemos nada
+   catch(e) {}
+
+}

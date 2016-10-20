@@ -71,7 +71,6 @@ class Template{
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Costos<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>costos">Calcular Costos</a></li>									
 									<li><a href="<?php echo URL; ?>costos/vercfijos">Ver Costos Fijos</a></li>
 								</ul>
 							</li>
@@ -80,15 +79,12 @@ class Template{
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo URL; ?>productos">Listado</a></li>									
 									<li><a href="<?php echo URL; ?>productos/agregar">Agregar Producto</a></li>									
-									<li><a href="<?php echo URL; ?>productos/stock">Actualizar Stock</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contabilidad<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo URL; ?>contabilidad/librodiario">Libro Diario</a></li>									
-									<li><a href="<?php echo URL; ?>contabilidad/iyg">Ingresos y Gastos</a></li>
-									<li><a href="<?php echo URL; ?>productos/datosfiscales">Datos Fiscales (?</a></li>
 								</ul>
 							</li>
 							
@@ -96,16 +92,7 @@ class Template{
 						</ul>
 
 
-						<ul class="nav navbar-nav navbar-right">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrador<span class="caret"></span></a>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>productos">Opciones</a></li>									
-									<li><a href="<?php echo URL; ?>productos/agregar">Cerrar Sesión</a></li>
-									
-								</ul>
-							</li>
-						</ul>
+						
 					</div>
 				</div>
 			</nav>
