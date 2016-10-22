@@ -17,10 +17,16 @@
 			return $this->atributo;
 		}
 		public function listar(){
-			$sql = "SELECT * FROM m_asientoscontables asi, m_detalleasiento da, m_plandecuentas pc WHERE asi.num_asiento = da.num_asiento AND da.cod_cuenta = pc.cod_cuenta ORDER BY asi.num_asiento ASC";
+			$sql = "SELECT * FROM m_detalleasiento da, m_asientoscontables a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta ORDER BY da.num_asiento, da.cod_cuenta ASC";
 			$datos = $this->con->consultaRetorno($sql);
 			return $datos;
 		}
+		public function listarHoy(){
+			$sql = "SELECT * FROM m_detalleasiento da, m_asientoscontables a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta AND a.fecha_asiento = DATE(NOW()) ORDER BY da.num_asiento, da.cod_cuenta ASC";
+			$datos = $this->con->consultaRetorno($sql);
+			return $datos;
+		}
+
 
 		public function add(){
 			$sql = "INSERT INTO m_detalleasiento (cod_detalleasiento, num_asiento, debe, haber, cod_cuenta) VALUES (NULL, '{$this->num_asiento}, '{$this->debe}, '{$this->haber}, '{$this->cod_cuenta}')";

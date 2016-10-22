@@ -1,16 +1,10 @@
 <?php  
+$a = 1;
+echo $a;
 ?>
 
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12"><h2>Filtrar por Fecha</h2>
-			<div class="row">
-				<div class="col-md-4">Fecha 1</div>
-				<div class="col-md-4">Fecha 2</div>
-			</div>
-		</div>
-	</div>
+<div class="container">	
 	
 	<div class="row">
 		<div class="col-md-12">
@@ -39,7 +33,7 @@
 					</tr>
 
 					<?php								
-				}else{
+				}elseif($detalleasiento['cod_cuenta'] != 0 ){
 					?>
 					<tr class="">					
 						<td><?php echo $detalleasiento['num_asiento']; ?></td>
@@ -54,7 +48,17 @@
 					$debe += $detalleasiento['debe'];
 					$haber += $detalleasiento['haber'];
 
-				}}	
+				}
+				
+				if ($a == 1) {
+					?>
+					<h3>No existen asientos a la fecha</h3>
+					<?php					
+				}
+
+
+
+			}	
 				?>
 				<tr>
 					<td class="highrow"></td>
@@ -72,10 +76,57 @@
 					<th><?php echo $haber; ?></th>
 				</tr>				
 
-			</table>
+			</table>			
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5"></div>
+		<div class="col-md-2"><a href="<?php echo URL ?>contabilidad/librodiario" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos los Asientos</a></div>		
+		<div class="col-md-5"></div>
 	</div>
 
 
 </div>
 
+<?php 
+/*
+$a = 0;
+$b = 10;
+
+$c = 1;
+$d = 5;
+
+while ($a < $b) {
+	echo "Asiento " . $a . "<br>" ;
+	$a++;
+
+	while ($c < $d) {
+		echo $c . "<br>";
+		$c++;
+
+	}
+	$c = 3;
+
+}*/
+
+
+
+
+
+
+
+
+	//$i2 = 0; 
+	/*for ($i=1; $i < 10; $i++) {			
+		echo "Asiento N" . $i . "<br>";
+		//echo $i2. "a<br>";			
+		for ($ia=8; $ia <  10; $ia++) { 
+			echo "Cuenta N°" . $ia . "<br>";			
+		}
+		//++$i2;
+	} */
+	
+
+
+
+	?>

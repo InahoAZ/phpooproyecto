@@ -23,10 +23,18 @@ class contabilidadController{
 	public function index(){
 
 	}
-
 	public function librodiario(){
 		$datos = $this->asientoscontables->listar();
 		$datos2 = $this->detalleasiento->listar();
+		return $datos = array('asientos' => $datos, 'detalleasiento' => $datos2);
+		
+		
+
+	}
+
+	public function librodiarioHoy(){
+		$datos = $this->asientoscontables->listar();
+		$datos2 = $this->detalleasiento->listarHoy();
 		return $datos = array('asientos' => $datos, 'detalleasiento' => $datos2);
 		
 		

@@ -84,7 +84,7 @@ class Template{
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contabilidad<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>contabilidad/librodiario">Libro Diario</a></li>									
+									<li><a href="<?php echo URL; ?>contabilidad/librodiarioHoy">Libro Diario</a></li>									
 								</ul>
 							</li>
 							
