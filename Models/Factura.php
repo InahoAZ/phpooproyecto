@@ -39,7 +39,7 @@ class Factura{
 	}
 	public function editFinalizado(){
 		$sql = "UPDATE m_facturas SET finalizado = '{$this->finalizado}' WHERE cod_factura = '{$this->cod_factura}'"; 
-		echo $sql;
+		echo $sql . "<br>";
 		$this->con->consultaSimple($sql);
 	}
 	public function view(){

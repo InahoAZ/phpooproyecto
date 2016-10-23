@@ -54,21 +54,21 @@ switch ($_POST['type']) {
 												<form name="facturaa" class="form-horizontal" method="POST" action="<?php echo URL;?>ventas/finalizarventa">
 													<div class="form-group">
 														<label class="control-label col-sm-2" for="email">Efectivo:</label>
-<<<<<<< HEAD
+
 														<div class="col-sm-10">
 															<input type="text" class="form-control" id="email" placeholder="">
 															<input type="text">
-=======
+
 														<div class="col-sm-10"> 
 														<input id="efec" type="text" class="form-control" name="efectivo" onkeyup="vueltofacta()" >
 														<input type="hidden" id="total" value="<?php echo $_POST['total']; ?>">
->>>>>>> 4e5bbe088d87d77e367e7a495aaf63b651748200
+
 														</div>
 													</div>													
 													<div class="form-group">
 														<label class="control-label col-sm-2" for="pwd">Vuelto:</label>
 														<div class="col-sm-10"> 
-															<input type="text" class="form-control" id="vuelto" placeholder="" readonly>
+															<input type="text" class="form-control" name="vuelto" id="vuelto" placeholder="" readonly>
 														</div>
 													</div>												
 													<div class="form-group"> 
@@ -134,14 +134,14 @@ switch ($_POST['type']) {
 													<div class="form-group">
 														<label class="control-label col-sm-2">Efectivo:</label>
 														<div class="col-sm-10">
-															<input type="text" class="form-control" id="efectivo" onkeyup="vueltofact()" placeholder="">
+															<input type="text" class="form-control" name="efectivo" id="efectivo" onkeyup="vueltofact()" placeholder="">
 															<input type="hidden" id="total" value="<?php echo $_POST['total']; ?>">
 														</div>
 													</div>													
 													<div class="form-group">
 														<label class="control-label col-sm-2">Vuelto:</label>
 														<div class="col-sm-10"> 
-															<input type="text" class="form-control" id="vuelto" placeholder="" readonly>
+															<input type="text" class="form-control" name="vuelto" id="vuelto" placeholder="" readonly>
 														</div>
 													</div>												
 													<div class="form-group"> 
@@ -214,7 +214,7 @@ switch ($_POST['type']) {
 													<div class="form-group">
 														<label class="control-label col-sm-2" for="pwd">Vuelto:</label>
 														<div class="col-sm-10"> 
-															<input type="text" class="form-control" id="vuelto" placeholder="" readonly>
+															<input type="text" class="form-control" name="vuelto" id="vuelto" placeholder="" readonly>
 														</div>
 													</div>												
 													<div class="form-group"> 

@@ -41,12 +41,7 @@ class contabilidadController{
 
 	}
 
-	public function productosmodal(){
-		
-
-		
-
-	}
+	
 }
 
 ?>

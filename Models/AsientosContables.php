@@ -21,9 +21,16 @@
 			$datos = $this->con->consultaRetorno($sql);
 			return $datos;
 		}
+		public function lastNumAsiento(){
+			$sql = "SELECT num_asiento FROM m_asientoscontables ORDER BY num_asiento ASC LIMIT 1";
+			$datos = $this->con->consultaRetorno($sql);
+			$row = mysqli_fetch_array($datos);
+			return $row;
+		}
 
 		public function add(){
-			$sql = "INSERT INTO m_asientoscontables (cod_asiento, num_asiento, fecha_asiento, concepto, cod_factura) VALUES (NULL, '{$this->num_asiento}, '{$this->fecha_asiento}, '{$this->concepto}, '{$this->cod_factura}')";
+			$sql = "INSERT INTO m_asientoscontables (cod_asiento, num_asiento, fecha_asiento, concepto, cod_factura) VALUES (NULL, '{$this->num_asiento}', NOW(), '{$this->concepto}', '{$this->cod_factura}')";
+			echo $sql . "<br>";
 			$this->con->consultaSimple($sql);
 		}
 		public function delete(){

@@ -29,7 +29,8 @@
 
 
 		public function add(){
-			$sql = "INSERT INTO m_detalleasiento (cod_detalleasiento, num_asiento, debe, haber, cod_cuenta) VALUES (NULL, '{$this->num_asiento}, '{$this->debe}, '{$this->haber}, '{$this->cod_cuenta}')";
+			$sql = "INSERT INTO m_detalleasiento (cod_detalleasiento, num_asiento, debe, haber, cod_cuenta) VALUES (NULL, '{$this->num_asiento}', '{$this->debe}', '{$this->haber}', '{$this->cod_cuenta}')";
+			echo $sql . "<br>";
 			$this->con->consultaSimple($sql);
 		}
 		public function delete(){

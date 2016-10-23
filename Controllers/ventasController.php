@@ -5,6 +5,8 @@ use Models\Cliente as Cliente;
 use Models\Factura as Factura;
 use Models\DetalleFactura as DetalleFactura;
 use Models\Productos as Productos;
+use Models\AsientosContables as AsientosContables;
+use Models\DetalleAsiento as DetalleAsiento;
 
 
 
@@ -18,6 +20,8 @@ class ventasController{
 	private $factura;
 	private $detallefactura;
 	private $productos;
+	private $asientoscontables;
+	private $detalleasiento;
 
 
 		//Variables para datos
@@ -32,6 +36,8 @@ class ventasController{
 		$this->factura = new Factura();
 		$this->detallefactura = new DetalleFactura();
 		$this->productos = new Productos();
+		$this->asientoscontables = new AsientosContables();
+		$this->detalleasiento = new DetalleAsiento();
 
 
 
@@ -249,27 +255,64 @@ class ventasController{
 		$datosFactura = $this->factura->view();
 		$this->detallefactura->set("cod_factura", $lastIdFactura);
 		$datosDetalleFactura = $this->detallefactura->view2();		
-
+		$haber = 0;
 		while ($producto = mysqli_fetch_assoc($datosDetalleFactura)) {			
 
 			$this->productos->set("cod_producto", $producto['cod_producto']);
 			$this->operaciones->set("cod_producto", $producto['cod_producto']);
 			$this->operaciones->set("cod_factura", $lastIdFactura);
 			$this->operaciones->set("q", $producto['cantidad']);
-			$this->operaciones->set("cod_tipo_operacion", 2);
+			$this->operaciones->set("cod_tipo_operacion", 2); // 2 corresponde a una operacion de Salida.
 			$this->operaciones->add();
 			$datosActualProducto = $this->productos->view(); //Recibe la cantidad actual del producto, antes de vender.
 			//echo $datosActualProducto['stock'];
 			//echo $producto['cantidad'];
 			$stockDespues = $datosActualProducto['stock'] - $producto['cantidad'];//Le resta la cantidad vendida			
 			$this->productos->set("stock", $stockDespues);
-			$this->productos->updateStock();			
+			$this->productos->updateStock();
+			$aux = $producto['precio_venta'] * $producto['cantidad'];			
+			$haber += $aux;	//Todos los productos que se vendieron en esa factura. (5.1 Ventas)		
 			
 		}
 		
 		$this->factura->set("finalizado", 1);		
 		$this->factura->editFinalizado();
-		header("Location:" . URL . "ventas/verfactura/" . $lastIdFactura);
+		$lastNumAsiento = $this->asientoscontables->lastNumAsiento();
+		$lastNumAsiento = $lastNumAsiento['num_asiento'];
+		if($lastNumAsiento == 0)
+			$lastNumAsiento = 1;
+		else
+			$lastNumAsiento++;
+
+		$debe = $_POST['efectivo'] - $_POST['vuelto']; //Lo que se recibio en efectivo. (1.1.1 Caja)
+		 
+
+		$this->asientoscontables->set("num_asiento", $lastNumAsiento);
+		$this->asientoscontables->set("concepto", "Venta");		
+		$this->asientoscontables->set("cod_factura", $lastIdFactura);
+		$this->asientoscontables->add();
+
+		$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+		$this->detalleasiento->set("debe", 0);
+		$this->detalleasiento->set("haber", 0);
+		$this->detalleasiento->set("cod_cuenta", "0"); //Se crea un detalle con cuenta 0 para iniciar el asiento
+		$this->detalleasiento->add();	
+
+		$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+		$this->detalleasiento->set("debe", $debe);
+		$this->detalleasiento->set("haber", 0);
+		$this->detalleasiento->set("cod_cuenta", "1.1.1"); //1.1.1 corresponde a la cuenta Caja.
+		$this->detalleasiento->add();
+
+		
+
+		$this->detalleasiento->set("num_asiento", $lastNumAsiento);
+		$this->detalleasiento->set("debe", 0);
+		$this->detalleasiento->set("haber", $haber);
+		$this->detalleasiento->set("cod_cuenta", "5.1"); //5.1 Corresponde a la cuenta Ventas
+		$this->detalleasiento->add();
+
+		//header("Location:" . URL . "ventas/verfactura/" . $lastIdFactura);
 
 	}
 	public function verfactura($id){ //Esto simplemente hace la consulta completa de la factura y la muestra. Segun su codigo.

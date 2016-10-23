@@ -1,4 +1,5 @@
 <?php  
+$a = 1; //Si existen registros $a = 0 ;
 ?>
 
 
@@ -16,8 +17,7 @@
 		<div class="col-md-12">
 		<table class="table ">
 		<tr>
-		<td><h2>Libro Diario</h2></td>
-		<td align="right"><h2>Fecha: <?php echo date('d-m-Y');  ?></h2></td>
+		<td><h2>Libro Diario</h2></td>		
 		</tr>
 		</table>
 			<table class="table table-stripped ">
@@ -55,6 +55,12 @@
 					$haber += $detalleasiento['haber'];
 
 				}}	
+				if ($a == 1) {
+				?><tr>
+				<td colspan="6" align="center"><h3>No existen asientos a la fecha</h3></td>
+			</tr>
+			<?php					
+		}
 				?>
 				<tr>
 					<td class="highrow"></td>
@@ -74,6 +80,11 @@
 
 			</table>
 		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-5"></div>
+		<div class="col-md-2"><a href="<?php echo URL ?>contabilidad/librodiarioHoy" class="btn btn-default"><i class="glyphicon glyphicon-time"></i> Ver Asientos del d&iacute;a </a></div>		
+		<div class="col-md-5"></div>
 	</div>
 
 
