@@ -4,12 +4,17 @@ use Models\Proveedor as Proveedor;
 use Models\CostosTemp as CostosTemp;
 use Models\UnidadesMedida as UnidadesMedida;
 use Models\Operaciones as Operaciones;
+use Models\AsientosContables as AsientosContables;
+use Models\DetalleAsiento as DetalleAsiento;
+
 
 class materialesController{
 	private $material;
 	private $costostemp;
 	private $unidadesmedida;
 	private $operaciones;
+	private $asientoscontables;
+	private $detalleasiento;
 	private $lastId;
 
 	public function __construct(){
@@ -18,6 +23,8 @@ class materialesController{
 		$this->costostemp = new CostosTemp();
 		$this->unidadesmedida = new UnidadesMedida();
 		$this->operaciones = new Operaciones();
+		$this->asientoscontables = new AsientosContables();
+		$this->detalleasiento = new DetalleAsiento();
 
 	}
 
@@ -32,7 +39,7 @@ class materialesController{
 		$datos = $this->material->listar2();		
 		return array('materiales'=> $datos );
 
-}	
+	}	
 
 	public function agregar(){
 		if ($_POST) {
@@ -56,21 +63,23 @@ class materialesController{
 			header("Location: " . URL . "materiales");
 		}
 	}
-	public function reabastecer(){
-		$datos = $this->material->listar3();
+	public function reabastecer($id){
+		$this->material->set("cod_material", $id);
+		$datos = $this->material->view2();
 		return array('materiales'=>$datos);
 		if ($_POST) {
 			$this->operaciones->set("cod_material", $id);
 			$this->operaciones->set("q" , $_POST['stock']);
 			$this->operaciones->set("cod_tipo_operacion", 1);
 			$this->material->set("stock", $_POST['stock']);
+			$_SESSION['stock'] = $_POST['stock'];
 			$this->lastId = $this->operaciones->add();
-
+			//header("Location: " . URL . "materiales/reabastecerAdd/" . $id);
 
 			
 		}		
 
-			//header("Location: " . URL . "materiales");
+			
 	}
 	public function reabastecerAdd($id=""){
 		$this->material->set("cod_material", $id);	
@@ -78,20 +87,65 @@ class materialesController{
 		$datos2 = $this->material->view2();		
 		//$row = mysqli_fetch_assoc($datos2);
 		$stock = $datos2['stock']; //Stock antes de agregar
-		echo $stock;
-		if ($_POST) {
+		$lastNumAsiento = $this->asientoscontables->lastNumAsiento();
+		$lastNumAsiento = $lastNumAsiento['num_asiento'];
+		if($lastNumAsiento == 0)
+			$lastNumAsiento = 1;
+		else
+			$lastNumAsiento++;
+
+		if (isset($_POST['subt'])) {
 			$this->operaciones->set("cod_material", $id);
-			$this->operaciones->set("q" , $_GET['stock']);
+			$this->operaciones->set("q" , $_POST['cantidad']);
 			$this->operaciones->set("cod_tipo_operacion", 1);
 			$this->material->set("cod_material", $id);
-			$this->material->set("stock", $stock + $_GET['stock']); //Se le suma el stock actual + el stock nuevo recibido por el formulario (POST)
+			$this->material->set("stock", $stock + $_POST['cantidad']); //Se le suma el stock actual + el stock nuevo recibido por el formulario (POST)
 			$this->lastId = $this->operaciones->add();
+
+			$this->asientoscontables->set("num_asiento", $lastNumAsiento);
+			$this->asientoscontables->set("concepto", "Reabastecimiento");		
+			$this->asientoscontables->set("cod_factura", $this->lastId);
+			$this->asientoscontables->add();
+
+			$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+			$this->detalleasiento->set("debe", 0);
+			$this->detalleasiento->set("haber", 0);
+			$this->detalleasiento->set("cod_cuenta", "0"); //Se crea un detalle con cuenta 0 para iniciar el asiento
+			$this->detalleasiento->set("orden", 0);			
+			$this->detalleasiento->add();
+
+			$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+			$this->detalleasiento->set("debe", $_POST['subt']);
+			$this->detalleasiento->set("haber", 0);
+			$this->detalleasiento->set("cod_cuenta", "1.3.2"); //1.3.2 corresponde a la cuenta Materia Prima.
+			$this->detalleasiento->set("orden", 1);	
+			$this->detalleasiento->add();
+
+			$iva =($_POST['subt']*21)/100;
+
+			$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+			$this->detalleasiento->set("debe", $iva);
+ 			$this->detalleasiento->set("haber", 0);
+			$this->detalleasiento->set("cod_cuenta", "1.5.1"); //1.5.1 corresponde a la cuenta IVA Crédito Fiscal.
+			$this->detalleasiento->set("orden", 2);	
+			$this->detalleasiento->add();
+
+			$efectivo = $_POST['efectivo'] - $_POST['vuelto'];
+
+			$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+			$this->detalleasiento->set("debe", 0);
+			$this->detalleasiento->set("haber", $efectivo);
+			$this->detalleasiento->set("cod_cuenta", "1.1.1"); //1.1.1 corresponde a la cuenta Caja.
+			$this->detalleasiento->set("orden", 3);	
+			$this->detalleasiento->add();
+
+
 			$this->material->updateStock();
-			header("Location: " . URL . "materiales/reabastecerComprobante/" . $this->lastId);
-			
-		}
-		return $datos2;
+		//header("Location: " . URL . "materiales/reabastecerComprobante/" . $this->lastId);
+
 	}
+	return $datos2;
+}
 
 	public function reabastecerComprobante($id=""){ //Aca la wea que se imprime
 

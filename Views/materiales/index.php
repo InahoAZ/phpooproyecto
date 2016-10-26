@@ -24,7 +24,7 @@
 						<th>Unidad</th>
 						<th>Disponible</th>
 						<th>Proveedor</th>			     
-						<th colspan="3">Accion</th>
+						<th colspan="4">Accion</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,13 +36,14 @@
 							<td><?php echo $row['abreviatura_unidad'];?></td>
 							<td><?php echo $row['stock'] ."&nbsp;"?></td>							
 							<td><?php echo $row['razon_social'];?></td>
-
+							
+							<td><a class="btn btn-info" href=" <?php echo URL; ?>materiales/reabastecer/<?php echo $row['cod_material']  ?> "><i class="glyphicon glyphicon-plus"></i></a></td>
 					
-							<td><a class="btn btn-primary" onClick="javascript: return mateHisto('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/history.png"></a></td>
+							<td><a class="btn btn-primary" onClick="javascript: return mateHisto('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><i class="glyphicon glyphicon-time"></i></a></td>
 
-							<td><a class="btn btn-warning" onClick="javascript: return mateEditar('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/edit.png"></a></td>
+							<td><a class="btn btn-warning" onClick="javascript: return mateEditar('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><i class="glyphicon glyphicon-edit"></i></a></td>
 
-							<td><a class="btn btn-danger" onClick="javascript: return mateEliminar('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><img height="25" width="25" class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/ico/delete.png"></a></td>
+							<td><a class="btn btn-danger" onClick="javascript: return mateEliminar('<?php echo URL; ?>','<?php echo $row['cod_material'];?>');"><i class="glyphicon glyphicon-trash"></i></a></td>
 
 
 

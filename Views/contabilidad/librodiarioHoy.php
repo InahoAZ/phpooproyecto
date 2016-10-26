@@ -1,9 +1,3 @@
-<?php  
-$a = 1; //Si existen registros $a = 0 ;
-
-?>
-
-
 <div class="container">	
 	
 	<div class="row">
@@ -22,15 +16,21 @@ $a = 1; //Si existen registros $a = 0 ;
 					<th>DEBE</th>
 					<th>HABER</th>
 				</tr>
-				<?php		
+				<?php
+				$a = mysqli_num_rows($datos['detalleasiento']);
+					
 				$debe = 0;
 				$haber = 0;
-				while($detalleasiento = mysqli_fetch_assoc($datos['detalleasiento'])){ 
-					$a = 0;
+				while($detalleasiento = mysqli_fetch_assoc($datos['detalleasiento'])){ 					
 					if ($detalleasiento['cod_cuenta'] == 0 ) {	?>
 					<tr class="info">
 						<td><?php echo  $detalleasiento['fecha_asiento']; ?></td>					
-						<td colspan="5"><center><?php echo  $detalleasiento['num_asiento']; ?></center></td>
+						<td colspan="4"><center><?php echo  $detalleasiento['num_asiento']; ?></center></td>
+						<?php if($detalleasiento['concepto'] == "Reabastecimiento") {?>
+						<td align="right"><a title="Ver Comprobante" class="btn btn-default btn-xs" href=" <?php echo URL; ?>materiales/reabastecerComprobante/<?php echo $detalleasiento['cod_factura']?>"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+						<?php }elseif($detalleasiento['concepto'] == "Venta"){ ?>
+						<td align="right"><a title="Ver Comprobante" class="btn btn-default btn-xs" href=" <?php echo URL; ?>ventas/verfactura/<?php echo $detalleasiento['cod_factura']?>"><i class="glyphicon glyphicon-eye-open"></i></a></td>
+						<?php } ?>
 					</tr>
 
 					<?php								
@@ -41,8 +41,8 @@ $a = 1; //Si existen registros $a = 0 ;
 						<td><?php echo $detalleasiento['cod_cuenta'] ?></td>
 						<td></td>					
 						<td><?php echo $detalleasiento['detalle'] ?></td>
-						<td><?php echo $detalleasiento['debe'] ?></td>
-						<td><?php echo $detalleasiento['haber'] ?></td>
+						<td><?php echo number_format($detalleasiento['debe'], 2, ',', '');  ?></td>
+						<td><?php echo number_format($detalleasiento['haber'], 2, ',', '');  ?></td>
 					</tr>					
 					
 					<?php 
@@ -51,8 +51,9 @@ $a = 1; //Si existen registros $a = 0 ;
 
 				}
 
-			}	
-			if ($a == 1) {
+			}
+				
+			if ($a == 0) {
 				?><tr>
 				<td colspan="6" align="center"><h3>No existen asientos a la fecha</h3></td>
 			</tr>
@@ -83,11 +84,24 @@ $a = 1; //Si existen registros $a = 0 ;
 	<div class="col-md-2"><a href="<?php echo URL ?>contabilidad/librodiario" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> Ver Todos los Asientos</a></div>		
 	<div class="col-md-5"></div>
 </div>
+<div class="row">
+	<div class="col-md-12">&nbsp;</div>
+</div>
+<div class="row">
+	<div class="col-md-12">&nbsp;</div>
+</div>
+<div class="row">
+	<div class="col-md-12">&nbsp;</div>
+</div>
 
 
 </div>
 
 <?php 
+
+
+
+
 /*
 $a = 0;
 $b = 10;

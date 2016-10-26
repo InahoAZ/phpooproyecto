@@ -7,7 +7,7 @@
  		private $precio_unitario; 		
  		private $stock;
  		private $fecha_alta;
- 		private $cod_factura; //Uso especial xd
+ 		private $cod_factura; //Uso especial xd -> Pasaron dias y no se k wea hace esto por hacerme el gracioso y no comentar bien xdxdxd :'v
  		private $con;
 
  		public function __construct(){

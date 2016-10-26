@@ -39,15 +39,15 @@ class Template{
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ventas <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="ventas">Vender</a></li>
-									<li><a href="ventas/historialventas">Ventas Realizadas</a></li>
+									<li><a href="<?php echo URL; ?>ventas"">Vender</a></li>
+									<li><a href="<?php echo URL; ?>ventas/historialventas"">Ventas Realizadas</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="clientes">Listado</a></li>
-									<li><a href="clientes/agregar">Agregar Cliente</a></li>
+									<li><a href="<?php echo URL; ?>clientes"">Listado</a></li>
+									<li><a href="<?php echo URL; ?>clientes/agregar">Agregar Cliente</a></li>
 								</ul>
 							</li>
 							<li class="dropdown">
@@ -61,8 +61,7 @@ class Template{
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Materiales<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="<?php echo URL; ?>materiales">Listado</a></li>
-									<li><a href="<?php echo URL; ?>materiales/agregar">Agregar Material</a></li>
-									<li><a href="<?php echo URL; ?>materiales/reabastecer">Reabastecer Materiales</a></li>
+									<li><a href="<?php echo URL; ?>materiales/agregar">Agregar Material</a></li>									
 									<li><a href="<?php echo URL; ?>materiales/historial">Historial de Reabastecimientos</a></li>
 
 									
@@ -84,7 +83,9 @@ class Template{
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contabilidad<span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
-									<li><a href="<?php echo URL; ?>contabilidad/librodiarioHoy">Libro Diario</a></li>									
+									<li><a href="<?php echo URL; ?>contabilidad/librodiarioHoy">Libro Diario</a></li>								
+									<li><a href="<?php echo URL; ?>cuentas">Listado de cuentas</a></li>
+									<li><a href="<?php echo URL; ?>cuentas/agregar">Agregar cuentas</a></li>
 								</ul>
 							</li>
 							

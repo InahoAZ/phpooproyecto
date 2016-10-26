@@ -1,3 +1,8 @@
+<?php 
+$subt = $datos['precio_unitario'] * $_POST['stock'];
+$total = $subt ;
+
+ ?>
 <div class="box-principal">
     <h3 class="titulo">Agregar Materiales<hr></h3>
     <div class="panel panel-success">
@@ -8,18 +13,20 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-                    <form class="form-horizontal" name="process_buy" action="" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" name="process_buy" action="<?php echo URL; ?>materiales " method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="inputEmail" class="control-label">Descripcion</label>
                             <input class="form-control" name="descripcion" type="text" value="<?php echo $datos['descripcion'] ?>" readonly>
                             <label for="inputEmail" class="control-label">Cantidad a Agregar </label> 
-                            <input class="form-control" name="cantidad" type="text" value="<?php echo $_GET['stock'] ?>" readonly>                           
-                            <label for="inputEmail" class="control-label">Total</label>
-                            <input class="form-control" name="total" type="text" value="<?php $total = $datos['precio_unitario'] * $_GET['stock']; echo $total; ?>" readonly>                                               
+                            <input class="form-control" name="cantidad" type="text" value="<?php echo $_POST['stock'] ?>" readonly>                           
+                            <label for="inputEmail" class="control-label">Total (<small><b>*Precio con IVA incluido</b></small>)</label>                            
+                            <input type="hidden" name="subt" value="<?php echo $subt; ?>">
+                            <input class="form-control" name="total" type="text" value="<?php  echo $total; ?>" readonly>                                               
                             <label for="inputEmail" class="control-label">Proveedor</label>  
                             <input class="form-control" name="proveedor" type="text" value="<?php echo $datos['razon_social'] ?>" readonly>                          
                             <label for="inputEmail" class="control-label">Efectivo</label>
-                            <input class="form-control" id="efec" name="efectivo" type="text" required>  
+                            <input class="form-control" id="efec" name="efectivo" type="text" required onkeyup="reabastecerAddVuelto()" >  
+                            <input class="form-control" id="vuelto" name="vuelto" type="hidden" required>  
                         </div>
                         <div class="form-group">
                             <button type="button" name="btnsubmit" class="btn btn-success" onclick="validarEfectivo()">Reabastecer</button>

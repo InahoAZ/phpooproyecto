@@ -1,5 +1,5 @@
 <?php namespace Models;
-	class DetalleAsiento{
+	class DetalleAsientoCaja{
 		private $cod_detalleasiento;
 		private $num_asiento;
 		private $debe;
@@ -34,20 +34,20 @@
 
 
 		public function add(){
-			$sql = "INSERT INTO m_detalleasiento (cod_detalleasiento, num_asiento, debe, haber, cod_cuenta, orden) VALUES (NULL, '{$this->num_asiento}', '{$this->debe}', '{$this->haber}', '{$this->cod_cuenta}', '{$this->orden}')";
+			$sql = "INSERT INTO m_detalleasientocaja (cod_detalleasiento, num_asiento, debe, haber, cod_cuenta, orden) VALUES (NULL, '{$this->num_asiento}', '{$this->debe}', '{$this->haber}', '{$this->cod_cuenta}', '{$this->orden}')";
 			echo $sql . "<br>";
 			$this->con->consultaSimple($sql);
 		}
 		public function delete(){
-			$sql = "DELETE FROM m_detalleasiento WHERE cod_detalleasiento = '{$this->cod_detalleasiento}'";
+			$sql = "DELETE FROM m_detalleasientocaja WHERE cod_detalleasiento = '{$this->cod_detalleasiento}'";
 			$this->con->consultaSimple($sql);			
 		}
 		public function edit(){
-			$sql = "UPDATE m_detalleasiento SET num_asiento =  '{$this->num_asiento}' , debe =  '{$this->debe}', haber =  '{$this->haber}', cod_cuenta =  '{$this->cod_cuenta}' WHERE num_asiento =  '{$this->num_asiento}'";
+			$sql = "";
 			$this->con->consultaSimple($sql);
 		}
 		public function view(){
-			$sql = "SELECT * FROM m_detalleasiento WHERE cod_detalleasiento = '{$this->cod_detalleasiento}'";
+			$sql = "SELECT * FROM m_detalleasientocaja WHERE cod_detalleasiento = '{$this->cod_detalleasiento}'";
 			$datos = $this->con->consultaRetorno($sql);			
 			return $datos;
 		}

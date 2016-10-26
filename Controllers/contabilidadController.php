@@ -25,12 +25,17 @@ class contabilidadController{
 	}
 	public function librodiario(){
 		$datos = $this->asientoscontables->listar();
-		$datos2 = $this->detalleasiento->listar();
-		return $datos = array('asientos' => $datos, 'detalleasiento' => $datos2);
-		
+		if(!isset($_POST['fecha1']) AND !isset($_POST['fecha2']))
+			$datos2 = $this->detalleasiento->listar();
+		else
+			$datos2 = $this->detalleasiento->listar($_POST['fecha1'], $_POST['fecha2']);			
+
+		return $datos = array('asientos' => $datos, 'detalleasiento' => $datos2);		
 		
 
 	}
+
+
 
 	public function librodiarioHoy(){
 		$datos = $this->asientoscontables->listar();

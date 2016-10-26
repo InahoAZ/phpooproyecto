@@ -43,7 +43,7 @@ function validarEfectivo(){
 }
 }
 
-function print() {
+function printF() {
     window.print();
 }
 
@@ -1089,6 +1089,7 @@ else if (efectivo < total) {
 }
 }
 
+
 function vueltofact() {
  var ingreso1 = document.form_efectivob.efectivo.value;
  var ingreso2 = document.form_efectivob.total.value;
@@ -1097,7 +1098,9 @@ function vueltofact() {
       //Calculamos el número escrito:
       ingreso1 = (isNaN(parseFloat(ingreso1)))? 0 : parseFloat(ingreso1);
       ingreso2 = (isNaN(parseFloat(ingreso2)))? 0 : parseFloat(ingreso2);
-      vuelto = (ingreso1-ingreso2);  
+      vuelto = (ingreso1-ingreso2);
+      vuelto = vuelto.toFixed(2);
+
       document.form_efectivob.vuelto.value =vuelto;
   }
    //Si se produce un error no hacemos nada
@@ -1305,6 +1308,26 @@ function vueltofactc() {
       vuelto = vuelto.toFixed(2);
  
       document.facturac.vuelto.value =vuelto;
+  }
+   //Si se produce un error no hacemos nada
+   catch(e) {}
+
+}
+
+
+
+function reabastecerAddVuelto() {
+ var efectivo = document.process_buy.efectivo.value;
+ var total = document.process_buy.total.value;
+ var vuelto = 0;
+ try{
+      //Calculamos el número escrito:
+      efectivo = (isNaN(parseFloat(efectivo)))? 0 : parseFloat(efectivo);
+      total = (isNaN(parseFloat(total)))? 0 : parseFloat(total);
+      vuelto = (efectivo-total);
+      vuelto = vuelto.toFixed(2);
+
+      document.process_buy.vuelto.value =vuelto;
   }
    //Si se produce un error no hacemos nada
    catch(e) {}

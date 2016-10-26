@@ -88,15 +88,23 @@ class Factura{
 
 		$sql = "SELECT * FROM m_clientes c, m_facturas f, m_detalle_factura df WHERE f.num_factura = df.num_factura AND f.cod_clientes = c.cod_clientes AND f.finalizado = 1 AND f.cod_factura = '{$this->cod_factura}'";
 		$datos = $this->con->consultaRetorno($sql);
-		//echo $sql;
+		//echo $sql . "<br>";
+		return $datos;
+	}
+	public function verFacturaDatosC(){
+
+		$sql = "SELECT * FROM m_facturas f, m_detalle_factura df WHERE f.num_factura = df.num_factura AND f.finalizado = 1 AND f.cod_factura = '{$this->cod_factura}'";
+		$datos = $this->con->consultaRetorno($sql);
+		//echo $sql . "<br>";
 		return $datos;
 	}
 
+
 	public function verFacturaDetalle(){
 
-		$sql = "SELECT * FROM m_facturas f, m_detalle_factura df, m_productos p WHERE f.num_factura = df.num_factura AND df.cod_producto = p.cod_producto AND f.finalizado = 1 AND f.cod_factura = '{$this->cod_factura}'";
+		$sql = "SELECT * FROM m_facturas f, m_detalle_factura df, m_productos p WHERE f.num_factura = df.num_factura AND df.cod_producto = p.cod_producto AND f.finalizado = 1 AND f.cod_factura = df.cod_factura AND f.cod_factura = '{$this->cod_factura}'";
 		$datos = $this->con->consultaRetorno($sql);
-		//echo $sql;
+		//echo $sql . "<br>";
 		return $datos;
 	}
 

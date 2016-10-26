@@ -7,6 +7,8 @@ use Models\DetalleFactura as DetalleFactura;
 use Models\Productos as Productos;
 use Models\AsientosContables as AsientosContables;
 use Models\DetalleAsiento as DetalleAsiento;
+use Models\AsientosContablesCaja as AsientosContablesCaja;
+use Models\DetalleAsientoCaja as DetalleAsientoCaja;
 
 
 
@@ -22,6 +24,8 @@ class ventasController{
 	private $productos;
 	private $asientoscontables;
 	private $detalleasiento;
+	private $asientoscontablescaja;
+	private $detalleasientocaja;
 
 
 		//Variables para datos
@@ -38,7 +42,8 @@ class ventasController{
 		$this->productos = new Productos();
 		$this->asientoscontables = new AsientosContables();
 		$this->detalleasiento = new DetalleAsiento();
-
+		$this->asientoscontablescaja = new AsientosContablesCaja();
+		$this->detalleasientocaja = new DetalleAsientoCaja();
 
 
 	}
@@ -257,7 +262,7 @@ class ventasController{
 		$datosDetalleFactura = $this->detallefactura->view2();		
 		$haber = 0;
 		while ($producto = mysqli_fetch_assoc($datosDetalleFactura)) {			
-
+			//echo $haber . "<br>";
 			$this->productos->set("cod_producto", $producto['cod_producto']);
 			$this->operaciones->set("cod_producto", $producto['cod_producto']);
 			$this->operaciones->set("cod_factura", $lastIdFactura);
@@ -270,10 +275,18 @@ class ventasController{
 			$stockDespues = $datosActualProducto['stock'] - $producto['cantidad'];//Le resta la cantidad vendida			
 			$this->productos->set("stock", $stockDespues);
 			$this->productos->updateStock();
-			$aux = $producto['precio_venta'] * $producto['cantidad'];			
-			$haber += $aux;	//Todos los productos que se vendieron en esa factura. (5.1 Ventas)		
+			$aux = $producto['precio_venta'] * $producto['cantidad'];
+			$auxiva = ($aux*21)/100;
+			$aux += $auxiva;			
+			$haber += $aux;	//Todos los productos que se vendieron en esa factura. (5.1 Ventas)	
+			//echo $haber . "<br>";	
 			
 		}
+		//echo $haber ."<br>";
+		$iva = $haber - ($haber/1.21);
+		//echo $iva . "<br>";
+		$haber = $haber/1.21;
+		//echo $haber . "<br>";
 		
 		$this->factura->set("finalizado", 1);		
 		$this->factura->editFinalizado();
@@ -286,30 +299,99 @@ class ventasController{
 
 		$debe = $_POST['efectivo'] - $_POST['vuelto']; //Lo que se recibio en efectivo. (1.1.1 Caja)
 		 
+		//LIBRO DE CAJA
+
+		$this->asientoscontablescaja->set("num_asiento", $lastNumAsiento);
+		$this->asientoscontablescaja->set("concepto", "Venta");		
+		$this->asientoscontablescaja->set("cod_factura", $lastIdFactura);
+		$this->asientoscontablescaja->add();
+
+		$this->detalleasientocaja->set("num_asiento", $lastNumAsiento);		
+		$this->detalleasientocaja->set("debe", 0);
+		$this->detalleasientocaja->set("haber", 0);
+		$this->detalleasientocaja->set("cod_cuenta", "0"); //Se crea un detalle con cuenta 0 para iniciar el asiento
+		$this->detalleasientocaja->set("orden", 0);	
+		$this->detalleasientocaja->add();	
+
+		$this->detalleasientocaja->set("num_asiento", $lastNumAsiento);		
+		$this->detalleasientocaja->set("debe", $debe);
+		$this->detalleasientocaja->set("haber", 0);
+		$this->detalleasientocaja->set("cod_cuenta", "1.1.1"); //1.1.1 corresponde a la cuenta Caja.
+		$this->detalleasientocaja->set("orden", 1);	
+		$this->detalleasientocaja->add();
+
+		$this->detalleasientocaja->set("num_asiento", $lastNumAsiento);		
+		$this->detalleasientocaja->set("debe", 0);
+		$this->detalleasientocaja->set("haber", $iva );
+		$this->detalleasientocaja->set("cod_cuenta", "2.2.1"); //2.2.1 corresponde a la cuenta IVA Débito Fiscal.
+		$this->detalleasientocaja->set("orden", 2);	
+		$this->detalleasientocaja->add();		
+
+		$this->detalleasientocaja->set("num_asiento", $lastNumAsiento);
+		$this->detalleasientocaja->set("debe", 0);
+		$this->detalleasientocaja->set("haber", $haber);
+		$this->detalleasientocaja->set("cod_cuenta", "5.1"); //5.1 Corresponde a la cuenta Ventas
+		$this->detalleasientocaja->set("orden", 3);	
+		$this->detalleasientocaja->add();
+
+		//LIBRO DIARIO
+
+		$stemen = $this->asientoscontables->listarUlt();
+		$stemen = mysqli_fetch_array($stemen);
+		print_r($stemen);
 
 		$this->asientoscontables->set("num_asiento", $lastNumAsiento);
 		$this->asientoscontables->set("concepto", "Venta");		
 		$this->asientoscontables->set("cod_factura", $lastIdFactura);
-		$this->asientoscontables->add();
+
+		$lastNumAsiento = $stemen['num_asiento'];
+		if($lastNumAsiento == '')
+			$lastNumAsiento = 1;
+		
+
+
+		if($stemen['num_asiento'] == ""){
+			$this->asientoscontables->add();
+		}else{			
+			$fechaantes = date_create($stemen['fecha_asiento']);
+			$fechash = date_format($fechaantes, "Y-m-d");
+			print_r($fechash);
+			echo date('d-m-Y');
+			if($fechash != date('Y-m-d') && $stemen['concepto'] == 'Venta'){
+				$lastNumAsiento++;								
+				$this->asientoscontables->add();
+				echo "AAAAAAAAAAA";
+			}
+		}
+
+		
 
 		$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
 		$this->detalleasiento->set("debe", 0);
 		$this->detalleasiento->set("haber", 0);
 		$this->detalleasiento->set("cod_cuenta", "0"); //Se crea un detalle con cuenta 0 para iniciar el asiento
+		$this->detalleasiento->set("orden", 0);			
 		$this->detalleasiento->add();	
 
 		$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
 		$this->detalleasiento->set("debe", $debe);
 		$this->detalleasiento->set("haber", 0);
-		$this->detalleasiento->set("cod_cuenta", "1.1.1"); //1.1.1 corresponde a la cuenta Caja.
+		$this->detalleasiento->set("cod_cuenta", "1.1.1"); //1.1.1 corresponde a la cuenta caja.
+		$this->detalleasiento->set("orden", 1);	
 		$this->detalleasiento->add();
 
-		
+		$this->detalleasiento->set("num_asiento", $lastNumAsiento);		
+		$this->detalleasiento->set("debe", 0);
+		$this->detalleasiento->set("haber", $iva );
+		$this->detalleasiento->set("cod_cuenta", "2.2.1"); //2.2.1 corresponde a la cuenta IVA Débito Fiscal.
+		$this->detalleasiento->set("orden", 2);	
+		$this->detalleasiento->add();		
 
 		$this->detalleasiento->set("num_asiento", $lastNumAsiento);
 		$this->detalleasiento->set("debe", 0);
 		$this->detalleasiento->set("haber", $haber);
 		$this->detalleasiento->set("cod_cuenta", "5.1"); //5.1 Corresponde a la cuenta Ventas
+		$this->detalleasiento->set("orden", 3);	
 		$this->detalleasiento->add();
 
 		//header("Location:" . URL . "ventas/verfactura/" . $lastIdFactura);
@@ -318,8 +400,9 @@ class ventasController{
 	public function verfactura($id){ //Esto simplemente hace la consulta completa de la factura y la muestra. Segun su codigo.
 		$this->factura->set("cod_factura", $id);
 		$datos = $this->factura->verFacturaDatos();
-		$datos2 = $this->factura->verFacturaDetalle();		
-		return $datos = array('factura' => $datos, 'detalle' => $datos2);
+		$datos2 = $this->factura->verFacturaDetalle();	
+		$datos3 = $this->factura->verFacturaDatosC();	
+		return $datos = array('factura' => $datos, 'detalle' => $datos2, 'facturc' => $datos3);
 		
 	}
 }

@@ -7,6 +7,7 @@
 		<h3 class="panel-title"><label for="inputEmail" class="control-label">Buscar Cliente</label></h3>
 		<form class="navbar-form navbar-left" action="<?php echo URL; ?>clientes/buscar" method="GET">
 			<div class="form-group">
+				<input type="hidden" name="banderaBuscar" value="1">
 				<input type="text" class="form-control" placeholder="Buscar" name="buscar" required>
 			</div>
 			<button type="submit" class="btn btn-default">Buscar</button>

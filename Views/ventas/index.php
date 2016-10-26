@@ -3,7 +3,9 @@ $clientes = 0;
 if (isset($_SESSION['clienteFactura']))
 	$clientes = $datos['clienteFactura']; 
 ?>
-
+<div class="row">
+	<div class="col-md-12">&nbsp;</div>
+</div>
 <div class="container">
 	<div class="panel panel-success">
 		<div class="panel-heading">
@@ -14,7 +16,7 @@ if (isset($_SESSION['clienteFactura']))
 				<div class="form-group row">
 					<label for="nombre_cliente" class="col-md-1 control-label">Cliente</label>				
 					<div class="col-md-2">
-						<input type="text" class="col-md-1 form-control input-sm" id="apyn" name="apyn" placeholder="Selecciona un cliente" value="<?php echo $clientes['apyn'];  ?>" >
+						<input type="text" class="col-md-1 form-control input-sm" id="apyn" name="apyn" placeholder="Selecciona un cliente" value="<?php echo $clientes['apyn'];  ?>" readonly >
 
 						<input name="cod_clientes" type='hidden' value="<?php echo $clientes['cod_clientes'];  ?>">	
 						<input name="iva" type='hidden' value="<?php echo $clientes['iva'];  ?>">	
@@ -33,15 +35,21 @@ if (isset($_SESSION['clienteFactura']))
 					</div>
 					<div class="col-md-12">
 						<div class="form-group row">
-							<button type="button" class="btn btn-info col-md-offset-5 no-print" data-toggle="modal" data-target="#addCliente">
-								<span class="glyphicon glyphicon-user"></span> Buscar Cliente
-							</button>
+							&nbsp;
 
 						</div>
 						<div class="form-group row">
-							<a type="button" href="<?php URL ?>ventas/cancelarCliente" class="btn btn-danger col-md-2 col-md-offset-5 no-print" data-toggle="modal">
+						<div class="col-md-1">&nbsp;</div>						
+						<div class="col-md-2">
+							<button type="button" class="btn btn-info no-print" data-toggle="modal" data-target="#addCliente">
+								<span class="glyphicon glyphicon-user"></span> Buscar Cliente
+							</button>
+						</div>
+						<div class="col-md-6">
+							<a type="button" href="<?php URL ?>ventas/cancelarCliente" class="btn btn-danger no-print" data-toggle="modal">
 								<span class="glyphicon glyphicon-remove"></span> Quitar Cliente
 							</a>
+						</div>
 
 						</div>
 					</div>
@@ -52,10 +60,12 @@ if (isset($_SESSION['clienteFactura']))
 				
 				
 				<div class="col-md-12">
-					<div class="pull-right">						
+					<div class="pull-right">
+						<div class="btn-group">						
 						<button type="button" name="btnsubmit" onclick="factura()" class="btn btn-success no-print">
 							<span class="glyphicon glyphicon-arrow-right"></span> Siguiente
-						</button>						
+						</button>
+					</div>						
 					</div>	
 				</div>
 			</form>	

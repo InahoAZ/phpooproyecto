@@ -70,12 +70,15 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php $totalF = 0;  while ($rowF = mysqli_fetch_assoc($datos['detallefactura'])) {?>
+										<?php $totalF = 0;  while ($rowF = mysqli_fetch_assoc($datos['detallefactura'])) {
+											$iva = ($rowF['precio_venta']*21)/100;
+											$totalU = $rowF['precio_venta'] + $iva;
+											?>
 										<tr>
 											<td><a class="btn btn-danger btn-xs" href="<?php echo URL; ?>ventas/delProductoFactura/<?php echo $rowF['cod_producto']; ?>">X</a><?php echo $rowF['descripcion'] ?></td>
-											<td class="text-center"><?php echo "$" . $rowF['precio_venta']; ?></td>
+											<td class="text-center"><?php echo "$" . $totalU; ?></td>
 											<td class="text-center"><?php echo $rowF['cantidad'] ?></td>
-											<td class="text-right"><?php $total = $rowF['precio_venta'] * $rowF['cantidad']; echo "$" . $total;  ?></td>
+											<td class="text-right"><?php $total = $totalU * $rowF['cantidad']; echo "$" . $total;  ?></td>
 										</tr> 
 										<?php $totalF += $total; } ?> 
 										<tr>
@@ -110,7 +113,7 @@
 						<h4 class="modal-title">Selecciona un Producto</h4>
 					</div>
 					<div class="modal-body">
-						<?php include("Views/modal/productosmodal.php");?>
+						<?php include("Views/modal/productosmodalconIVA.php");?>
 					</div>
 
 				</div><!-- /.modal-content -->
