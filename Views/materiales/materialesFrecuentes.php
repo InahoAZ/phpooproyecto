@@ -1,5 +1,5 @@
 <div class="box-principal">
-  <h3 class="titulo">Materiales más Comprados<hr></h3>
+  <h3 class="titulo"><hr></h3>
   <div class="panel panel-success">
     <div class="panel-heading">
       <h3 class="panel-title">Top 5 de Materiales<b></b></h3>
@@ -10,7 +10,7 @@
           <img class="img-responsive" src="<?php echo URL;?>Views/template/imagenes/reabast.png">          
         </div> 
         <div class="col-md-6 text-right">
-          <h3>*--Agregar Rango de Fechas--*</h3>          
+              <h3>Materiales más Pedidos</h3>      
         </div> 
                
         <table class="table table-hover ">        

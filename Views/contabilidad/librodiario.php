@@ -36,16 +36,20 @@
 				$a = mysqli_num_rows($datos['detalleasiento']);	
 				$debe = 0;
 				$haber = 0;
-				while($detalleasiento = mysqli_fetch_assoc($datos['detalleasiento'])){ 					
-					if ($detalleasiento['cod_cuenta'] == 0 ) {	?>
+				$asien = 0;
+				while($detalleasiento = mysqli_fetch_assoc($datos['detalleasiento'])){										
+					if ($detalleasiento['cod_cuenta'] == 0) {
+						if($asien != $detalleasiento['num_asiento']){
+						?>
 					<tr class="info">
 						<td><?php echo  $detalleasiento['fecha_asiento']; ?></td>					
 						<td colspan="4"><center><?php echo  $detalleasiento['num_asiento']; ?></center></td>
 						<td align="right"><a title="Ver Comprobante" class="btn btn-default btn-sm" href=" <?php echo URL; ?>ventas/verfactura/<?php echo $detalleasiento['cod_factura']?>"><i class="glyphicon glyphicon-eye-open"></i></a></td>	
 					</tr>
 
-					<?php								
-				}else{
+					<?php
+					$asien = $detalleasiento['num_asiento'];								
+				}}else{
 					?>
 					<tr class="">					
 						<td><?php //echo $detalleasiento['num_asiento']; ?></td>

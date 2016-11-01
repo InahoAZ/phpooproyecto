@@ -12,6 +12,7 @@
 				$ruta = explode("/", $ruta);
 				$ruta = array_filter($ruta);
 
+
 				if($ruta[0] == "index.php"){
 					$this->controlador = "home";
 				}else{

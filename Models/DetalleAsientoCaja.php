@@ -19,14 +19,14 @@
 		}
 		public function listar($fecha1="", $fecha2=""){
 			if($fecha1 == "" AND $fecha2 == "")
-				$sql = "SELECT * FROM m_detalleasiento da, m_asientoscontables a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta ORDER BY da.num_asiento, da.orden ASC";
+				$sql = "SELECT * FROM m_detalleasientocaja da, m_asientoscontablescaja a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta ORDER BY da.num_asiento, da.orden ASC";
 			else
-				$sql = "SELECT * FROM m_detalleasiento da, m_asientoscontables a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta AND a.fecha_asiento BETWEEN '$fecha1' AND '$fecha2' ORDER BY da.num_asiento, da.orden ASC";
+				$sql = "SELECT * FROM m_detalleasientocaja da, m_asientoscontablescaja a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta AND a.fecha_asiento BETWEEN '$fecha1' AND '$fecha2' ORDER BY da.num_asiento, da.orden ASC";
 			$datos = $this->con->consultaRetorno($sql);
 			return $datos;
 		}		
 		public function listarHoy(){
-			$sql = "SELECT * FROM m_detalleasiento da, m_asientoscontables a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta AND DATE(a.fecha_asiento) LIKE DATE(NOW()) ORDER BY da.num_asiento, da.orden ASC";
+			$sql = "SELECT * FROM m_detalleasientocaja da, m_asientoscontablescaja a, m_plandecuentas pc WHERE da.num_asiento = a.num_asiento AND da.cod_cuenta = pc.cod_cuenta AND DATE(a.fecha_asiento) LIKE DATE(NOW()) ORDER BY da.num_asiento, da.orden ASC";
 			//echo $sql;
 			$datos = $this->con->consultaRetorno($sql);
 			return $datos;

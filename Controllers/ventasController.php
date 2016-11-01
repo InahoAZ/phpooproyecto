@@ -290,7 +290,7 @@ class ventasController{
 		
 		$this->factura->set("finalizado", 1);		
 		$this->factura->editFinalizado();
-		$lastNumAsiento = $this->asientoscontables->lastNumAsiento();
+		$lastNumAsiento = $this->asientoscontablescaja->lastNumAsiento();
 		$lastNumAsiento = $lastNumAsiento['num_asiento'];
 		if($lastNumAsiento == 0)
 			$lastNumAsiento = 1;
@@ -334,7 +334,7 @@ class ventasController{
 		$this->detalleasientocaja->set("orden", 3);	
 		$this->detalleasientocaja->add();
 
-		//LIBRO DIARIO
+		/*//LIBRO DIARIO
 
 		$stemen = $this->asientoscontables->listarUlt();
 		$stemen = mysqli_fetch_array($stemen);
@@ -393,8 +393,8 @@ class ventasController{
 		$this->detalleasiento->set("cod_cuenta", "5.1"); //5.1 Corresponde a la cuenta Ventas
 		$this->detalleasiento->set("orden", 3);	
 		$this->detalleasiento->add();
-
-		//header("Location:" . URL . "ventas/verfactura/" . $lastIdFactura);
+*/
+		header("Location:" . URL . "ventas/verfactura/" . $lastIdFactura);
 
 	}
 	public function verfactura($id){ //Esto simplemente hace la consulta completa de la factura y la muestra. Segun su codigo.

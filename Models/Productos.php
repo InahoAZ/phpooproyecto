@@ -7,6 +7,8 @@
  		private $precio_unitario; 		
  		private $stock;
  		private $fecha_alta;
+ 		private $finalizado;
+
  		private $cod_factura; //Uso especial xd -> Pasaron dias y no se k wea hace esto por hacerme el gracioso y no comentar bien xdxdxd :'v
  		private $con;
 
@@ -23,7 +25,7 @@
 		}
 
 		public function listar(){			
-			$sql = "SELECT p.* FROM m_productos p  ORDER BY cod_producto ASC";
+			$sql = "SELECT p.* FROM m_productos p WHERE finalizado = 1 ORDER BY cod_producto ASC";
 			$datos = $this->con->consultaRetorno($sql);	
 			//echo $sql;		
 			return $datos;
@@ -54,6 +56,12 @@
 		}
 		public function edit(){
 			$sql = "UPDATE m_productos SET descripcion = '{$this->descripcion}', precio_unitario = '{$this->precio_unitario}' WHERE cod_producto = '{$this->cod_producto}' ";
+			$this->con->consultaSimple($sql);
+			//echo $sql;		
+		}
+		public function finalizado(){
+			$sql = "UPDATE m_productos SET finalizado = '{$this->finalizado}' WHERE cod_producto = '{$this->cod_producto}' ";
+			echo $sql;
 			$this->con->consultaSimple($sql);
 			//echo $sql;		
 		}

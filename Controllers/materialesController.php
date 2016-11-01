@@ -64,18 +64,19 @@ class materialesController{
 		}
 	}
 	public function reabastecer($id){
+		if(!$_POST){
 		$this->material->set("cod_material", $id);
 		$datos = $this->material->view2();
 		return array('materiales'=>$datos);
-		if ($_POST) {
+		}
+		else{
 			$this->operaciones->set("cod_material", $id);
 			$this->operaciones->set("q" , $_POST['stock']);
-			$this->operaciones->set("cod_tipo_operacion", 1);
-			$this->material->set("stock", $_POST['stock']);
+			$this->operaciones->set("cod_tipo_operacion", 1);			
 			$_SESSION['stock'] = $_POST['stock'];
+			echo $_SESSION['stock'];			
 			$this->lastId = $this->operaciones->add();
-			//header("Location: " . URL . "materiales/reabastecerAdd/" . $id);
-
+			header("Location: " . URL . "materiales/reabastecerAdd/" . $id);
 			
 		}		
 
@@ -141,10 +142,10 @@ class materialesController{
 
 
 			$this->material->updateStock();
-		//header("Location: " . URL . "materiales/reabastecerComprobante/" . $this->lastId);
+		header("Location: " . URL . "materiales/reabastecerComprobante/" . $this->lastId);
 
 	}
-	return $datos2;
+	return $datos = array('material' => $datos2 , 'stokcxd' => $_SESSION['stock'] );
 }
 
 	public function reabastecerComprobante($id=""){ //Aca la wea que se imprime

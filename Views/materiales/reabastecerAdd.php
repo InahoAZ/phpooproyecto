@@ -1,5 +1,8 @@
 <?php 
-$subt = $datos['precio_unitario'] * $_POST['stock'];
+//print_r($datos);
+$stockNuevo = $datos['stokcxd'];
+$datos = $datos['material'];
+$subt = $datos['precio_unitario'] * $stockNuevo;
 $total = $subt ;
 
  ?>
@@ -13,12 +16,12 @@ $total = $subt ;
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-                    <form class="form-horizontal" name="process_buy" action="<?php echo URL; ?>materiales " method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" name="process_buy" action="" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="inputEmail" class="control-label">Descripcion</label>
                             <input class="form-control" name="descripcion" type="text" value="<?php echo $datos['descripcion'] ?>" readonly>
                             <label for="inputEmail" class="control-label">Cantidad a Agregar </label> 
-                            <input class="form-control" name="cantidad" type="text" value="<?php echo $_POST['stock'] ?>" readonly>                           
+                            <input class="form-control" name="cantidad" type="text" value="<?php echo $stockNuevo ?>" readonly>                           
                             <label for="inputEmail" class="control-label">Total (<small><b>*Precio con IVA incluido</b></small>)</label>                            
                             <input type="hidden" name="subt" value="<?php echo $subt; ?>">
                             <input class="form-control" name="total" type="text" value="<?php  echo $total; ?>" readonly>                                               

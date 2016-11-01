@@ -21,6 +21,7 @@
 					<tr>
 						<th>Codigo</th>
 						<th>Descripcion</th>
+						<th>Disponible</th>
 						<th>Precio Unitario</th>
 						<th>Cantidad</th>
 						<th>Proveedor</th>			     
@@ -31,8 +32,9 @@
 					<?php while ($row = mysqli_fetch_array($datos['materiales']) ) { ?>				
 						<form class="form-horizontal" name="materialesform" action="costos/addMaterial/<?php echo $row['cod_material']?>" method="POST" enctype="multipart/form-data">						
 						<tr>			      
-							<td><?php echo $row['cod_material'];?></td>
+							<td><?php echo $row['cod_material'];?></td>							
 							<td><?php echo $row['descripcion'];?></td>
+							<td><?php echo $row['stock'];?></td>
 							<td><?php echo $row['precio_unitario'];?></td>
 							<td><input class="form-control" name="cantidad" type="text" required></td>
 							<td><?php echo $row['razon_social'];?></td>

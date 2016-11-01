@@ -640,8 +640,7 @@ if (vereficar) {
 
 }
 
-function vali_resba(){
-
+function vali_reabast(){
     var vereficar= true;
     var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
 
@@ -649,21 +648,36 @@ function vali_resba(){
 
 
     if (stock.value == "" ) {
-        sweetAlert("Oops...", "El campo  Cantidad esta vacio!", "error");
+        sweetAlert("Oops...", "El campo  Stock Nuevo esta vacio!", "error");
         stock.focus();
         vereficar= false;
     }
 
+   
     else if (isNaN(stock.value) ) {
         sweetAlert("Oops...", "El campo Cantidad solo acepta numeros", "error");
         stock.focus();
         vereficar= false;
     }
 
+    else if (stock.value == 0 ) {
+    sweetAlert("Oops...", "El campo Stock Nuevo no puede ser 0!", "error"); 
+    stock.focus();
+    vereficar= false;
+
+    }
+
+    else if (stock.value < 0 ) {
+    sweetAlert("Oops...", "El campo Stock Nuevo no puede ser menor a  0!", "error"); 
+    stock.focus();
+    vereficar= false;
+
+    }
+
     if (vereficar) {
         sweetAlert("Bien!", "Redireccionando!", "success");
         window.setInterval(function(){
-            document.getElementById("form_resba").submit();
+            document.getElementById("form_reabast").submit();
         },3000);
 
     }
@@ -945,7 +959,7 @@ if (vereficar) {
 function agregar_producto(){
 
     var vereficar= true;
-    var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
+    var expRegNombre= /^[a-zA-Z1-9ÑñÁáÉéÍíÓóÚúÜü\s]+$/
 
     var descripcion= document.getElementById("descripcion");
     var precio= document.getElementById("precio");
@@ -1017,7 +1031,7 @@ function factura() {
     var apyn= document.getElementById("apyn");
 
     if (apyn.value == "") {
-    sweetAlert("Atencion", "La factura sera tio C!", "warning"); 
+    sweetAlert("Atencion", "La factura sera tipo C!", "warning"); 
     window.setInterval(function(){
         document.getElementById("factura").submit();
     },3000);

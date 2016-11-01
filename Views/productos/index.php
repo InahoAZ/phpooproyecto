@@ -22,7 +22,7 @@
 						<th>Descripcion</th>
 						<th>Precio Unitario</th>
 						<th>Stock</th>			     
-						<th colspan="2">Accion</th>
+						<th colspan="2">Asccion</th>
 					</tr>
 				</thead>
 				<tbody>

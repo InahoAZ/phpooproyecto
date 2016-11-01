@@ -32,7 +32,7 @@ class Operaciones{
 	public function add(){
 
 		$sql = "INSERT INTO m_operaciones(cod_operacion, cod_producto, cod_material, q, cod_tipo_operacion, cod_factura, fecha_operacion)	VALUES (null, {$this->cod_producto}, {$this->cod_material}, '{$this->q}', '{$this->cod_tipo_operacion}', {$this->cod_factura}, NOW())";
-			print $sql . "<br>";
+		print $sql . "<br>";
 		$lastId = $this->con->consultaSimple($sql);
 		return $lastId;
 	}

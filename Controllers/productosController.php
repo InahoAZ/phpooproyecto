@@ -1,5 +1,6 @@
 <?php namespace Controllers;	
 use Models\Productos as Productos;
+use Models\Material as Material;
 use Models\Costos as Costos;
 use Models\CostosFijos as CostosFijos;
 use Models\CostosVariables as CostosVariables;
@@ -9,6 +10,7 @@ use Models\Operaciones as Operaciones;
 
 class productosController{
 	private $productos;
+	private $materiales;
 	private $costos;
 	private $costosfijos;
 	private $costosvariables;
@@ -17,6 +19,7 @@ class productosController{
 
 	public function __construct(){			
 		$this->productos = new Productos();
+		$this->materiales = new Material();
 		$this->costos = new Costos();
 		$this->costosfijos = new CostosFijos();
 		$this->costosvariables = new CostosVariables();
@@ -50,18 +53,45 @@ class productosController{
 				$this->operaciones->set("cod_tipo_operacion", 1);
 				$this->operaciones->add();
 			}
+			$this->costostemp->set("cod_producto", $_SESSION['lastIdProducto']);
+			$matPro= $this->costostemp->materialesProducto();
+			if($_POST['stock'] != 0){
+				
+				while($materialesProducto = mysqli_fetch_assoc($matPro)){ //Recorrer los materiales utilizados en este producto, e ir restando su stock, segun la cantidad utilizada.
+				$cantidadPro = $_POST['stock'];
+					$this->materiales->set("cod_material", $materialesProducto['cod_material']);
+					$stockAntes = $this->materiales->view();					
+					$stockAntes = $stockAntes['stock'];
+					if($stockAntes > 0){	
+					$stockDespues = $materialesProducto['cantidad'] * $cantidadPro;
+					
+					$stockNuevo = $stockAntes - $stockDespues;
+					$this->materiales->set("stock", $stockNuevo);
+					$this->operaciones->set("cod_material", $materialesProducto['cod_material']);
+					$this->operaciones->set("q", $stockDespues);
+					$this->operaciones->set("cod_tipo_operacion", 2);
+					$this->operaciones->add();
+					$this->materiales->updateStock();
+					$this->productos->set("finalizado", 1);
+					$this->productos->finalizado();
+					}
+				}
+			}
+
+
 			$this->productos->edit2();
+
 			unset($_SESSION['lastIdProducto']);
 			header("Location: " . URL . "productos");
 
 		}
-	
-		
+
+
 	//Si no se recibe nada por post, hay dos posibilidades. 1. Que se este agregando un nuevo producto, entonces el form debe esta vacio, o 2. Que se este en el Paso 5, que es donde recibe el precio sugerido del form de costos.
 
 	//Al finalizar el proceso de agregar un producto completamente, la variable $_SESSION['lastIdProducto'], queda destruida. Si no es asi, es porque no finalizo el proceso de agregado, y se debe terminar.
 		if(!isset($_SESSION['lastIdProducto'])){
-			
+
 
 		}else{ //Paso 5: Una vez aca, se obtiene el precio sugerido.
 			

@@ -72,7 +72,7 @@
 		public function updateStock(){
 			$sql = "UPDATE m_materiales SET stock = '{$this->stock}', fecha_stock = NOW() WHERE cod_material = '{$this->cod_material}' ";
 			$this->con->consultaSimple($sql);
-			//echo $sql;		
+			echo $sql;		
 		}
 		public function view(){
 			$sql = "SELECT m.* FROM m_materiales m WHERE m.cod_material = '{$this->cod_material}'";

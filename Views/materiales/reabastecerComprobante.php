@@ -1,10 +1,7 @@
 <?php 
 $subtotal = $datos['precio_unitario'] * $datos['q'];
 $iva = ($subtotal * 21)/100;
-$iva = number_format($iva,2); 
-//echo $iva;
 $total = $subtotal + $iva;
-$total = number_format($total,2); 
 ?>
 <div class="container">
     <div class="row">
@@ -73,7 +70,7 @@ $total = number_format($total,2);
                     <td><?php echo $datos['descripcion'] ?></td>
                     <td class="text-center"><?php echo "$" . $datos['precio_unitario']; ?></td>
                     <td class="text-center"><?php echo $datos['q'];?></td>
-                    <td class="text-right"><?php  echo "$" . (number_format(($subtotal),2)); ?></td>
+                    <td class="text-right"><?php  echo "$" . $subtotal; ?></td>
                 </tr> 
                 <tr>
                     <td class="highrow"></td>
@@ -85,7 +82,7 @@ $total = number_format($total,2);
                     <td class="thick-line"></td>
                     <td class="thick-line"></td>
                     <td class="thick-line text-center"><strong>Subtotal</strong></td>
-                    <td class="thick-line text-right"><?php  echo "$" . number_format($subtotal, 2); ?></td>
+                    <td class="thick-line text-right"><?php  echo "$" . ($subtotal - $iva); ?></td>
                 </tr>
                 <tr>
                     <td class="no-line"></td>
