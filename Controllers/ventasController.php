@@ -299,7 +299,7 @@ class ventasController{
 
 		$debe = $_POST['efectivo'] - $_POST['vuelto']; //Lo que se recibio en efectivo. (1.1.1 Caja)
 		 
-		//LIBRO DE CAJA
+		//LIBRO  Diario
 
 		$this->asientoscontablescaja->set("num_asiento", $lastNumAsiento);
 		$this->asientoscontablescaja->set("concepto", "Venta");		

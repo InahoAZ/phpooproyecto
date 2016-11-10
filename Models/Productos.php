@@ -37,7 +37,7 @@
 			return $datos;
 		}
 		public function listar3(){			
-			$sql = "SELECT p.* FROM m_productos p WHERE NOT EXISTS (SELECT 1 FROM m_detalle_factura t2 WHERE t2.cod_factura = '{$this->cod_factura}' AND p.cod_producto = t2.cod_producto ) ORDER BY cod_producto ASC";
+			$sql = "SELECT p.* FROM m_productos p WHERE finalizado = 1 AND NOT EXISTS (SELECT 1 FROM m_detalle_factura t2 WHERE t2.cod_factura = '{$this->cod_factura}' AND p.cod_producto = t2.cod_producto ) ORDER BY cod_producto ASC";
 			$datos = $this->con->consultaRetorno($sql);	
 			//echo $sql;		
 			return $datos;

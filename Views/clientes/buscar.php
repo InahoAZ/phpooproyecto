@@ -89,7 +89,7 @@ if ($banderaBuscar == 0){ ?>
 
 							<?php } ?>
 						</div>
-						<div class="panel-body"><a href="<?php echo URL;?>clientes" class="btn btn-default">Volver</a></div>
+						<div class="panel-body"><a href="<?php echo URL;?>ventas" class="btn btn-default">Volver</a></div>
 
 					</div>
 

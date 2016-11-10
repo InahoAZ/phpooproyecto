@@ -84,8 +84,8 @@
 				<th></th>
 				<th>TOTAL</th>
 				<th colspan="2"></th>
-				<th><?php echo $debe; ?></th>
-				<th><?php echo $haber; ?></th>
+				<th><?php echo round($debe); ?></th>
+				<th><?php echo round($haber); ?></th>
 			</tr>				
 
 		</table>

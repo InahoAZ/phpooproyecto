@@ -40,7 +40,7 @@
 		}
 		
 		public function delete(){
-			$sql = "DELETE FROM t_costostemp WHERE cod_producto = '{$this->cod_producto}'";
+			$sql = "DELETE FROM t_costostemp WHERE cod_material = '{$this->cod_material}'";
 			$this->con->consultaSimple($sql);
 			//echo $sql;
 		}
