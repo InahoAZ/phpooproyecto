@@ -99,6 +99,12 @@ function vali_agregar(){
     vereficar= false;
 }
 
+else if (documento.value <= 0 ) {
+    sweetAlert("Oops...", "El campo documento no acepta numeros negativos o el valor 0 !", "error");
+    documento.focus();
+    vereficar= false;
+} 
+
 else if (isNaN(documento.value) ) {
     sweetAlert("Oops...", "El campo documento solo acepta numeros", "error");
     documento.focus();
@@ -122,6 +128,12 @@ else if (cuit.value == "" ) {
     vereficar= false;
 }   
 
+else if (cuit.value <= 0 ) {
+    sweetAlert("Oops...", "El campo cuit no acepta numeros negativos o el valor 0 !", "error");
+    cuit.focus();
+    vereficar= false;
+} 
+
 else if (isNaN(cuit.value) ) {
     sweetAlert("Oops...", "El campo Cuit solo acepta numeros", "error");
     cuit.focus();
@@ -130,6 +142,18 @@ else if (isNaN(cuit.value) ) {
 
 else if (telefono.value == "" ) {
     sweetAlert("Oops...", "El campo Telefono esta vacio!", "error");
+    telefono.focus();
+    vereficar= false;
+}
+
+else if (telefono.value <= 0 ) {
+    sweetAlert("Oops...", "El campo telefono no acepta numeros negativos o el valor 0 !", "error");
+    telefono.focus();
+    vereficar= false;
+} 
+
+else if (isNaN(telefono.value) ) {
+    sweetAlert("Oops...", "El campo telefono solo acepta numeros", "error");
     telefono.focus();
     vereficar= false;
 }
@@ -172,6 +196,13 @@ function vali_editar(){
     vereficar= false;
 }
 
+else if (documento.value <= 0 ) {
+    sweetAlert("Oops...", "El campo documento no acepta numeros negativos o el valor 0!", "error");
+    documento.focus();
+    vereficar= false;
+} 
+
+
 else if (isNaN(documento.value) ) {
     sweetAlert("Oops...", "El campo documento solo acepta numeros", "error");
     documento.focus();
@@ -194,6 +225,11 @@ else if (cuit.value == "" ) {
     cuit.focus();
     vereficar= false;
 }   
+else if (cuit.value <= 0 ) {
+    sweetAlert("Oops...", "El campo Cuit no acepta numeros negativos o el valor 0 !", "error");
+    cuit.focus();
+    vereficar= false;
+} 
 
 else if (isNaN(cuit.value) ) {
     sweetAlert("Oops...", "El campo Cuit solo acepta numeros", "error");
@@ -206,6 +242,12 @@ else if (telefono.value == "" ) {
     telefono.focus();
     vereficar= false;
 }
+
+else if (telefono.value <= 0 ) {
+    sweetAlert("Oops...", "El campo telefono no acepta numeros negativos o el valor 0 !", "error");
+    telefono.focus();
+    vereficar= false;
+} 
 
 else if (isNaN(telefono.value) ) {
     sweetAlert("Oops...", "El campo telefono solo acepta numeros", "error");
@@ -310,6 +352,14 @@ function vali_provee(){
     vereficar= false;
 }   
 
+
+else if (cuit.value <= 0 ) {
+    sweetAlert("Oops...", "El campo cuit no acepta numeros negativos o el valor 0 !", "error");
+    cuit.focus();
+    vereficar= false;
+} 
+
+
 else if (isNaN(cuit.value) ) {
     sweetAlert("Oops...", "El campo cuit solo acepta numeros", "error");
     cuit.focus();
@@ -321,6 +371,14 @@ else if (telefono.value == "" ) {
     telefono.focus();
     vereficar= false;
 }
+
+
+else if (telefono.value <= 0 ) {
+    sweetAlert("Oops...", "El campo telefono no acepta numeros negativos o el valor 0 !", "error");
+    telefono.focus();
+    vereficar= false;
+} 
+
 
 else if (isNaN(telefono.value) ) {
     sweetAlert("Oops...", "El campo Telefono solo acepta numeros", "error");
@@ -374,6 +432,13 @@ function vali_proveedor(){
     vereficar= false;
 }   
 
+
+else if (cuit.value <= 0 ) {
+    sweetAlert("Oops...", "El campo cuit no acepta numeros negativos o el valor 0 !", "error");
+    cuit.focus();
+    vereficar= false;
+} 
+
 else if (isNaN(cuit.value) ) {
     sweetAlert("Oops...", "El campo cuit solo acepta numeros", "error");
     cuit.focus();
@@ -385,6 +450,14 @@ else if (telefono.value == "" ) {
     telefono.focus();
     vereficar= false;
 }
+
+
+else if (telefono.value <= 0 ) {
+    sweetAlert("Oops...", "El campo telefono no acepta numeros negativos o el valor 0 !", "error");
+    telefono.focus();
+    vereficar= false;
+} 
+
 
 else if (isNaN(telefono.value) ) {
     sweetAlert("Oops...", "El campo Telefono solo acepta numeros", "error");
@@ -520,7 +593,7 @@ function mateHisto($url,$cod_material){
         text: "Desea ver el Historial de Compras?",   
         type: "warning",   
         showCancelButton: true,   
-        confirmButtonColor: "#DD6B55",   
+        confirmButtonColor: "#58FA82",   
         confirmButtonText: "Si, Quiero verlo!",   
         cancelButtonText: "No Quiero!",   
         closeOnConfirm: false,   
@@ -538,6 +611,32 @@ function mateHisto($url,$cod_material){
 
             else {     
                 swal("Cancelado", "No se mostrara el Historial de Compras :)", "error");   } });
+
+}
+
+function mateReabastecer($url,$cod_material){
+    swal({   title: "Estas seguro?",   
+        text: "Deseas Reabastecer el producto?",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#58FA82",   
+        confirmButtonText: "Si, Quiero !",   
+        cancelButtonText: "No Quiero!",   
+        closeOnConfirm: false,   
+        closeOnCancel: false },
+
+        function(isConfirm){   
+            if (isConfirm) {  
+
+                swal("Listo!", "En unos segundos sera redirigido.", "success");
+                window.setInterval(function(){
+                 location.href = $url + "materiales/reabastecer/" + $cod_material;
+             },2000);
+                
+            } 
+
+            else {     
+                swal("Cancelado", "No se Reabastecera el producto :)", "error");   } });
 
 }
 
@@ -566,6 +665,13 @@ function vali_materiales(){
     sweetAlert("Oops...", "El campo precio esta vacio!", "error"); 
     precio.focus();
     vereficar= false;
+} 
+
+
+else if (precio.value <= 0 ) {
+    sweetAlert("Oops...", "El campo precio no acepta numeros negativos o el valor 0!", "error");
+    precio.focus();
+    vereficar= false;
 }   
 
 else if (isNaN(precio.value) ) {
@@ -579,6 +685,13 @@ else if (stock.value == "" ) {
     stock.focus();
     vereficar= false;
 }
+
+
+else if (stock.value <= 0 ) {
+    sweetAlert("Oops...", "El campo stock no acepta numeros negativos o el valor 0!", "error");
+    stock.focus();
+    vereficar= false;
+} 
 
 else if (isNaN(stock.value) ) {
     sweetAlert("Oops...", "El campo stock solo acepta numeros", "error");
@@ -624,6 +737,13 @@ function vali_materiales2(){
     precio.focus();
     vereficar= false;
 }   
+
+
+else if (precio.value <= 0 ) {
+    sweetAlert("Oops...", "El campo precio no acepta numeros negativos o el valor 0!", "error");
+    precio.focus();
+    vereficar= false;
+} 
 
 else if (isNaN(precio.value) ) {
     sweetAlert("Oops...", "El campo precio solo acepta numeros", "error");
@@ -742,7 +862,7 @@ function proRes($url,$cod_producto){
         text: "Desea Reabastecer el producto?",   
         type: "warning",   
         showCancelButton: true,   
-        confirmButtonColor: "#DD6B55",   
+        confirmButtonColor: "#58FA82",   
         confirmButtonText: "Si, Quiero verlo!",   
         cancelButtonText: "No Quiero!",   
         closeOnConfirm: false,   
@@ -778,6 +898,12 @@ function vali_costos(){
         obra.focus();
         vereficar= false;
     }
+
+    else if (obra.value <= 0 ) {
+    sweetAlert("Oops...", "El campo Mano de obra no acepta numeros negativos o el valor 0 !", "error");
+    obra.focus();
+    vereficar= false;
+} 
 
     else if (isNaN(obra.value) ) {
     sweetAlert("Oops...", "El campo Mano de Obra solo acepta numeros", "error");
@@ -827,6 +953,12 @@ function editar_productos(){
     vereficar= false;
 }   
 
+    else if (precio.value <= 0 ) {
+    sweetAlert("Oops...", "El campo precio no acepta numeros negativos o el valor 0 !", "error");
+    precio.focus();
+    vereficar= false;
+} 
+
     else if (isNaN(precio.value) ) {
     sweetAlert("Oops...", "El campo precio unitario solo acepta numeros", "error");
     precio.focus();
@@ -863,6 +995,12 @@ function reaba_productos(){
     vereficar= false;
 }
 
+else if (stock.value <= 0 ) {
+    sweetAlert("Oops...", "El campo stock no acepta numeros negativos o el valor 0 !", "error");
+    stock.focus();
+    vereficar= false;
+} 
+
 
 if (vereficar) {
     sweetAlert("Bien!", "Guardando!", "success");
@@ -891,6 +1029,13 @@ function vali_cfijos(){
         vereficar= false;
     }
 
+
+    else if (alquiler.value <= 0 ) {
+    sweetAlert("Oops...", "El campo alquiler no acepta numeros negativos o el valor 0!", "error");
+    alquiler.focus();
+    vereficar= false;
+    } 
+
     else if (isNaN(alquiler.value) ) {
     sweetAlert("Oops...", "El campo alquiler solo acepta numeros", "error");
     alquiler.focus();
@@ -902,6 +1047,13 @@ function vali_cfijos(){
         agua.focus();
         vereficar= false;
     }
+
+
+    else if (agua.value <= 0 ) {
+    sweetAlert("Oops...", "El campo agua no acepta numeros negativos o el valor 0!", "error");
+    agua.focus();
+    vereficar= false;
+} 
 
     else if (isNaN(agua.value) ) {
     sweetAlert("Oops...", "El campo alquiler solo acepta numeros", "error");
@@ -915,6 +1067,13 @@ function vali_cfijos(){
         vereficar= false;
     }
 
+
+    else if (luz.value <= 0 ) {
+    sweetAlert("Oops...", "El campo luz no acepta numeros negativos o el valor 0!", "error");
+    luz.focus();
+    vereficar= false;
+} 
+
     else if (isNaN(luz.value) ) {
     sweetAlert("Oops...", "El campo luz solo acepta numeros", "error");
     luz.focus();
@@ -927,6 +1086,13 @@ function vali_cfijos(){
         vereficar= false;
     }
 
+
+    else if (herramientas.value <= 0 ) {
+    sweetAlert("Oops...", "El campo herramientas no acepta numeros negativos o el valor 0!", "error");
+    herramientas.focus();
+    vereficar= false;
+} 
+
     else if (isNaN(herramientas.value) ) {
     sweetAlert("Oops...", "El campo herramientas solo acepta numeros", "error");
     herramientas.focus();
@@ -937,6 +1103,13 @@ function vali_cfijos(){
         porcentaje.focus();
         vereficar= false;
     }
+
+
+    else if (porcentaje.value <= 0 ) {
+    sweetAlert("Oops...", "El campo porcentaje no acepta numeros negativos o el valor 0!", "error");
+    porcentaje.focus();
+    vereficar= false;
+} 
 
     else if (isNaN(porcentaje.value) ) {
     sweetAlert("Oops...", "El campo Porcetaje a Agregar solo acepta numeros", "error");
@@ -991,6 +1164,12 @@ function agregar_producto(){
 
 } 
 
+else if (final.value <= 0 ) {
+    sweetAlert("Oops...", "El campo Precio Final no acepta numeros negativos o el valor 0 !", "error");
+    final.focus();
+    vereficar= false;
+} 
+
 else if (isNaN(final.value) ) {
     sweetAlert("Oops...", "El campo Precio Final  solo acepta numeros", "error");
     final.focus();
@@ -1003,6 +1182,12 @@ else if (isNaN(final.value) ) {
     vereficar= false;
 
 }
+
+else if (stock.value <= 0 ) {
+    sweetAlert("Oops...", "El campo Stock  Incial no acepta numeros negativos o el valor 0 !", "error");
+    stock.focus();
+    vereficar= false;
+} 
 
 else if (isNaN(final.value) ) {
     sweetAlert("Oops...", "El campo Stock Inicial  solo acepta numeros", "error");
@@ -1223,33 +1408,33 @@ function vali_facturac(){
     var total =document.getElementById('total')
 
 
-    if (apyn.value == "" ) {
-        sweetAlert("Oops...", "El campo Apellido y Nombre  esta vacio!", "error");
-        apyn.focus();
-        vereficar= false;
-    }
-    else if (!expRegNombre.exec(apyn.value)) {
-     sweetAlert("Oops...", "El campo Apellido y Nombre solo acepta letras y espacios en blancos", "error");
-     apyn.focus();
-     vereficar= false;
-    }
+   // if (apyn.value == "" ) {
+   //     sweetAlert("Oops...", "El campo Apellido y Nombre  esta vacio!", "error");
+   //     apyn.focus();
+   //     vereficar= false;
+   // }
+    //else if (!expRegNombre.exec(apyn.value)) {
+    // sweetAlert("Oops...", "El campo Apellido y Nombre solo acepta letras y espacios en blancos", "error");
+     //apyn.focus();
+     //vereficar= false;
+    //}
 
 
-    else if (direccion.value == "" ) {
-    sweetAlert("Error", "El campo direccion  esta vacio!!", "error"); 
-    direccion.focus();
-    vereficar= false;
+    //else if (direccion.value == "" ) {
+    //sweetAlert("Error", "El campo direccion  esta vacio!!", "error"); 
+    //direccion.focus();
+    //vereficar= false;
         
-    }
+    //}
 
-   else if (telefono.value == "" ) {
-    sweetAlert("Error", "El campo Telefono esta vacio!!", "error"); 
-    telefono.focus();
-    vereficar= false; 
+   //else if (telefono.value == "" ) {
+    //sweetAlert("Error", "El campo Telefono esta vacio!!", "error"); 
+    //telefono.focus();
+    //vereficar= false; 
 
-    }
+    //}
 
-    else if (isNaN(telefono.value) ) {
+     if (isNaN(telefono.value) ) {
     sweetAlert("Oops...", "El campo Telefono solo acepta numeros", "error");
     telefono.focus();
     vereficar= false;
@@ -1347,3 +1532,156 @@ function reabastecerAddVuelto() {
    catch(e) {}
 
 }
+
+
+function cuentaEditar($url,$cod_cuenta){
+    swal({   title: "Estas seguro?",   
+        text: "Desea editar la cuenta?",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#58FA82",   
+        confirmButtonText: "Si, Editar!",   
+        cancelButtonText: "No Editar!",   
+        closeOnConfirm: false,   
+        closeOnCancel: false },
+
+        function(isConfirm){   
+            if (isConfirm) {  
+
+                swal("Espere!", "En unos segundos sera redireccionado.", "success");
+                window.setInterval(function(){
+                 location.href = $url + "cuentas/editar//" + $cod_cuenta;
+             },2000);
+                
+            } 
+
+            else {     
+                swal("Cancelado", "No se editara la cuenta :)", "error");   } });
+
+}
+
+
+function cuentaEliminar($url,$cod_cuenta){
+    swal({   title: "Estas seguro?",   
+        text: "Desea eliminar la cuenta?",   
+        type: "warning",   
+        showCancelButton: true,   
+        confirmButtonColor: "#DD6B55",   
+        confirmButtonText: "Si, Eliminar!",   
+        cancelButtonText: "No Eliminar!",   
+        closeOnConfirm: false,   
+        closeOnCancel: false },
+
+        function(isConfirm){   
+            if (isConfirm) {  
+
+                swal("Listo!", "Su cuenta no se elimino.", "success");
+                window.setInterval(function(){
+                 location.href = $url + "cuentas/eliminar/" + $cod_cuenta;
+             },2000);
+                
+            } 
+
+            else {     
+                swal("Cancelado", "No se eliminara la cuenta :)", "error");   } });
+
+}
+
+
+function vali_cuentas(){
+
+    var vereficar= true;
+    var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
+
+    var codcuenta= document.getElementById("codcuenta");
+    var detalle= document.getElementById("detalle");
+    
+
+    if (codcuenta.value == "" ) {
+        sweetAlert("Oops...", "El campo Codigo de Cuenta esta vacio!", "error");
+        codcuenta.focus();
+        vereficar= false;
+    }
+
+    else if (isNaN(codcuenta.value) ) {
+    sweetAlert("Oops...", "El campo Codigo de Cuenta solo acepta numeros", "error");
+    documento.focus();
+    vereficar= false;
+    }
+
+
+
+    else if (detalle.value == "" ) {
+        sweetAlert("Oops...", "El campo Detalle esta vacio!", "error");
+        detalle.focus();
+        vereficar= false;
+    }
+
+    else if (!expRegNombre.exec(detalle.value)) {
+     sweetAlert("Oops...", "El campo Detalle solo acepta letras y espacios en blancos", "error");
+     detalle.focus();
+     vereficar= false;
+ }
+
+
+
+if (vereficar) {
+    sweetAlert("Bien!", "Guardando!", "success");
+    window.setInterval(function(){
+        document.getElementById("cuenta_agregar").submit();
+    },3000);
+
+}
+
+}
+
+
+
+function vali_cuentas2(){
+
+    var vereficar= true;
+    var expRegNombre= /^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/
+
+    var codcuenta= document.getElementById("codcuenta");
+    var detalle= document.getElementById("detalle");
+    
+
+    if (codcuenta.value == "" ) {
+        sweetAlert("Oops...", "El campo Codigo de Cuenta esta vacio!", "error");
+        codcuenta.focus();
+        vereficar= false;
+    }
+
+    else if (isNaN(codcuenta.value) ) {
+    sweetAlert("Oops...", "El campo Codigo de Cuenta solo acepta numeros", "error");
+    documento.focus();
+    vereficar= false;
+    }
+
+
+
+    else if (detalle.value == "" ) {
+        sweetAlert("Oops...", "El campo Detalle esta vacio!", "error");
+        detalle.focus();
+        vereficar= false;
+    }
+
+    else if (!expRegNombre.exec(detalle.value)) {
+     sweetAlert("Oops...", "El campo Detalle solo acepta letras y espacios en blancos", "error");
+     detalle.focus();
+     vereficar= false;
+ }
+
+
+
+if (vereficar) {
+    sweetAlert("Bien!", "Guardando!", "success");
+    window.setInterval(function(){
+        document.getElementById("editar_cuentas").submit();
+    },3000);
+
+}
+
+}
+
+

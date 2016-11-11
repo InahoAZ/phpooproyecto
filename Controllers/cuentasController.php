@@ -19,7 +19,7 @@
 				$this->cuenta->set("detalle", $_POST['detalle']);
 				$this->cuenta->set("tipo", $_POST['tipo']);
 				$this->cuenta->add();
-				//header("Location: " . URL . "cuentas");
+				header("Location: " . URL . "cuentas");
 			}
 		}
 

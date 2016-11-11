@@ -1,10 +1,10 @@
 <div class="box-principal">
-	<h3 class="titulo">Listado de Clientes<br></h3>	
+	<h3 class="titulo">Listado de Cuentas<br></h3>	
 	<div class="row">
 		<div class="col-md-20">
 			<div class="panel panel-success">		
 				<div class="panel-heading">
-					<h3 class="panel-title">Listado de Clientes</h3>
+					<h3 class="panel-title">Listado de Cuentas</h3>
 				</div>
 
 
@@ -34,8 +34,13 @@
 										<td><?php echo $row['detalle'];?></td>
 										<td><?php echo $row['tipo'];?></td>
 
-										<td><a class="btn btn-warning" href=" <?php echo URL; ?>cuentas/editar/<?php echo $row['cod_cuenta']?>">Editar</a></td>
-										<td><a class="btn btn-danger" href=" <?php echo URL; ?>cuentas/eliminar/<?php echo $row['cod_cuenta']?>">Eliminar</a></td>
+
+										<td><a class="btn btn-warning" onClick="javascript: return cuentaEditar('<?php echo URL; ?>','<?php echo $row['cod_cuenta'];?>');">Editar</a></td>
+							
+										<td><a class="btn btn-danger" onClick="javascript: return cuentaEliminar('<?php echo URL; ?>','<?php echo $row['cod_cuenta'];?>');">Eliminar</a></td>
+
+										
+
 									</tr>
 									<?php }} ?>
 								</tbody>

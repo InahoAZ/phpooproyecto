@@ -8,10 +8,10 @@
 	  	<div class="row">
 	  		<div class="col-md-1"></div>
 	  		<div class="col-md-10">
-	  			<form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+	  			<form  id="editar_cuentas" class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
 				    <div class="form-group">
 				   	 <label for="inputEmail" class="control-label">Codigo de Cuenta</label>
-				        <input class="form-control" name="cod_cuenta" type="text" value="<?php echo $datos['cod_cuenta'];?>" required>
+				        <input class="form-control"  id="codcuenta" name="cod_cuenta" type="text" value="<?php echo $datos['cod_cuenta'];?>" required>
 				      <label for="inputEmail" class="control-label">Tipo de Cuenta</label>
 				        <select class="form-control" name="tipo" type="text" value="<?php echo $datos['tipo'];?>" required>
 				        	<option value="Activo">Activo</option>
@@ -22,11 +22,12 @@
 
 				        </select>
 				       <label for="inputEmail" class="control-label">Detalle</label>
-				        <input class="form-control" name="detalle" type="text" value="<?php echo $datos['detalle'];?>" required>
+				        <input class="form-control" id="detalle" name="detalle" type="text" value="<?php echo $datos['detalle'];?>" required>
 
 				    </div>
 				    <div class="form-group">
-				    	 <button type="submit" class="btn btn-success">Editar</button>
+
+				    	<button type="button" name="btnSubmit" class="btn btn-success" onclick="vali_cuentas2()">Editar</button>
 				        <button type="reset" class="btn btn-warning">Borrar</button>
 				    </div>
 				</form>
